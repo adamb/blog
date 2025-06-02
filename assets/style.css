@@ -72,13 +72,16 @@ article h1 {
     color: #00f2ff;
     margin-bottom: 0.5rem;
     text-shadow: 0 0 5px rgba(0, 242, 255, 0.3);
+    font-size: 2rem;
+    display: block;
 }
 
 article h2 {
     color: #e0e0e0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
-    opacity: 0.8;
+    opacity: 1;
+    display: block;
 }
 
 article p {
