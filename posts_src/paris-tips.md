@@ -1,0 +1,22 @@
+# Paris Travel tips
+## 2025-06-02 16:36:59
+
+We're spending some time in Paris and we've been here a lot over the years.  Here are some travel tips that come to mind.   
+
+My first trip to Paris was 1986.  Wow, how things have changed.  Some things are the same, some things haven't changed.  The iPhone changed a lot of things.  ChatGPT is changing even more.
+
+## Translating Menus
+
+I now prefer to translate menus using ChatGPT.  I take a picture of the menu and ask ChatGPT "translate" and I get a great, readable version of the menu.  I like this better than Google Translate.  Seems like cheating, but it works great.
+
+## Navigo metro passes
+
+You can pay for the metro with your iPhone.  Just go to the Apple Wallet and click the + and select "Transit Card"  and you can add a Navigo card to your Apple Wallet.  No need to buy a physical card.  You can then add tickets to your Navigo card easily.  Buy a day pass or a bundle of 10 metro tickets.  
+
+As a bonus, you can scan your phone at all the metro stops now.  Presumably even if your phone is dead.  The iPhone must have some kind of NFC thing in it.  Not sure how this works.
+
+Ok, I asked my overlord ChatGPT and it says:
+
+> Apple uses a thing called “Power Reserve” (for Express Transit cards) that keeps the NFC chip alive even after the phone dies. Basically, there’s a tiny bit of juice tucked aside just for NFC. When your iPhone 12 or newer runs out of main battery, it shuts down everything except that little reserve so the NFC antenna can still emulate your Navigo card. That way you can tap in at métro gates for a few hours after the phone goes “dead.”
+
+
