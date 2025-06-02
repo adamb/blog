@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+/* Reset any defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Make the page full-height and center everything */
+html, body {
+    height: 100%;
+    font-family: 'Audiowide', 'Courier New', monospace;
+    background-color: #0a0a1a;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header styling: large, bold, centered */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #00f2ff;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+}
+
+/* Navigation: very minimal, small links under the header */
+nav {
+    margin-top: 0.5rem;
+}
+
+nav a {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid #334;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+nav a:hover {
+    background-color: rgba(0, 242, 255, 0.1);
+    border-color: #00f2ff;
+    color: #00f2ff;
+    box-shadow: 0 0 5px rgba(0, 242, 255, 0.3);
+}
+
+/* Main content area: keep it narrow and centered */
+main {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem;
+}
+
+/* Article styling */
+article {
+    line-height: 1.6;
+}
+
+article h1 {
+    color: #00f2ff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px rgba(0, 242, 255, 0.3);
+}
+
+article h2 {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+article p {
+    margin-bottom: 1rem;
+}
+
+article a {
+    color: #00f2ff;
+    text-decoration: none;
+}
+
+article a:hover {
+    text-decoration: underline;
+}
+
+/* Footer: tiny copyright text at bottom */
+footer {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Welcome message styling */
+#content > p {
+    text-align: center;
+    color: #e0e0e0;
+    opacity: 0.8;
+}

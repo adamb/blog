@@ -42,7 +42,7 @@ console.log(`Built ${posts.length} post(s).`);
 const navLinks = posts
   .map(
     ({ title, filename }) =>
-      `<a href="#" hx-get="/posts/${filename}" hx-target="#content" hx-push-url="true">${title}</a>`
+      `<a href="#" hx-get="posts/${filename}" hx-target="#content" hx-push-url="true">${title}</a>`
   )
   .join("\n    ");
 
