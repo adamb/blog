@@ -1,5 +1,6 @@
-/posts/*
-!/posts/.gitkeep
+# /posts/*
+# !/posts/.gitkeep
 /index.html
 .wrangler
 node_modules
+.aider*
