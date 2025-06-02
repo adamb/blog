@@ -70,7 +70,9 @@ article {
 
 /* Global header styles that work with HTMX */
 h1, article h1, #content h1 {
-    color: #00f2ff !important;
+    color: #ff0000 !important;
+    background: yellow !important;
+    border: 3px solid red !important;
     margin-bottom: 0.5rem;
     text-shadow: 0 0 5px rgba(0, 242, 255, 0.3);
     font-size: 2rem !important;
@@ -78,10 +80,14 @@ h1, article h1, #content h1 {
     font-weight: 700;
     line-height: 1.2;
     visibility: visible !important;
+    position: relative !important;
+    z-index: 9999 !important;
 }
 
 h2, article h2, #content h2 {
-    color: #e0e0e0 !important;
+    color: #ff0000 !important;
+    background: lime !important;
+    border: 3px solid blue !important;
     font-size: 1.5rem !important;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
@@ -90,6 +96,8 @@ h2, article h2, #content h2 {
     font-weight: 600;
     line-height: 1.3;
     visibility: visible !important;
+    position: relative !important;
+    z-index: 9999 !important;
 }
 
 /* Specific overrides for header h1 */
