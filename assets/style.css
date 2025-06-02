@@ -68,6 +68,13 @@ article {
     line-height: 1.6;
 }
 
+article h1, article h2 {
+    color: #ff0000 !important;
+    font-size: 2rem !important;
+    background: yellow !important;
+    display: block !important;
+}
+
 article h1 {
     color: #00f2ff;
     margin-bottom: 0.5rem;
