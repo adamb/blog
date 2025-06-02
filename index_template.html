@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My HTMX Blog</title>
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1>My Blog</h1>
+    <nav>
+      <!-- NAV_LINKS -->
+    </nav>
+  </header>
+
+  <main id="content">
+    <!-- On page load, HTMX will fetch and inject the first post -->
+    <div
+      hx-get="/posts/post1.html"
+      hx-trigger="load"
+      hx-swap="innerHTML"
+    ></div>
+  </main>
+
+  <footer>
+    <p>© 2025 Adamo</p>
+  </footer>
+</body>
+</html>
