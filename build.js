@@ -30,6 +30,7 @@ const posts = fs
     const outName = `${slug}.html`;
     const wrapped = `<article>\n${htmlBody}</article>`;
 
+    // Write HTMX fragment for dynamic loading
     fs.writeFileSync(path.join(outputDir, outName), wrapped);
     console.log(`Built posts/${outName}`);
 
