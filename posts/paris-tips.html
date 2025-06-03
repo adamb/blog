@@ -1,4 +1,22 @@
-<article>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Paris Travel tips - Adam's Blog</title>
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      <a href="/posts/paris-tips.html" hx-get="/posts/paris-tips.html" hx-select="article" hx-target="#content" hx-push-url="true">Paris Travel tips</a>
+    <a href="/posts/startmeup.html" hx-get="/posts/startmeup.html" hx-select="article" hx-target="#content" hx-push-url="true">Start Me Up:  Build a new blog</a>
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
 <h1>Paris Travel tips</h1>
 <h2>2025-06-02 16:36:59</h2>
 <p>We're spending some time in Paris and we've been here a lot over the years.  Here are some travel tips that come to mind.</p>
@@ -13,3 +31,10 @@
 <p>Apple uses a thing called “Power Reserve” (for Express Transit cards) that keeps the NFC chip alive even after the phone dies. Basically, there’s a tiny bit of juice tucked aside just for NFC. When your iPhone 12 or newer runs out of main battery, it shuts down everything except that little reserve so the NFC antenna can still emulate your Navigo card. That way you can tap in at métro gates for a few hours after the phone goes “dead.”</p>
 </blockquote>
 </article>
+  </main>
+
+  <footer>
+    <p>© 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

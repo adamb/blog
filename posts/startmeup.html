@@ -1,7 +1,45 @@
-<article>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Start Me Up:  Build a new blog - Adam's Blog</title>
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      <a href="/posts/paris-tips.html" hx-get="/posts/paris-tips.html" hx-select="article" hx-target="#content" hx-push-url="true">Paris Travel tips</a>
+    <a href="/posts/startmeup.html" hx-get="/posts/startmeup.html" hx-select="article" hx-target="#content" hx-push-url="true">Start Me Up:  Build a new blog</a>
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
 <h1>Start Me Up:  Build a new blog</h1>
 <h2>2025-06-02 15:54:56</h2>
 <p>I keep coming up with things I want to write up but don't really have a place to put them.  I tried using Hugo for a while and did't like it.  Back in 2007 I was using Blogger and that just seems way too old.</p>
 <p>I'm rolling my own now.  Using HTMX and a little javascript and hosting it at Cloudflare.  This seems like the right thing and it fits my brain.  Let's see how it goes.</p>
 <p>You can find the source code for this blog on my git repo: https://github.com/adamb/blog</p>
+<h2>Day Two</h2>
+<h3>2025-06-03 09:40:25</h3>
+<p>Ok, nothing is as simple as you might think.  So I have a build.js script and that's working.  But the pages that were built are just html pages, so it's not really doing anything to use the htmx verus html.</p>
+<p>I'm using htmx in the main page and originally it was cool to have it pull in the snippets of html for each post. But then the direct links to those posts didn't get rendered with the style sheet.  Now the html pages are full pages, and the main page pulls them in and uses <code>hx-select</code> to pull the <code>&lt;article&gt;</code> out of the html page.</p>
+<p>Now I'm not sure why I'm using htmx at all.  I guess to learn something new.</p>
+<p>I'm thinking of adding some stats too.  I could add a /track script that would invoke a Cloudflare tracking function to stick stats into a kv and then build a little stats dashboard.</p>
+<p>Anyway, for now I have some place to keep track of ideas.</p>
+<p>Next steps:</p>
+<ul>
+<li>Add some more posts</li>
+<li>Get tracking and stats to work</li>
+<li>Figure out if it's worth using htmx</li>
+</ul>
 </article>
+  </main>
+
+  <footer>
+    <p>© 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>
