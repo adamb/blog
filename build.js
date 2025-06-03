@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import MarkdownIt from "markdown-it";
 
-const md = new MarkdownIt();
+const md = new MarkdownIt({ html: true });
 const inputDir = "posts_src";
 const outputDir = "posts";
 const templatePath = "index_template.html";
