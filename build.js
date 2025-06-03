@@ -14,7 +14,7 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir);
 }
 
-// 1) Generate individual post HTML fragments
+// 1) Generate individual post HTML fragments and full pages
 const posts = fs
   .readdirSync(inputDir)
   .filter((f) => path.extname(f) === ".md")
