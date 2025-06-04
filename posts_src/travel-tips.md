@@ -5,7 +5,7 @@ We travel international a lot and there are a some hacks that maybe people don't
 
 ## Get a local eSIM 
 
-Depending on where you go, you can get amazing deals on local data plans.  Most modern phones will let you install multiple eSIMS so you can keep your US number and also use the local networks for data.  This works well on iOS devices.  My favorite eSIM marketplace is an app called [MobiMatter](https://mobimatter.page.link/home?referrerId=GKVQ692388).  I'm currently in France and using an eSIM I bought a year ago from them.  You can search by country and length of stay and data, etc. I found an eSIM with a ton of data and a year expiration, so I was able to use it for a number of trips to Europe.  
+Depending on where you go, you can get amazing deals on local data plans.  Most modern phones will let you install multiple eSIMS so you can keep your US number and also use the local networks for data.  This works well on iOS devices.  My favorite eSIM marketplace is an app called [MobiMatter](https://mobimatter.page.link/home?referrerId=GKVQ692388).  I'm currently in France and using an eSIM I bought a year ago from them.  You can search by country and length of stay and data, etc. I found an eSIM with a ton of data and a year expiration, so I was able to use it for multiple trips to Europe.  
 
 Tip:  you can move an eSIM from one phone to another.  I had to pay MobiMatter $3 to move my eSIM to my new phone since I had upgraded since last year.  But it was pretty easy and took just a few minutes.
 
@@ -17,7 +17,7 @@ But I digress.  If you are going to be in country for a week, get a data only eS
 
 ## Research Uber Alternatives
 
-Uber works a lot of places, but sometimes the local competitor is better or sometimes Uber doesn't.  In France I prefer Bolt most of the time.  It's often cheaper and faster to get a car in Paris with Bolt.  But I still use Uber when Bolt is flakey.  I had 4 drivers cancel on my recently when trying to get a Bolt.  I gave up and switched to Uber and got a driver in 5 minutes.  
+Uber works a lot of places, but sometimes the local competitor is better or sometimes Uber doesn't.  In France I prefer Bolt most of the time.  It's often cheaper and faster to get a car in Paris with Bolt.  But I still use Uber when Bolt is flakey.  Recently, 4 drivers cancel on me when trying to get a Bolt.  I gave up and switched to Uber and got a driver in 5 minutes.  
 
 In Vietnam the gold standard is Grab.  There is no Uber.  Grab in Saigon also has motorbike options and amazingly cheap food delivery.  Grab is amazing.  
 
@@ -28,13 +28,13 @@ In Colombia and Mexico City for food delivery use Rappi.  Similar to Grab but de
 
 Post Covid many countries are now almost cashless.  I rarely use cash in Paris.  You can use Apple Pay to buy a 1 € bottle of water and the vendor doesn't blink an eye.  
 
-Apple Pay is faster and more secure than using your credit card physically.  Just make sure to use a card that has no foreign transaction fees.  Chase Sapphire Preferred or Venture X are great options.  Beware of using the Chase Freedom cards for international charges.
+Apple Pay is faster and more secure than using your credit card physically.  Just make sure to use a card with no foreign transaction fees.  Chase Sapphire Preferred or Venture X are great options.  Beware of using the Chase Freedom cards for international charges.
 
 Also _never select USD_ when doing credit card transactions.  When you do the credit card processor will do the conversion and they will screw you.  I recently rented a car in Menorca and the woman automatically selected USD for me before I could say anything.  I told her this was bad and complained but it was too late.  I checked the conversion rate and sure enough, it bad.  I was charged $94 when my banks conversion would have resulted in a $90 charge.  A $4 reminder to be careful.  It could have been worse.
 
 ## Get a Schwab Account for ATM Access
 
-Get a brokerage an checking account from Schwab. They are great.  They have zero minimal balance and you can link your other bank accounts and easily move money between your main bank account and Schwab.  (Or just switch banks, if you don't mind the hassle.)  When you use a Schwab ATM card anywhere, whether in the USA or a foreign country, they will reimburse the ATM fees.  I used it in Vietnam and got a great exchange rate and at the end of the month, Schwab gave me back all the ATM fees.  
+Get a brokerage an checking account from Schwab. They are great.  They have zero minimal balance and you can link your other bank accounts and easily move money between your main bank account and Schwab.  (Or just switch banks, if you don't mind the hassle.)  When you use a Schwab ATM card anywhere, whether in the USA or a foreign country, they will reimburse the ATM fees. I used it in Vietnam, got a great exchange rate, and Schwab reimbursed all the ATM fees at the end of the month. 
 
 Also _never select USD_ when doing an ATM withdraw. Similar to the credit card exchange rate mentioned above, your bank will give you a better rate. Schwab will give you the market rate.  If you let the local bank's ATM do the conversion, you will get screwed.  Read the screens carefully. They try to make it confusing.   
 
