@@ -68,4 +68,10 @@ One of the tasks that I setup was only supposed to trigger if BTC fell below $10
   <img src="/assets/btclow.png" alt="BTC Low Graph" width="400" style="max-width: 100%; height: auto;">
 </p>
 
+I had another tasks to send me daily news.  It was stuck in 2024 and sending me news about the Biden administration.  Weird.
+
+So while this seems like a cool idea. It's difficult to use and it seems to lie a lot.  Maybe I'm not prompting it correctly, but still it is sending old news when I say to send the latest news.  Something's not right.
+
+
+
 
