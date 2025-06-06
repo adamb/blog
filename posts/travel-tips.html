@@ -5,6 +5,27 @@
   <title>Adam's Travel Tips - Adam's Blog</title>
   <script src="/assets/htmx.min.js"></script>
   <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful) {
+        trackVisit();
+      }
+    });
+  </script>
 </head>
 <body>
   <header>
