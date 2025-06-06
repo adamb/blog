@@ -33,6 +33,3 @@ We usually stay in the 6th arrondissement but it's pretty full of tourists.  If 
 
 The Velib' Métropole bikes are a great deal. You can get the app and then add the card to your Apple Wallet.  The card works like the Navigo card and you can use it to unlock a bike.  I have been buying 24 passes for 5€ and this lets you use bikes as much as you want as long as each ride is under 30 minutes.  If you go over 30 min they charge you an extra 1€.  These are mechanical bikes with stations all over the city.  If you want an ebike, that upgrade will cost an extra 2€.  So if you're going to go far, it might be worth it.  Metro tickets these days are 2.50€ and 20 minute Uber/Bolt will cost you about 20€, but that is highly variable.
 
-
-
-

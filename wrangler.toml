@@ -4,3 +4,13 @@ pages_build_output_dir = "."
 
 [env.production]
 name = "blog"
+
+[[env.production.kv_namespaces]]
+binding = "VISIT_LOG"
+id = "1938ea1eb1184f289d783cbe40148911"
+
+[env.preview]
+
+[[env.preview.kv_namespaces]]
+binding = "VISIT_LOG"
+id = "d12e5a239be045dd84af2473e771be07"
