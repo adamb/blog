@@ -21,9 +21,12 @@ Ok, I asked my overlord ChatGPT and it says:
 > Apple uses a thing called “Power Reserve” (for Express Transit cards) that keeps the NFC chip alive even after the phone dies. Basically, there’s a tiny bit of juice tucked aside just for NFC. When your iPhone 12 or newer runs out of main battery, it shuts down everything except that little reserve so the NFC antenna can still emulate your Navigo card. That way you can tap in at métro gates for a few hours after the phone goes “dead.”
 
 
-# Try Bolt, then Uber
+# Not just Uber, try Bolt and FreeNow
 
 In Paris, Bolt is generally cheaper and faster than Uber.  But sometimes I find the Bolt drivers more flakey.  Recently our driver was meeting us at the apartment and the app said it was Mohamed in a Red Tesla Model 3.  I was standing in front of our apartment and there was a white Tesla with a Bolt logo. The driver picture didn't look like Mohamed and the Tesla wasn't red.  Mohamed called me (in the app) and was asking where I was. I was right in front of him but didn't realize it because he was in a Toyota.  He's calling me and looking across the road to the wrong side of the street.  I told him in French: « à la gauche. » He turned and saw me on the phone.  I asked why not a Tesla and he said it was in the shop.  I was a little leary about getting in, but his picture matched the one in the app and it all worked out.
+
+My friend recently got a trip on [FREENOW](https://apps.apple.com/us/app/freenow-taxi-and-more/id357852748?ppid=789de1fb-a3a3-4deb-9e79-423d589eb70c) for half the price of Bolt. So try all the apps if your ride looks too expensive!
+
 
 # Get out of the touristy areas
 
