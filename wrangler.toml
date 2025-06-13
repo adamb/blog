@@ -1,6 +1,6 @@
 name = "blog"
 compatibility_date = "2023-05-18"
-pages_build_output_dir = "."
+pages_build_output_dir = "dist"
 
 [env.production]
 name = "blog"

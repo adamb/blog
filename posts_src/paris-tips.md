@@ -1,5 +1,10 @@
+---
+title: "Paris Travel Tips"
+date: "2025-06-02"
+slug: "paris-travel-tips"
+---
+
 # Paris Travel tips
-## 2025-06-02 16:36:59
 
 We're spending some time in Paris and we've been here a lot over the years.  Here are some travel tips that come to mind.   
 

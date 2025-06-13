@@ -1,5 +1,10 @@
+---
+title: "Failing ChatGPT Tasks"
+date: "2025-06-03"
+slug: "failing-chatgpt-tasks"
+---
+
 # Using ChatGPT Tasks
-## 2025-06-03 09:54:19
 
 I saw some video about using ChatGPT tasks. The guys setup a prompt to get the latest AI news and summarize it into a report that he could send to his users.  It made me start thinking about how I could use these _tasks_ in an interesting way.
 

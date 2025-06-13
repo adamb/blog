@@ -1,5 +1,10 @@
+---
+title: "Adam's Travel Tips"
+date: "2025-06-04"
+slug: "adams-travel-tips"
+---
+
 # Adam's Travel Tips
-# 2025-06-04 10:14:39
 
 We travel international a lot and there are a some hacks that maybe people don't know.  
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Paris Travel Tips - Adam's Blog</title>
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+<h1>Paris Travel tips</h1>
+<p><em>June 2, 2025</em></p>
+<h2>2025-06-02 16:36:59</h2>
+<p>We're spending some time in Paris and we've been here a lot over the years.  Here are some travel tips that come to mind.</p>
+<p>My first trip to Paris was 1986.  Wow, how things have changed.  Some things are the same, other things haven't changed.  The iPhone changed a lot of things.  ChatGPT is changing even more.</p>
+<h2>Translating Menus</h2>
+<p>I now prefer to translate menus using ChatGPT.  I take a picture of the menu and ask ChatGPT &quot;translate&quot; and I get a great, readable version of the menu.  I like this better than Google Translate.  Feels like cheating, but it works great.  You can even have ChatGPT make recommendations based on diet preferences.  Try something like:  Hey, what's the best low carb option on this menu?</p>
+<h2>Navigo metro passes</h2>
+<p>You can pay for the metro with your iPhone.  Just go to the Apple Wallet and click the + and select &quot;Transit Card&quot;  and you can add a Navigo card to your Apple Wallet.  No need to buy a physical card.  You can then easily add tickets to your Navigo card.  Buy a day pass or a bundle of 10 metro tickets.</p>
+<p>As a bonus, you can scan your phone at all the metro stops now.  Presumably even if your phone is dead.  The iPhone must have some kind of NFC thing in it.  Not sure how this works.</p>
+<p>Ok, I asked my overlord ChatGPT and it says:</p>
+<blockquote>
+<p>Apple uses a thing called “Power Reserve” (for Express Transit cards) that keeps the NFC chip alive even after the phone dies. Basically, there’s a tiny bit of juice tucked aside just for NFC. When your iPhone 12 or newer runs out of main battery, it shuts down everything except that little reserve so the NFC antenna can still emulate your Navigo card. That way you can tap in at métro gates for a few hours after the phone goes “dead.”</p>
+</blockquote>
+<h1>Not just Uber, try Bolt and FreeNow</h1>
+<p>In Paris, Bolt is generally cheaper and faster than Uber.  But sometimes I find the Bolt drivers more flakey.  Recently our driver was meeting us at the apartment and the app said it was Mohamed in a Red Tesla Model 3.  I was standing in front of our apartment and there was a white Tesla with a Bolt logo. The driver picture didn't look like Mohamed and the Tesla wasn't red.  Mohamed called me (in the app) and was asking where I was. I was right in front of him but didn't realize it because he was in a Toyota.  He's calling me and looking across the road to the wrong side of the street.  I told him in French: « à la gauche. » He turned and saw me on the phone.  I asked why not a Tesla and he said it was in the shop.  I was a little leary about getting in, but his picture matched the one in the app and it all worked out.</p>
+<p>My friend recently got a trip on <a href="https://apps.apple.com/us/app/freenow-taxi-and-more/id357852748?ppid=789de1fb-a3a3-4deb-9e79-423d589eb70c">FREENOW</a> for half the price of Bolt. So try all the apps if your ride looks too expensive!</p>
+<h1>Get out of the touristy areas</h1>
+<p>We usually stay in the 6th arrondissement but it's pretty full of tourists.  If you get just a little way out of the touristy areas, you can see more of the real Paris and get better pricing.  I used one of the Velib' Métropole bikes to ride about 15 minutes down past Montparnasse and got a haircut for 12€.  The guy spoke very little English so I got to practice my French too.</p>
+<h1>Cheap bike rental</h1>
+<p>The Velib' Métropole bikes are a great deal. You can get the app and then add the card to your Apple Wallet.  The card works like the Navigo card and you can use it to unlock a bike.  I have been buying 24 passes for 5€ and this lets you use bikes as much as you want as long as each ride is under 30 minutes.  If you go over 30 min they charge you an extra 1€.  These are mechanical bikes with stations all over the city.  If you want an ebike, that upgrade will cost an extra 2€.  So if you're going to go far, it might be worth it.  Metro tickets these days are 2.50€ and 20 minute Uber/Bolt will cost you about 20€, but that is highly variable.</p>
+</article>
+  </main>
+
+  <footer>
+    <p>© 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

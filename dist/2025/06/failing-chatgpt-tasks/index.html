@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Failing ChatGPT Tasks - Adam's Blog</title>
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+<h1>Using ChatGPT Tasks</h1>
+<p><em>June 3, 2025</em></p>
+<p>I saw some video about using ChatGPT tasks. The guys setup a prompt to get the latest AI news and summarize it into a report that he could send to his users.  It made me start thinking about how I could use these <em>tasks</em> in an interesting way.</p>
+<p>My first thought was to have it check the performance of my website.  Say grab some url like <code>https://blog.beguelin.com</code> and collect stats on that.  I asked ChatGPT if it could do that and of course it agreed that this was a great idea.</p>
+<p>So to use tasks you have to use the web version of ChatGPT, you can't use the current Mac or iOS apps.  Ok, that's fine.</p>
+<p>You also select the 04-mini model.  I then created a task.  So have a site where I keep track of stats for users that hit the page. I then told ChatGPT to grab that page every 15 minutes and then I waited.  It said it grabbed the page and got some stats.  The page in question is a redirect that I have running on Cloudflare.  It also does logging and renders a little admin page so I can see the stats.  Well ChatGPT didn't hit the page, but it <em>lied</em> about it!</p>
+<p>This was hard to figure out at first because it gave me some reasonable results. It made up response headers and times.  But there was no way my page was returning what it was telling me it was getting.</p>
+<p>Ok, so I asked it why this was, and it said it couldn't reach out to any arbitrary URL and that it had to run inside it's sandbox. But it gets the latest news, right?  And one of the other examples it gives for tasks is generating a sales report. This example is it grabs some stats and then creates a sales report. Well if it can do that, then it can grab my webpage, right?</p>
+<p>I asked it about this and then it told me it could only handle gets of urls that return JSON files.  Ok, so let's try that.</p>
+<p>Ok, so I made /logs.json and ChatGPT did give me a nice report.</p>
+<pre><code class="language-Here’s">
+🌍 Visitors by Country
+
+Country	Visits
+🇺🇸 US	10
+🇪🇸 ES	7
+🇻🇳 VN	6
+🇫🇷 FR	6
+🇮🇹 IT	3
+🇲🇾 MY	1
+
+⌚ Peak Activity Times
+
+Most visits occurred:
+	•	Around 09:00–10:00 UTC
+	•	Spikes near 16:00 UTC on multiple days
+
+📱 Top User Agents
+
+User Agent Snippet	Count
+Safari on macOS or iOS	14+
+curl (CLI tool)	8+
+Chrome or WebKit-based (non-curl)	5+
+WhatsApp or iOS NetworkingExtension	4+
+
+🌐 IP Versions Used
+	•	IPv6: Present (e.g. 2a01:e0a:d30...)
+	•	IPv4: Common (e.g. 71.202.86.180, 80.28.123.73)
+
+Let me know if you’d like a CSV export, time series chart, or segmentation by user agent/device.
+</code></pre>
+<p>And I see that they identify themselves in the logs:  OAI-SearchBot/1.0</p>
+<blockquote>
+<p><code>2025-06-02T01:43:48.136Z: {&quot;ip&quot;:&quot;104.210.140.133&quot;,&quot;userAgent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36; compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot&quot;,&quot;country&quot;:&quot;US&quot;,&quot;referer&quot;:&quot;unknown&quot;,&quot;timestamp&quot;:&quot;2025-06-02T01:43:48.136Z&quot;}</code></p>
+</blockquote>
+<p>Interesting, so we now have an IP address for the OAI bot.  Turns out it comes from an Azue cluster in Texas, at least according to ChatGPT.</p>
+<h3>Bottom Line</h3>
+<h3>The ChatGPT Tasks don't seem to be consistent.</h3>
+<p>One of the tasks that I setup was only supposed to trigger if BTC fell below $100k.  I got an alert that it had fallen below that and was at $67k</p>
+<p style="text-align: center;">
+  <img src="/assets/btclow.png" alt="BTC Low Graph" width="400" style="max-width: 100%; height: auto;">
+</p>
+<p>I had another tasks to send me daily news.  It was stuck in 2024 and sending me news about the Biden administration.  Weird.</p>
+<p>So while this seems like a cool idea. It's difficult to use and it seems to lie a lot.  Maybe I'm not prompting it correctly, but still it is sending old news when I say to send the latest news.  Something's not right.</p>
+</article>
+  </main>
+
+  <footer>
+    <p>© 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

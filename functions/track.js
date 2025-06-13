@@ -11,9 +11,18 @@ export async function onRequestPost({ request, env }) {
     // Leave path as "unknown" if URL is invalid
   }
 
-  await env.VISIT_LOG.put(`visit:${now}`, JSON.stringify({
-    ip, ua, ts: now, path
-  }));
+  try {
+    // Check if KV binding is available (won't be in local dev)
+    if (env.VISIT_LOG) {
+      await env.VISIT_LOG.put(`visit:${now}`, JSON.stringify({
+        ip, ua, ts: now, path
+      }));
+    } else {
+      console.log("Track visit (KV not available):", { ip, ua, path, ts: now });
+    }
+  } catch (error) {
+    console.error("Failed to track visit:", error);
+  }
 
   return new Response("ok");
 }
