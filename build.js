@@ -99,7 +99,7 @@ postDataList.forEach((post) => {
   }
   
   const htmlBody = md.render(contentWithDate);
-  const articleContent = `<article>\n${htmlBody}</article>`;
+  const articleContent = `<article>\n${htmlBody}\n<div class="back-link"><a href="/">← Back to Home</a></div>\n</article>`;
 
   let postPageHtml = baseTemplateContent;
   postPageHtml = postPageHtml.replace("<!-- NAV_LINKS -->", navLinks);

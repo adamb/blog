@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>More Blog Details - Adam's Blog</title>
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+<h1>More Blog Details</h1>
+<p><em>June 16, 2025</em></p>
+<p>I was looking at how Blogger does the listing of the blogs and I actually like it.  So I decided to change the blog code to show the posts by date.  And I also wanted to figure out how to make it render better on mobile, but that's still a work in progress.</p>
+<p>I'm still not using htmx really.   But I do have stats that I'm keeping.  So I realized that I can use htmx for that.  I want to put a reader count on each blog entry.  My current stats are kept in a kv and you can see them on the <a href="/stats">stats page</a></p>
+
+<div class="back-link"><a href="/">← Back to Home</a></div>
+</article>
+  </main>
+
+  <footer>
+    <p>© 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>
