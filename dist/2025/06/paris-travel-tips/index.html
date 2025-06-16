@@ -19,9 +19,9 @@
     // Track initial page load
     document.addEventListener('DOMContentLoaded', trackVisit);
 
-    // Track HTMX navigation
+    // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful) {
+      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
         trackVisit();
       }
     });
@@ -38,7 +38,9 @@
   <main id="content">
     <article>
 <h1>Paris Travel tips</h1>
-<p><em>June 2, 2025</em></p>
+<p><em>June 2, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fparis-travel-tips%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
 <p>We're spending some time in Paris and we've been here a lot over the years.  Here are some travel tips that come to mind.</p>
 <p>My first trip to Paris was 1986.  Wow, how things have changed.  Some things are the same, other things haven't changed.  The iPhone changed a lot of things.  ChatGPT is changing even more.</p>
 <h2>Translating Menus</h2>

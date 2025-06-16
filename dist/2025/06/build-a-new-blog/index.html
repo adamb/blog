@@ -19,9 +19,9 @@
     // Track initial page load
     document.addEventListener('DOMContentLoaded', trackVisit);
 
-    // Track HTMX navigation
+    // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful) {
+      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
         trackVisit();
       }
     });
@@ -38,7 +38,9 @@
   <main id="content">
     <article>
 <h1>Start Me Up:  Build a new blog</h1>
-<p><em>June 2, 2025</em></p>
+<p><em>June 2, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fbuild-a-new-blog%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
 <p>I keep coming up with things I want to write up but don't really have a place to put them.  I tried using Hugo for a while and did't like it.  Back in 2007 I was using Blogger and that just seems way too old.</p>
 <p>I'm rolling my own now.  Using HTMX and a little javascript and hosting it at Cloudflare.  This seems like the right thing and it fits my brain.  Let's see how it goes.</p>
 <p>You can find the source code for this blog on my git repo: https://github.com/adamb/blog</p>

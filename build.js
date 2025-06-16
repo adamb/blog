@@ -83,7 +83,7 @@ const navLinks = "";
 const baseTemplateContent = fs.readFileSync(templatePath, "utf8");
 
 postDataList.forEach((post) => {
-  // Add date after first header
+  // Add date and visit counter after first header
   let contentWithDate = post.mdContent;
   const firstHeaderMatch = contentWithDate.match(/^(# .+)$/m);
   if (firstHeaderMatch) {
@@ -92,9 +92,12 @@ postDataList.forEach((post) => {
       month: 'long',
       day: 'numeric'
     });
+    const visitCounter = `<span class="visit-counter" hx-get="/visits?path=${encodeURIComponent(post.urlPath)}" hx-trigger="load" hx-swap="innerHTML">
+      <span class="visit-count">👁️ Loading...</span>
+    </span>`;
     contentWithDate = contentWithDate.replace(
       firstHeaderMatch[0],
-      `${firstHeaderMatch[0]}\n*${dateFormatted}*`
+      `${firstHeaderMatch[0]}\n*${dateFormatted} • ${visitCounter}*`
     );
   }
   

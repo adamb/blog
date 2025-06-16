@@ -14,9 +14,17 @@ export async function onRequestPost({ request, env }) {
   try {
     // Check if KV binding is available (won't be in local dev)
     if (env.VISIT_LOG) {
+      // Store individual visit record
       await env.VISIT_LOG.put(`visit:${now}`, JSON.stringify({
         ip, ua, ts: now, path
       }));
+      
+      // Update per-page counter
+      const pathKey = `path:${path}`;
+      const currentCount = await env.VISIT_LOG.get(pathKey);
+      const newCount = currentCount ? parseInt(currentCount) + 1 : 1;
+      await env.VISIT_LOG.put(pathKey, newCount.toString());
+      
     } else {
       console.log("Track visit (KV not available):", { ip, ua, path, ts: now });
     }

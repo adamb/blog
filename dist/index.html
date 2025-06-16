@@ -19,9 +19,9 @@
     // Track initial page load
     document.addEventListener('DOMContentLoaded', trackVisit);
 
-    // Track HTMX navigation
+    // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful) {
+      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
         trackVisit();
       }
     });

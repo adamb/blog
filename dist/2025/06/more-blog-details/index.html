@@ -19,9 +19,9 @@
     // Track initial page load
     document.addEventListener('DOMContentLoaded', trackVisit);
 
-    // Track HTMX navigation
+    // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful) {
+      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
         trackVisit();
       }
     });
@@ -38,9 +38,14 @@
   <main id="content">
     <article>
 <h1>More Blog Details</h1>
-<p><em>June 16, 2025</em></p>
+<p><em>June 16, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fmore-blog-details%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
 <p>I was looking at how Blogger does the listing of the blogs and I actually like it.  So I decided to change the blog code to show the posts by date.  And I also wanted to figure out how to make it render better on mobile, but that's still a work in progress.</p>
-<p>I'm still not using htmx really.   But I do have stats that I'm keeping.  So I realized that I can use htmx for that.  I want to put a reader count on each blog entry.  My current stats are kept in a kv and you can see them on the <a href="/stats">stats page</a></p>
+<p>I'm still not using htmx really.   But I do have stats that I'm keeping.  So I realized that I can use htmx for that.  I want to put a reader count on each blog entry.  My current stats are kept in a kv and you can see them on the <a href="/stats">stats page</a> but this kv keeps the stats by date, using the key <code>visit:${now}</code>.  So to compute the stats for a particular page, I would need to process all the stats in the kv.  This would take too long.  So let's update the kv to also keep track of the stats per page.  We need another key type, so <code>path:${path}</code> seems sensible.</p>
+<p>But now we have the problem that the stats so far will be left out of this computation.  So we need to have a migrate script.  But if the migrate script is run more than once, it might mess up the stats.  So we should add a version key too.   Let's use the key <code>schema_version</code> and then check that.  On the first migration there will be no <code>schema_version</code> so we will set it to <code>v0</code> if the key doesn't exist.  Then go through and compute the <code>path:${path}</code> keys and set them to a count that we find under the <code>visit:</code> keys.</p>
+<p>Once that is done, then try to use htmx to pull the count for each visit.</p>
+<p>Ok, I asked Claude to create the migrage.js script. It wrote something that seemed reasonable using the above text as a prompt. But it didn't paginate through the keys.  I asked it to change the script to paginate.  Also I had to create a .env file with my Cloudflare api token, which I also had to create.</p>
 
 <div class="back-link"><a href="/">← Back to Home</a></div>
 </article>

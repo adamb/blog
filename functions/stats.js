@@ -1,42 +1,58 @@
 export async function onRequestGet({ env }) {
   try {
-    // Get all visit logs from KV
+    // Get all keys from KV
     const { keys } = await env.VISIT_LOG.list();
-    const visits = [];
     
-    // Fetch all visit data
-    for (const key of keys) {
+    // Separate different types of keys
+    const visitKeys = keys.filter(k => k.name.startsWith('visit:'));
+    const pathKeys = keys.filter(k => k.name.startsWith('path:'));
+    
+    // Get path counts efficiently from aggregated counters
+    const pathCounts = {};
+    let totalVisitsFromPaths = 0;
+    
+    for (const key of pathKeys) {
+      const count = await env.VISIT_LOG.get(key.name);
+      if (count) {
+        const path = key.name.replace('path:', '');
+        const countNum = parseInt(count);
+        pathCounts[path] = countNum;
+        totalVisitsFromPaths += countNum;
+      }
+    }
+
+    // Get recent visits for the "Recent Visits" section and daily stats
+    // We'll still process recent visits but limit to last 50 for performance
+    const recentVisitKeys = visitKeys
+      .sort((a, b) => b.name.localeCompare(a.name)) // Sort by timestamp (newest first)
+      .slice(0, 50);
+    
+    const recentVisits = [];
+    const dayCounts = {};
+    const uniqueIPs = new Set();
+    
+    for (const key of recentVisitKeys) {
       const visitData = await env.VISIT_LOG.get(key.name);
       if (visitData) {
         try {
           const parsed = JSON.parse(visitData);
-          visits.push(parsed);
+          recentVisits.push(parsed);
+          uniqueIPs.add(parsed.ip);
+          
+          // Count by day
+          const day = parsed.ts.split('T')[0];
+          dayCounts[day] = (dayCounts[day] || 0) + 1;
         } catch (e) {
           console.error('Failed to parse visit data:', e);
         }
       }
     }
 
-    // Sort visits by timestamp (newest first)
-    visits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
-
-    // Calculate stats
-    const totalVisits = visits.length;
-    const uniqueIPs = new Set(visits.map(v => v.ip)).size;
+    // Use total from path counters if available, otherwise fall back to visit count
+    const totalVisits = totalVisitsFromPaths > 0 ? totalVisitsFromPaths : visitKeys.length;
     
-    // Count visits by path
-    const pathCounts = {};
-    visits.forEach(visit => {
-      const path = visit.path || 'unknown';
-      pathCounts[path] = (pathCounts[path] || 0) + 1;
-    });
-
-    // Count visits by day
-    const dayCounts = {};
-    visits.forEach(visit => {
-      const day = visit.ts.split('T')[0]; // Get YYYY-MM-DD
-      dayCounts[day] = (dayCounts[day] || 0) + 1;
-    });
+    // Sort recent visits by timestamp
+    recentVisits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
 
     // Generate HTML report
     const html = `
@@ -106,7 +122,7 @@ export async function onRequestGet({ env }) {
   
   <div class="stat-box">
     <div>Unique IPs</div>
-    <div class="stat-number">${uniqueIPs}</div>
+    <div class="stat-number">${uniqueIPs.size}</div>
   </div>
 
   <h2>Visits by Page</h2>
@@ -159,7 +175,7 @@ export async function onRequestGet({ env }) {
       </tr>
     </thead>
     <tbody>
-      ${visits.slice(0, 20).map(visit => `
+      ${recentVisits.slice(0, 20).map(visit => `
         <tr>
           <td>${new Date(visit.ts).toLocaleString()}</td>
           <td>${visit.path || 'unknown'}</td>

@@ -19,9 +19,9 @@
     // Track initial page load
     document.addEventListener('DOMContentLoaded', trackVisit);
 
-    // Track HTMX navigation
+    // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful) {
+      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
         trackVisit();
       }
     });
@@ -38,7 +38,9 @@
   <main id="content">
     <article>
 <h1>Using ChatGPT Tasks</h1>
-<p><em>June 3, 2025</em></p>
+<p><em>June 3, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Ffailing-chatgpt-tasks%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
 <p>I saw some video about using ChatGPT tasks. The guys setup a prompt to get the latest AI news and summarize it into a report that he could send to his users.  It made me start thinking about how I could use these <em>tasks</em> in an interesting way.</p>
 <p>My first thought was to have it check the performance of my website.  Say grab some url like <code>https://blog.beguelin.com</code> and collect stats on that.  I asked ChatGPT if it could do that and of course it agreed that this was a great idea.</p>
 <p>So to use tasks you have to use the web version of ChatGPT, you can't use the current Mac or iOS apps.  Ok, that's fine.</p>

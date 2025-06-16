@@ -19,9 +19,9 @@
     // Track initial page load
     document.addEventListener('DOMContentLoaded', trackVisit);
 
-    // Track HTMX navigation
+    // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful) {
+      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
         trackVisit();
       }
     });
@@ -38,7 +38,9 @@
   <main id="content">
     <article>
 <h1>Adam's Travel Tips</h1>
-<p><em>June 4, 2025</em></p>
+<p><em>June 4, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fadams-travel-tips%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
 <p>We travel international a lot and there are a some hacks that maybe people don't know.</p>
 <h2>Get a local eSIM</h2>
 <p>Depending on where you go, you can get amazing deals on local data plans.  Most modern phones will let you install multiple eSIMS so you can keep your US number and also use the local networks for data.  This works well on iOS devices.  My favorite eSIM marketplace is an app called <a href="https://mobimatter.page.link/home?referrerId=GKVQ692388">MobiMatter</a>.  I'm currently in France and using an eSIM I bought a year ago from them.  You can search by country and length of stay and data, etc. I found an eSIM with a ton of data and a year expiration, so I was able to use it for multiple trips to Europe.</p>
