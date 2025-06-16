@@ -1,55 +1,105 @@
 export async function onRequestGet({ env }) {
   try {
-    // Get all keys from KV
-    const { keys } = await env.VISIT_LOG.list();
+    // Check schema version
+    const schemaVersionRaw = await env.VISIT_LOG.get('schema_version');
+    let schemaVersion = null;
     
-    // Separate different types of keys
-    const visitKeys = keys.filter(k => k.name.startsWith('visit:'));
-    const pathKeys = keys.filter(k => k.name.startsWith('path:'));
-    
-    // Get path counts efficiently from aggregated counters
-    const pathCounts = {};
-    let totalVisitsFromPaths = 0;
-    
-    for (const key of pathKeys) {
-      const count = await env.VISIT_LOG.get(key.name);
-      if (count) {
-        const path = key.name.replace('path:', '');
-        const countNum = parseInt(count);
-        pathCounts[path] = countNum;
-        totalVisitsFromPaths += countNum;
+    if (schemaVersionRaw) {
+      try {
+        // Try to parse as JSON first (in case it was stored as JSON)
+        const parsed = JSON.parse(schemaVersionRaw);
+        schemaVersion = parsed.value || parsed;
+      } catch {
+        // If not JSON, use as plain string
+        schemaVersion = schemaVersionRaw;
       }
     }
-
-    // Get recent visits for the "Recent Visits" section and daily stats
-    // We'll still process recent visits but limit to last 50 for performance
-    const recentVisitKeys = visitKeys
-      .sort((a, b) => b.name.localeCompare(a.name)) // Sort by timestamp (newest first)
-      .slice(0, 50);
     
-    const recentVisits = [];
-    const dayCounts = {};
-    const uniqueIPs = new Set();
+    const useV1Schema = schemaVersion === 'v1';
+    console.log('Schema version detected:', schemaVersion, 'useV1Schema:', useV1Schema);
     
-    for (const key of recentVisitKeys) {
-      const visitData = await env.VISIT_LOG.get(key.name);
-      if (visitData) {
-        try {
-          const parsed = JSON.parse(visitData);
-          recentVisits.push(parsed);
-          uniqueIPs.add(parsed.ip);
-          
-          // Count by day
-          const day = parsed.ts.split('T')[0];
-          dayCounts[day] = (dayCounts[day] || 0) + 1;
-        } catch (e) {
-          console.error('Failed to parse visit data:', e);
+    let pathCounts = {};
+    let totalVisits = 0;
+    let recentVisits = [];
+    let dayCounts = {};
+    let uniqueIPs = new Set();
+    
+    if (useV1Schema) {
+      // Use efficient v1 schema with pre-computed path counters
+      console.log('Using v1 schema for fast stats');
+      
+      // Get all keys and separate by type
+      const { keys } = await env.VISIT_LOG.list();
+      const pathKeys = keys.filter(k => k.name.startsWith('path:'));
+      const visitKeys = keys.filter(k => k.name.startsWith('visit:'));
+      
+      // Get path counts from pre-computed counters
+      for (const key of pathKeys) {
+        const count = await env.VISIT_LOG.get(key.name);
+        if (count) {
+          const path = key.name.replace('path:', '');
+          const countNum = parseInt(count);
+          pathCounts[path] = countNum;
+          totalVisits += countNum;
         }
       }
+      
+      // Get recent visits (limit to 50 for performance)
+      const recentVisitKeys = visitKeys
+        .sort((a, b) => b.name.localeCompare(a.name))
+        .slice(0, 50);
+      
+      for (const key of recentVisitKeys) {
+        const visitData = await env.VISIT_LOG.get(key.name);
+        if (visitData) {
+          try {
+            const parsed = JSON.parse(visitData);
+            recentVisits.push(parsed);
+            uniqueIPs.add(parsed.ip);
+            
+            // Count by day
+            const day = parsed.ts.split('T')[0];
+            dayCounts[day] = (dayCounts[day] || 0) + 1;
+          } catch (e) {
+            console.error('Failed to parse visit data:', e);
+          }
+        }
+      }
+      
+    } else {
+      // Fallback to v0 schema (compute everything from visit records)
+      console.log('Using v0 schema - computing stats from visit records');
+      
+      const { keys } = await env.VISIT_LOG.list();
+      const visitKeys = keys.filter(k => k.name.startsWith('visit:'));
+      
+      // Process all visits (slower but works with old schema)
+      for (const key of visitKeys) {
+        const visitData = await env.VISIT_LOG.get(key.name);
+        if (visitData) {
+          try {
+            const parsed = JSON.parse(visitData);
+            recentVisits.push(parsed);
+            uniqueIPs.add(parsed.ip);
+            
+            // Count by path
+            const path = parsed.path || 'unknown';
+            pathCounts[path] = (pathCounts[path] || 0) + 1;
+            
+            // Count by day
+            const day = parsed.ts.split('T')[0];
+            dayCounts[day] = (dayCounts[day] || 0) + 1;
+          } catch (e) {
+            console.error('Failed to parse visit data:', e);
+          }
+        }
+      }
+      
+      totalVisits = recentVisits.length;
+      // Sort recent visits by timestamp and limit to 50
+      recentVisits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
+      recentVisits = recentVisits.slice(0, 50);
     }
-
-    // Use total from path counters if available, otherwise fall back to visit count
-    const totalVisits = totalVisitsFromPaths > 0 ? totalVisitsFromPaths : visitKeys.length;
     
     // Sort recent visits by timestamp
     recentVisits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
@@ -114,6 +164,9 @@ export async function onRequestGet({ env }) {
   <a href="/" class="back-link">← Back to Blog</a>
   
   <h1>Visit Statistics</h1>
+  <div style="text-align: center; margin-bottom: 1rem; color: #666; font-size: 0.9rem;">
+    Schema: ${useV1Schema ? 'v1 (fast)' : 'v0 (computed)'}
+  </div>
   
   <div class="stat-box">
     <div>Total Visits</div>
