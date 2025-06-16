@@ -62,5 +62,44 @@ Visits | Page
 Schema Version: v1
 ```
 
-Now the stats work and I'm actually using some htmx goodness. :-)
+Now the stats work and I'm actually using some htmx goodness. 😊
+
+## TLDR
+
+The blog is written using markdown and deployed using Cloudflare by connecting my Github repo to a Cloudflare project.  You can see the entire repo here:  [https://github.com/adamb/blog/](https://github.com/adamb/blog/)
+
+When I git push the repo, the [`build.js`](https://github.com/adamb/blog/blob/main/report.js) script runs and creates each post.  
+
+The /api/track.js is called each time a user visits a page. That puts stats into a kv at Cloudflare.  
+
+There are htmx tags that dynamically show the stats for how many times the page has been viewed.  
+
+All of this was written mostly by using [Claude Code](https://www.anthropic.com/claude-code).  So far it's cost me about $3.81
+
+```bash
+> /cost
+  ⎿  Total cost:            $3.81
+     Total duration (API):  34m 45.2s
+     Total duration (wall): 240h 46m 30.3s
+     Total code changes:    1311 lines added, 171 lines removed
+     Token usage by model:
+         claude-3-5-haiku:  176.9k input, 8.2k output, 0 cache read, 0 cache write
+            claude-sonnet:  255 input, 34.9k output, 5.0m cache read, 427.8k cache write
+
+     You can now use a Claude Pro subscription with Claude Code! https://claude.ai/upgrade then run /login.
+```
+
+## TODO 
+
+I've learned a bunch and still there is more to do:
+
+- Get mobile viewing to match the blogger views 
+- Figure out how to use more htmx
+- Integrate Cloudflare AI workers somehow
+  - Maybe add proofreading or sentiment analysis to my posts 😊
+- Keep writing blog posts!
+
+
+
+
 

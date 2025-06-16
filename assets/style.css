@@ -127,6 +127,27 @@ article blockquote p {
     margin-bottom: 0;
 }
 
+/* List styling */
+article ul, article ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+article li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Nested lists */
+article ul ul, article ol ol, article ul ol, article ol ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+article li li {
+    margin-bottom: 0.25rem;
+}
+
 /* Footer: tiny copyright text at bottom */
 footer {
     margin-top: 3rem;
