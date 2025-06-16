@@ -6,7 +6,7 @@ slug: "more-blog-details"
 
 # More Blog Details
 
-This is a continuation of my [previous post](2025/06/build-a-new-blog/) about making my own blog platform.
+This is a continuation of my [previous post](/2025/06/build-a-new-blog/) about making my own blog platform.
 
 I was looking at how Blogger does the listing of the blogs and I actually like it.  So I decided to change the blog code to show the posts by date.  And I also wanted to figure out how to make it render better on mobile, but that's still a work in progress.  
 
