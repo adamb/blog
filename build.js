@@ -102,7 +102,86 @@ postDataList.forEach((post) => {
   }
   
   const htmlBody = md.render(contentWithDate);
-  const articleContent = `<article>\n${htmlBody}\n<div class="back-link"><a href="/">← Back to Home</a></div>\n</article>`;
+  
+  // Create tone transformation buttons
+  const toneButtons = `
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('valleygirl')" class="tone-btn">
+          💁‍♀️ Valley Girl
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = ${JSON.stringify(htmlBody)};
+      window.originalMarkdown = ${JSON.stringify(post.mdContent)};
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        // Show loading indicator
+        document.getElementById('loading-indicator').style.display = 'block';
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert newlines to HTML breaks and display
+              const transformedHtml = data.transformedContent.replace(/\\n/g, '<br>');
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          document.getElementById('post-content').innerHTML = 
+            '<div class="transformed-content"><em>❌ Network error. Try again!</em></div>';
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  `;
+
+  const articleContent = `<article>
+    ${toneButtons}
+    <div id="post-content">${htmlBody}</div>
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>`;
 
   let postPageHtml = baseTemplateContent;
   postPageHtml = postPageHtml.replace("<!-- NAV_LINKS -->", navLinks);

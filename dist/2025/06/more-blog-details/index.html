@@ -37,7 +37,79 @@
 
   <main id="content">
     <article>
-<h1>More Blog Details</h1>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('valleygirl')" class="tone-btn">
+          💁‍♀️ Valley Girl
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>More Blog Details</h1>\n<p><em>June 16, 2025 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2025%2F06%2Fmore-blog-details%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p>This is a continuation of my <a href=\"/2025/06/build-a-new-blog/\">previous post</a> about making my own blog platform.</p>\n<p>I was looking at how Blogger does the listing of the blogs and I actually like it.  So I decided to change the blog code to show the posts by date.  And I also wanted to figure out how to make it render better on mobile, but that's still a work in progress.</p>\n<p>I'm still not using htmx really.   But I do have stats that I'm keeping.  So I realized that I can use htmx for that.  I want to put a reader count on each blog entry.  My current stats are kept in a kv and you can see them on the <a href=\"/stats\">stats page</a> but this kv keeps the stats by date, using the key <code>visit:${now}</code>.  So to compute the stats for a particular page, I would need to process all the stats in the kv.  This would take too long.  So let's update the kv to also keep track of the stats per page.  We need another key type, so <code>path:${path}</code> seems sensible.</p>\n<p>But now we have the problem that the stats so far will be left out of this computation.  So we need to have a migrate script.  But if the migrate script is run more than once, it might mess up the stats.  So we should add a version key too.   Let's use the key <code>schema_version</code> and then check that.  On the first migration there will be no <code>schema_version</code> so we will set it to <code>v0</code> if the key doesn't exist.  Then go through and compute the <code>path:${path}</code> keys and set them to a count that we find under the <code>visit:</code> keys.</p>\n<p>Once that is done, then try to use htmx to pull the count for each visit.</p>\n<p>Ok, I asked Claude to create the migrate.js script. It wrote something that seemed reasonable using the above text as a prompt. But it didn't paginate through the keys.  I asked it to change the script to paginate.  Also I had to create a .env file with my Cloudflare api token, which I also had to create.</p>\n<p>I then asked it to write a report script that I could run to see the stats.  Now I can run the script and get a report that looks like this:</p>\n<pre><code class=\"language-bash\">% node report.js\n\n📊 Visit Stats Report - PRODUCTION Environment\nKV Namespace: 1938ea1eb1184f289d783cbe40148911\n============================================================\nFetching path statistics...\n\nTotal Visits: 88\nUnique Pages: 15\n\n📈 VISITS BY PAGE:\n------------------------------------------------------------\nVisits | Page\n------------------------------------------------------------\n    30 | / (34.1%)\n     9 | /2025/06/adams-travel-tips/ (10.2%)\n     9 | /posts/paris-tips (10.2%)\n     7 | /posts/chatgpt-tasks (8.0%)\n     6 | /2025/06/build-a-new-blog/ (6.8%)\n     6 | /posts/travel-tips (6.8%)\n     5 | /posts/startmeup (5.7%)\n     4 | /2025/06/failing-chatgpt-tasks/ (4.5%)\n     4 | /admin (4.5%)\n     2 | /2025/06/paris-travel-tips/ (2.3%)\n     2 | /build (2.3%)\n     1 | /277273 (1.1%)\n     1 | /stats.js (1.1%)\n     1 | /stats/foo (1.1%)\n     1 | unknown (1.1%)\n------------------------------------------------------------\n    88 | TOTAL\n\n🏆 TOP 5 PAGES:\n1. / - 30 visits (34.1%)\n2. /2025/06/adams-travel-tips/ - 9 visits (10.2%)\n3. /posts/paris-tips - 9 visits (10.2%)\n4. /posts/chatgpt-tasks - 7 visits (8.0%)\n5. /2025/06/build-a-new-blog/ - 6 visits (6.8%)\n\nSchema Version: v1\n</code></pre>\n<p>Now the stats work and I'm actually using some htmx goodness. 😊</p>\n<h2>TLDR</h2>\n<p>The blog is written using markdown and deployed using Cloudflare by connecting my Github repo to a Cloudflare project.  You can see the entire repo here:  <a href=\"https://github.com/adamb/blog/\">https://github.com/adamb/blog/</a></p>\n<p>When I git push the repo, the <a href=\"https://github.com/adamb/blog/blob/main/report.js\"><code>build.js</code></a> script runs and creates each post.</p>\n<p>The /api/track.js is called each time a user visits a page. That puts stats into a kv at Cloudflare.</p>\n<p>There are htmx tags that dynamically show the stats for how many times the page has been viewed.</p>\n<p>All of this was written mostly by using <a href=\"https://www.anthropic.com/claude-code\">Claude Code</a>.  So far it's cost me about $3.81</p>\n<pre><code class=\"language-bash\">&gt; /cost\n  ⎿  Total cost:            $3.81\n     Total duration (API):  34m 45.2s\n     Total duration (wall): 240h 46m 30.3s\n     Total code changes:    1311 lines added, 171 lines removed\n     Token usage by model:\n         claude-3-5-haiku:  176.9k input, 8.2k output, 0 cache read, 0 cache write\n            claude-sonnet:  255 input, 34.9k output, 5.0m cache read, 427.8k cache write\n\n     You can now use a Claude Pro subscription with Claude Code! https://claude.ai/upgrade then run /login.\n</code></pre>\n<h2>TODO</h2>\n<p>I've learned a bunch and still there is more to do:</p>\n<ul>\n<li>Get mobile viewing to match the blogger views</li>\n<li>Figure out how to use more htmx</li>\n<li>Integrate Cloudflare AI workers somehow\n<ul>\n<li>Maybe add proofreading or sentiment analysis to my posts 😊</li>\n</ul>\n</li>\n<li>Keep writing blog posts!</li>\n</ul>\n";
+      window.originalMarkdown = "\n# More Blog Details\n\nThis is a continuation of my [previous post](/2025/06/build-a-new-blog/) about making my own blog platform.\n\nI was looking at how Blogger does the listing of the blogs and I actually like it.  So I decided to change the blog code to show the posts by date.  And I also wanted to figure out how to make it render better on mobile, but that's still a work in progress.  \n\nI'm still not using htmx really.   But I do have stats that I'm keeping.  So I realized that I can use htmx for that.  I want to put a reader count on each blog entry.  My current stats are kept in a kv and you can see them on the [stats page](/stats) but this kv keeps the stats by date, using the key `visit:${now}`.  So to compute the stats for a particular page, I would need to process all the stats in the kv.  This would take too long.  So let's update the kv to also keep track of the stats per page.  We need another key type, so `path:${path}` seems sensible.\n\nBut now we have the problem that the stats so far will be left out of this computation.  So we need to have a migrate script.  But if the migrate script is run more than once, it might mess up the stats.  So we should add a version key too.   Let's use the key `schema_version` and then check that.  On the first migration there will be no `schema_version` so we will set it to `v0` if the key doesn't exist.  Then go through and compute the `path:${path}` keys and set them to a count that we find under the `visit:` keys.  \n\nOnce that is done, then try to use htmx to pull the count for each visit.  \n\nOk, I asked Claude to create the migrate.js script. It wrote something that seemed reasonable using the above text as a prompt. But it didn't paginate through the keys.  I asked it to change the script to paginate.  Also I had to create a .env file with my Cloudflare api token, which I also had to create.  \n\nI then asked it to write a report script that I could run to see the stats.  Now I can run the script and get a report that looks like this:\n\n```bash\n% node report.js\n\n📊 Visit Stats Report - PRODUCTION Environment\nKV Namespace: 1938ea1eb1184f289d783cbe40148911\n============================================================\nFetching path statistics...\n\nTotal Visits: 88\nUnique Pages: 15\n\n📈 VISITS BY PAGE:\n------------------------------------------------------------\nVisits | Page\n------------------------------------------------------------\n    30 | / (34.1%)\n     9 | /2025/06/adams-travel-tips/ (10.2%)\n     9 | /posts/paris-tips (10.2%)\n     7 | /posts/chatgpt-tasks (8.0%)\n     6 | /2025/06/build-a-new-blog/ (6.8%)\n     6 | /posts/travel-tips (6.8%)\n     5 | /posts/startmeup (5.7%)\n     4 | /2025/06/failing-chatgpt-tasks/ (4.5%)\n     4 | /admin (4.5%)\n     2 | /2025/06/paris-travel-tips/ (2.3%)\n     2 | /build (2.3%)\n     1 | /277273 (1.1%)\n     1 | /stats.js (1.1%)\n     1 | /stats/foo (1.1%)\n     1 | unknown (1.1%)\n------------------------------------------------------------\n    88 | TOTAL\n\n🏆 TOP 5 PAGES:\n1. / - 30 visits (34.1%)\n2. /2025/06/adams-travel-tips/ - 9 visits (10.2%)\n3. /posts/paris-tips - 9 visits (10.2%)\n4. /posts/chatgpt-tasks - 7 visits (8.0%)\n5. /2025/06/build-a-new-blog/ - 6 visits (6.8%)\n\nSchema Version: v1\n```\n\nNow the stats work and I'm actually using some htmx goodness. 😊\n\n## TLDR\n\nThe blog is written using markdown and deployed using Cloudflare by connecting my Github repo to a Cloudflare project.  You can see the entire repo here:  [https://github.com/adamb/blog/](https://github.com/adamb/blog/)\n\nWhen I git push the repo, the [`build.js`](https://github.com/adamb/blog/blob/main/report.js) script runs and creates each post.  \n\nThe /api/track.js is called each time a user visits a page. That puts stats into a kv at Cloudflare.  \n\nThere are htmx tags that dynamically show the stats for how many times the page has been viewed.  \n\nAll of this was written mostly by using [Claude Code](https://www.anthropic.com/claude-code).  So far it's cost me about $3.81\n\n```bash\n> /cost\n  ⎿  Total cost:            $3.81\n     Total duration (API):  34m 45.2s\n     Total duration (wall): 240h 46m 30.3s\n     Total code changes:    1311 lines added, 171 lines removed\n     Token usage by model:\n         claude-3-5-haiku:  176.9k input, 8.2k output, 0 cache read, 0 cache write\n            claude-sonnet:  255 input, 34.9k output, 5.0m cache read, 427.8k cache write\n\n     You can now use a Claude Pro subscription with Claude Code! https://claude.ai/upgrade then run /login.\n```\n\n## TODO \n\nI've learned a bunch and still there is more to do:\n\n- Get mobile viewing to match the blogger views \n- Figure out how to use more htmx\n- Integrate Cloudflare AI workers somehow\n  - Maybe add proofreading or sentiment analysis to my posts 😊\n- Keep writing blog posts!\n\n\n\n\n\n";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        // Show loading indicator
+        document.getElementById('loading-indicator').style.display = 'block';
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert newlines to HTML breaks and display
+              const transformedHtml = data.transformedContent.replace(/\n/g, '<br>');
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          document.getElementById('post-content').innerHTML = 
+            '<div class="transformed-content"><em>❌ Network error. Try again!</em></div>';
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div id="post-content"><h1>More Blog Details</h1>
 <p><em>June 16, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fmore-blog-details%2F" hx-trigger="load" hx-swap="innerHTML">
 <span class="visit-count">👁️ Loading...</span>
 </span></em></p>
@@ -119,9 +191,9 @@ Schema Version: v1
 </li>
 <li>Keep writing blog posts!</li>
 </ul>
-
-<div class="back-link"><a href="/">← Back to Home</a></div>
-</article>
+</div>
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
   </main>
 
   <footer>

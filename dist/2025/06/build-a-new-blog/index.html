@@ -37,7 +37,79 @@
 
   <main id="content">
     <article>
-<h1>Start Me Up:  Build a new blog</h1>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('valleygirl')" class="tone-btn">
+          💁‍♀️ Valley Girl
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>Start Me Up:  Build a new blog</h1>\n<p><em>June 2, 2025 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2025%2F06%2Fbuild-a-new-blog%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p>I keep coming up with things I want to write up but don't really have a place to put them.  I tried using Hugo for a while and did't like it.  Back in 2007 I was using Blogger and that just seems way too old.</p>\n<p>I'm rolling my own now.  Using HTMX and a little javascript and hosting it at Cloudflare.  This seems like the right thing and it fits my brain.  Let's see how it goes.</p>\n<p>You can find the source code for this blog on my git repo: https://github.com/adamb/blog</p>\n<h2>Day Two</h2>\n<h3>2025-06-03 09:40:25</h3>\n<p>Ok, nothing is as simple as you might think.  So I have a build.js script and that's working.  But the pages that were built are just html pages, so it's not really doing anything to use the htmx verus html.</p>\n<p>I'm using htmx in the main page and originally it was cool to have it pull in the snippets of html for each post. But then the direct links to those posts didn't get rendered with the style sheet.  Now the html pages are full pages, and the main page pulls them in and uses <code>hx-select</code> to pull the <code>&lt;article&gt;</code> out of the html page.</p>\n<p>Now I'm not sure why I'm using htmx at all.  I guess to learn something new.</p>\n<p>I'm thinking of adding some stats too.  I could add a /track script that would invoke a Cloudflare tracking function to stick stats into a kv and then build a little stats dashboard.</p>\n<p>Anyway, for now I have some place to keep track of ideas.</p>\n<p>Next steps:</p>\n<ul>\n<li>Add some more posts</li>\n<li>Get tracking and stats to work</li>\n<li>Figure out if it's worth using htmx</li>\n</ul>\n";
+      window.originalMarkdown = "\n# Start Me Up:  Build a new blog\n\nI keep coming up with things I want to write up but don't really have a place to put them.  I tried using Hugo for a while and did't like it.  Back in 2007 I was using Blogger and that just seems way too old.\n\nI'm rolling my own now.  Using HTMX and a little javascript and hosting it at Cloudflare.  This seems like the right thing and it fits my brain.  Let's see how it goes.\n\nYou can find the source code for this blog on my git repo: https://github.com/adamb/blog\n\n\n## Day Two\n### 2025-06-03 09:40:25\n\nOk, nothing is as simple as you might think.  So I have a build.js script and that's working.  But the pages that were built are just html pages, so it's not really doing anything to use the htmx verus html.  \n\nI'm using htmx in the main page and originally it was cool to have it pull in the snippets of html for each post. But then the direct links to those posts didn't get rendered with the style sheet.  Now the html pages are full pages, and the main page pulls them in and uses `hx-select` to pull the `<article>` out of the html page.  \n\nNow I'm not sure why I'm using htmx at all.  I guess to learn something new.  \n\nI'm thinking of adding some stats too.  I could add a /track script that would invoke a Cloudflare tracking function to stick stats into a kv and then build a little stats dashboard.\n\nAnyway, for now I have some place to keep track of ideas.  \n\nNext steps:\n\n- Add some more posts\n- Get tracking and stats to work\n- Figure out if it's worth using htmx\n\n\n\n\n\n\n\n";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        // Show loading indicator
+        document.getElementById('loading-indicator').style.display = 'block';
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert newlines to HTML breaks and display
+              const transformedHtml = data.transformedContent.replace(/\n/g, '<br>');
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          document.getElementById('post-content').innerHTML = 
+            '<div class="transformed-content"><em>❌ Network error. Try again!</em></div>';
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div id="post-content"><h1>Start Me Up:  Build a new blog</h1>
 <p><em>June 2, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fbuild-a-new-blog%2F" hx-trigger="load" hx-swap="innerHTML">
 <span class="visit-count">👁️ Loading...</span>
 </span></em></p>
@@ -57,9 +129,9 @@
 <li>Get tracking and stats to work</li>
 <li>Figure out if it's worth using htmx</li>
 </ul>
-
-<div class="back-link"><a href="/">← Back to Home</a></div>
-</article>
+</div>
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
   </main>
 
   <footer>
