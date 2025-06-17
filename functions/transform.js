@@ -123,7 +123,10 @@ ${content}
 
 Please rewrite the entire post maintaining the same structure and key information, but completely change the tone as requested. Keep any code blocks or technical details accurate.`;
 
-    // Call Cloudflare AI
+    // Call Cloudflare AI with timing and cache logging
+    console.log(`Starting AI transformation for tone: ${tone}, content length: ${content.length}`);
+    const startTime = Date.now();
+    
     const aiResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
       messages: [
         { role: 'system', content: 'You are a helpful assistant that transforms text into different tones and styles.' },
@@ -134,6 +137,21 @@ Please rewrite the entire post maintaining the same structure and key informatio
         ttl: 86400  // cache for 24 hours
       }
     });
+    
+    const endTime = Date.now();
+    const duration = endTime - startTime;
+    
+    console.log(`AI transformation completed in ${duration}ms`);
+    console.log(`Response length: ${aiResponse.response?.length || 0} characters`);
+    
+    // Log if this was likely a cache hit (very fast response)
+    if (duration < 500) {
+      console.log('🚀 LIKELY CACHE HIT - Very fast response (<500ms)');
+    } else if (duration < 2000) {
+      console.log('⚡ POSSIBLE CACHE HIT - Fast response (<2s)');
+    } else {
+      console.log('🔄 LIKELY NEW AI CALL - Slower response (>2s)');
+    }
 
     return new Response(JSON.stringify({
       originalContent: content,
