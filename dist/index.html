@@ -21,7 +21,11 @@
 
     // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
         trackVisit();
       }
     });

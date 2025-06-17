@@ -21,7 +21,11 @@
 
     // Track HTMX navigation (but not visit counter requests)
     document.addEventListener('htmx:afterRequest', function(evt) {
-      if (evt.detail.successful && !evt.detail.requestConfig.url.includes('/visits')) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
         trackVisit();
       }
     });
@@ -70,8 +74,14 @@
       }
       
       async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
         // Show loading indicator
-        document.getElementById('loading-indicator').style.display = 'block';
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
         
         try {
           const response = await fetch('/transform', {
@@ -88,8 +98,9 @@
           if (response.ok) {
             const data = await response.json();
             if (data.transformedContent) {
-              // Convert newlines to HTML breaks and display
+              // Just show the raw transformed content for now to avoid regex issues
               const transformedHtml = data.transformedContent.replace(/\n/g, '<br>');
+              
               document.getElementById('post-content').innerHTML = 
                 '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
                 transformedHtml + '</div>';
@@ -100,8 +111,11 @@
           }
         } catch (error) {
           console.error('Transformation error:', error);
-          document.getElementById('post-content').innerHTML = 
-            '<div class="transformed-content"><em>❌ Network error. Try again!</em></div>';
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
         }
         
         // Hide loading indicator

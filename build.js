@@ -92,7 +92,8 @@ postDataList.forEach((post) => {
       month: 'long',
       day: 'numeric'
     });
-    const visitCounter = `<span class="visit-counter" hx-get="/visits?path=${encodeURIComponent(post.urlPath)}" hx-trigger="load" hx-swap="innerHTML">
+    const encodedPath = encodeURIComponent(post.urlPath);
+    const visitCounter = `<span class="visit-counter" hx-get="/visits?path=${encodedPath}" hx-trigger="load" hx-swap="innerHTML">
       <span class="visit-count">👁️ Loading...</span>
     </span>`;
     contentWithDate = contentWithDate.replace(
@@ -137,8 +138,14 @@ postDataList.forEach((post) => {
       }
       
       async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
         // Show loading indicator
-        document.getElementById('loading-indicator').style.display = 'block';
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
         
         try {
           const response = await fetch('/transform', {
@@ -155,43 +162,12 @@ postDataList.forEach((post) => {
           if (response.ok) {
             const data = await response.json();
             if (data.transformedContent) {
-              // Simple markdown to HTML conversion for transformed content
-              let transformedHtml = data.transformedContent;
-              
-              // Convert headers
-              transformedHtml = transformedHtml.replace(/^### (.*$)/gm, '<h3>$1</h3>');
-              transformedHtml = transformedHtml.replace(/^## (.*$)/gm, '<h2>$1</h2>');
-              transformedHtml = transformedHtml.replace(/^# (.*$)/gm, '<h1>$1</h1>');
-              
-              // Convert bold and italic
-              transformedHtml = transformedHtml.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-              transformedHtml = transformedHtml.replace(/\*(.*?)\*/g, '<em>$1</em>');
-              
-              // Convert links
-              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-              
-              // Convert code blocks
-              transformedHtml = transformedHtml.replace(/```([^`]*?)```/gs, '<pre><code>$1</code></pre>');
-              transformedHtml = transformedHtml.replace(/`([^`]+)`/g, '<code>$1</code>');
-              
-              // Convert lists - handle bullet points
-              transformedHtml = transformedHtml.replace(/^- (.+)$/gm, '<li>$1</li>');
-              transformedHtml = transformedHtml.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-              
-              // Convert line breaks to paragraphs
-              const paragraphs = transformedHtml.split('\n\n').filter(p => p.trim());
-              transformedHtml = paragraphs.map(p => {
-                p = p.trim();
-                if (p.match(/^<(h[1-6]|ul|ol|pre|blockquote)/)) {
-                  return p;
-                }
-                p = p.replace(/\n/g, '<br>');
-                return p.startsWith('<') ? p : '<p>' + p + '</p>';
-              }).join('\n');
+              // Just show the raw transformed content for now to avoid regex issues
+              const transformedHtml = data.transformedContent.replace(/\\n/g, '<br>');
               
               document.getElementById('post-content').innerHTML = 
-                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br></div>' + 
-                transformedHtml;
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
             }
           } else {
             document.getElementById('post-content').innerHTML = 
@@ -199,8 +175,11 @@ postDataList.forEach((post) => {
           }
         } catch (error) {
           console.error('Transformation error:', error);
-          document.getElementById('post-content').innerHTML = 
-            '<div class="transformed-content"><em>❌ Network error. Try again!</em></div>';
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
         }
         
         // Hide loading indicator
