@@ -35,8 +35,8 @@ export async function onRequestPost({ request, env }) {
         case 'techbro':
           mockResponse = generateTechBroMock(content);
           break;
-        case 'valleygirl':
-          mockResponse = generateValleyGirlMock(content);
+        case 'ubersnarky':
+          mockResponse = generateUberSnarkyMock(content);
           break;
         default:
           mockResponse = generateSarcasticMock(content);
@@ -83,19 +83,19 @@ function generateTechBroMock(content) {
   return mock;
 }
 
-function generateValleyGirlMock(content) {
-  let mock = "# Like, Totally Another Blog Post! 💅\n\n";
-  mock += "*OMG, I literally cannot even with this content right now...*\n\n";
-  mock += "So like, I was totally thinking about stuff and I was like, 'I should totally write about this!' ";
-  mock += "And then I was like, 'But wait, do people even read blogs anymore?' But whatever, here we are! 💁‍♀️\n\n";
-  mock += "## Things That Are Like, Super Important:\n\n";
-  mock += "- This one thing that's like, **totally** amazing\n";
-  mock += "- Some tech stuff that's like, whatever, but also cool?\n";
-  mock += "- My thoughts (which are like, *obviously* the best)\n\n";
-  mock += "Like, I could go into like, **major** detail about all this stuff, but honestly? ";
-  mock += "I'm getting kind of bored just thinking about it. Maybe I'll like, finish this later or whatever.\n\n";
-  mock += "Anyway, that's like, totally it for now! XOXO! 💖\n\n";
-  mock += "*[This is like, totally a mock version for testing. The real AI would be like, way better!]*";
+function generateUberSnarkyMock(content) {
+  let mock = "# Oh Please, *Another* Groundbreaking Blog Post 🙄\n\n";
+  mock += "*Because the world was absolutely DYING for more of this riveting content...*\n\n";
+  mock += "Well, well, well. Look who decided to grace the internet with their **profound** insights. ";
+  mock += "How *original*. I'm sure nobody has ever thought of writing about this before. Shocking revelation, really.\n\n";
+  mock += "## \"Revolutionary\" Points That Will *Totally* Change Your Life:\n\n";
+  mock += "- Some earth-shattering observation (spoiler: it's not)\n";
+  mock += "- Technical details that are **so** fascinating (yawn)\n";
+  mock += "- \"Expert\" opinions that definitely matter (sure they do)\n\n";
+  mock += "Oh, I could absolutely elaborate on all this *groundbreaking* material, but let's be honest - ";
+  mock += "you're probably just skimming anyway. Why waste perfectly good snark on people who won't even finish reading?\n\n";
+  mock += "There you have it. Another blog post for the pile. You're welcome, internet. 💅\n\n";
+  mock += "*[This is a mock transformation with maximum attitude. The real AI would be even more delightfully snarky!]*";
   return mock;
 }
 
@@ -105,7 +105,7 @@ function generateValleyGirlMock(content) {
       
       techbro: "Rewrite this blog post like a Silicon Valley tech bro. Use buzzwords like 'disrupting', 'synergy', 'paradigm shift', 'scale', 'iterate', 'MVP', 'growth hacking'. Be overly enthusiastic about technology and mention AI everywhere.",
       
-      valleygirl: "Rewrite this blog post like a 90s Valley Girl. Use phrases like 'like totally', 'as if', 'whatever', 'gag me with a spoon'. Make it super bubbly and use lots of 'like' and 'totally'.",
+      ubersnarky: "Rewrite this blog post with maximum snark and attitude. Be brutally sarcastic, condescending, and dismissive. Use phrases like 'Oh please', 'How original', 'Shocking revelation'. Make every sentence drip with disdain and eye-rolling contempt.",
       
       pirate: "Rewrite this blog post like a pirate. Use 'arrr', 'matey', 'ye', 'treasure', 'ship', 'sail the seven seas'. Make it adventurous and nautical.",
       
