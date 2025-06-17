@@ -155,11 +155,43 @@ postDataList.forEach((post) => {
           if (response.ok) {
             const data = await response.json();
             if (data.transformedContent) {
-              // Convert newlines to HTML breaks and display
-              const transformedHtml = data.transformedContent.replace(/\\n/g, '<br>');
+              // Simple markdown to HTML conversion for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers
+              transformedHtml = transformedHtml.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*(.*?)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert code blocks
+              transformedHtml = transformedHtml.replace(/```([^`]*?)```/gs, '<pre><code>$1</code></pre>');
+              transformedHtml = transformedHtml.replace(/`([^`]+)`/g, '<code>$1</code>');
+              
+              // Convert lists - handle bullet points
+              transformedHtml = transformedHtml.replace(/^- (.+)$/gm, '<li>$1</li>');
+              transformedHtml = transformedHtml.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+              
+              // Convert line breaks to paragraphs
+              const paragraphs = transformedHtml.split('\n\n').filter(p => p.trim());
+              transformedHtml = paragraphs.map(p => {
+                p = p.trim();
+                if (p.match(/^<(h[1-6]|ul|ol|pre|blockquote)/)) {
+                  return p;
+                }
+                p = p.replace(/\n/g, '<br>');
+                return p.startsWith('<') ? p : '<p>' + p + '</p>';
+              }).join('\n');
+              
               document.getElementById('post-content').innerHTML = 
-                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
-                transformedHtml + '</div>';
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br></div>' + 
+                transformedHtml;
             }
           } else {
             document.getElementById('post-content').innerHTML = 

@@ -25,8 +25,22 @@ export async function onRequestPost({ request, env }) {
 
     // Check if AI binding is available (won't be in local dev)
     if (!env.AI) {
-      // Return a mock response for local development
-      const mockResponse = `🤖 **${tone.toUpperCase()} VERSION** (Mock Response)\n\n${content.substring(0, 200)}... *[This would be transformed by Cloudflare AI in production]*`;
+      // Generate a realistic mock response that mimics AI transformation
+      let mockResponse;
+      
+      switch(tone) {
+        case 'sarcastic':
+          mockResponse = generateSarcasticMock(content);
+          break;
+        case 'techbro':
+          mockResponse = generateTechBroMock(content);
+          break;
+        case 'valleygirl':
+          mockResponse = generateValleyGirlMock(content);
+          break;
+        default:
+          mockResponse = generateSarcasticMock(content);
+      }
       
       return new Response(JSON.stringify({ 
         originalContent: content,
@@ -36,6 +50,54 @@ export async function onRequestPost({ request, env }) {
         headers: { 'Content-Type': 'application/json' }
       });
     }
+
+function generateSarcasticMock(content) {
+  // Take the first few lines and add sarcastic flair
+  const lines = content.split('\n').slice(0, 10);
+  let mock = "# Oh, *Another* Blog Post 🙄\n\n";
+  mock += "*Because the internet definitely needed more of my thoughts...*\n\n";
+  mock += "So apparently I decided to write about stuff. **Shocking**, I know.\n\n";
+  mock += "Here's what this *incredibly important* post covers:\n\n";
+  mock += "- Some thing I think is cool (it's probably not)\n";
+  mock += "- Technical details that **totally** matter\n";
+  mock += "- My *expert* opinions on things\n\n";
+  mock += "## The *\"Brilliant\"* Details\n\n";
+  mock += "Look, I could explain this in detail, but let's be honest - you're probably just skimming anyway. ";
+  mock += "This is where I'd normally put some **groundbreaking** insights, but instead you get this sarcastic placeholder.\n\n";
+  mock += "*[This is a mock transformation for local development. The real AI would be much more... creative.]*";
+  return mock;
+}
+
+function generateTechBroMock(content) {
+  let mock = "# 🚀 DISRUPTING THE BLOG SPACE WITH NEXT-GEN CONTENT\n\n";
+  mock += "*Leveraging synergistic paradigms to optimize thought leadership at scale*\n\n";
+  mock += "Hey **rockstars**! 💪 I'm super excited to share some game-changing insights that are going to totally revolutionize how you think about this space.\n\n";
+  mock += "## Key Takeaways That Will 10X Your Understanding:\n\n";
+  mock += "- **Disrupting** traditional content consumption patterns\n";
+  mock += "- **Scaling** intellectual property through viral ideation\n";
+  mock += "- **Optimizing** engagement metrics via authentic storytelling\n";
+  mock += "- **Iterating** on feedback loops to achieve product-market fit\n\n";
+  mock += "This isn't just content - it's a **movement**. We're not just writing, we're building the future of human connection through AI-powered narrative experiences.\n\n";
+  mock += "Ready to **crush it** together? Let's **ship** some knowledge! 🔥\n\n";
+  mock += "*[Mock transformation - the real AI would add even more buzzwords!]*";
+  return mock;
+}
+
+function generateValleyGirlMock(content) {
+  let mock = "# Like, Totally Another Blog Post! 💅\n\n";
+  mock += "*OMG, I literally cannot even with this content right now...*\n\n";
+  mock += "So like, I was totally thinking about stuff and I was like, 'I should totally write about this!' ";
+  mock += "And then I was like, 'But wait, do people even read blogs anymore?' But whatever, here we are! 💁‍♀️\n\n";
+  mock += "## Things That Are Like, Super Important:\n\n";
+  mock += "- This one thing that's like, **totally** amazing\n";
+  mock += "- Some tech stuff that's like, whatever, but also cool?\n";
+  mock += "- My thoughts (which are like, *obviously* the best)\n\n";
+  mock += "Like, I could go into like, **major** detail about all this stuff, but honestly? ";
+  mock += "I'm getting kind of bored just thinking about it. Maybe I'll like, finish this later or whatever.\n\n";
+  mock += "Anyway, that's like, totally it for now! XOXO! 💖\n\n";
+  mock += "*[This is like, totally a mock version for testing. The real AI would be like, way better!]*";
+  return mock;
+}
 
     // Define tone prompts
     const tonePrompts = {
