@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favorite Paris Restaurants 2025 - Adam's Blog</title>
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>Favorite Paris Restaurants 2025</h1>
+<p><em>June 17, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Ffavorite-paris-restaurants-2025%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span> • <span class="draft-badge">DRAFT</span></em></p>
+<p>Our 2025 visit to Paris is coming to a close.  Here are some restaurants that we tried this time around and liked.</p>
+<h2>Reliable Classics</h2>
+<h3><a href="https://maps.app.goo.gl/niHgCcm3NcMR9sV8A">Le Bistrot d'Henri</a></h3>
+<p><em>6th Arrondissement</em></p>
+<p>This tiny little restaurant a few blocks from Boulevard Saint Germain is one of our favorite places near our apartment.  It's tiny so make sure to make a reservation.  Our favorite escargot in Paris.</p>
+<h3><a href="https://maps.app.goo.gl/hjCJ1eiXkFbDGKrY7">Lobineau</a></h3>
+<p><em>6th Arrondissement</em></p>
+<p>Another tiny place in SGP, but this one specializes in seafood.  Try the razor clams if they have them!</p>
+<h2>Fancy French</h2>
+<h3><a href="https://maps.app.goo.gl/RgBVcEDgDs9DbCEs5">Jules Verne</a></h3>
+<p><em>7th Arrondissement</em></p>
+<p>Great food and amazing views. This restaurant is actually in the Eiffel Tower.  Try to book around sunset if you can.  Also don't forget to check out the secret entrance to the private viewing deck.</p>
+<h3><a href="https://maps.app.goo.gl/rL3a2XtBm5kWb93D8">Le Clarence</a></h3>
+<p><em>8th Arrondissement</em></p>
+<p>Very fancy interior.  Feels like you're a guest of Louis the 16th.  Great service and great food.  We booked for lunch since it was really difficult to find a dinner time slot.</p>
+<h2>Asian</h2>
+<h3><a href="https://maps.app.goo.gl/KFS5n58XTF4GeMxb7">Jun</a></h3>
+<p><em>6th Arrondissement</em></p>
+<p>Jun wins again for the best bento box lunch deal.  It's fancy and a bit expensive, but for 32 € you get a big double decker bento box that will fill you up!</p>
+<h3><a href="https://maps.app.goo.gl/3bcqqgQ6DeW3w5nV8">Crying Tiger</a></h3>
+<p><em>6th Arrondissement</em></p>
+<p>Really good Thai food with very healthy almost American sized portions.</p>
+<h2>Faster, Cheaper</h2>
+<p>Nothing is really cheap in Paris, but these places are on the more economical side.</p>
+<h3><a href="https://maps.app.goo.gl/xhSVL5k5wn2QMMtk9">Cosi</a></h3>
+<p><em>6th Arrondissement</em></p>
+<p>Great salads and sandwiches.  Very fast but also an open and airy dining room upstairs with free wifi and comfortable tables if you need a place to work.</p>
+<h3><a href="https://maps.app.goo.gl/8ny4VPEYcRdrigxh7">Certified Café</a></h3>
+<p><em>7th Arrondissement</em></p>
+<p>Another comfortable place to hang out and work on your laptop with good coffee and snacks.</p>
+<h3><a href="https://maps.app.goo.gl/pbDwmUnyipTc3Huj6">Comment ça va</a></h3>
+<p><em>12th Arrondissement</em></p>
+<p>Really good Vietnamese Bánh mì.  They also have noodle dishes and ice cream.</p>
+<h3><a href="https://maps.app.goo.gl/z24Fr5QDNqr79A6C8">Madam Guan 关太•一家煎饼果子 奶茶店</a></h3>
+<p><em>6th Arrondissement</em></p>
+<p>We did take out here more times than we should have.  Really huge crepe sandwiches with lots of protein and as spicy as you can take it.  I love the little crunchy wafer that she puts inside.  Plus the takeaway boxes are just too cute.</p>
+<h2>Just too many</h2>
+<p>There are really just too many places to list.  These are the ones that come to mind, and are mostly within a 15 minute walk of where we stayed.  There is a plethora of amazing options when it comes to Parisian restaurants, have fun exploring!</p>
+<p><em>bon appétit!</em></p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>Favorite Paris Restaurants 2025</h1>\n<p><em>June 17, 2025 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2025%2F06%2Ffavorite-paris-restaurants-2025%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span> • <span class=\"draft-badge\">DRAFT</span></em></p>\n<p>Our 2025 visit to Paris is coming to a close.  Here are some restaurants that we tried this time around and liked.</p>\n<h2>Reliable Classics</h2>\n<h3><a href=\"https://maps.app.goo.gl/niHgCcm3NcMR9sV8A\">Le Bistrot d'Henri</a></h3>\n<p><em>6th Arrondissement</em></p>\n<p>This tiny little restaurant a few blocks from Boulevard Saint Germain is one of our favorite places near our apartment.  It's tiny so make sure to make a reservation.  Our favorite escargot in Paris.</p>\n<h3><a href=\"https://maps.app.goo.gl/hjCJ1eiXkFbDGKrY7\">Lobineau</a></h3>\n<p><em>6th Arrondissement</em></p>\n<p>Another tiny place in SGP, but this one specializes in seafood.  Try the razor clams if they have them!</p>\n<h2>Fancy French</h2>\n<h3><a href=\"https://maps.app.goo.gl/RgBVcEDgDs9DbCEs5\">Jules Verne</a></h3>\n<p><em>7th Arrondissement</em></p>\n<p>Great food and amazing views. This restaurant is actually in the Eiffel Tower.  Try to book around sunset if you can.  Also don't forget to check out the secret entrance to the private viewing deck.</p>\n<h3><a href=\"https://maps.app.goo.gl/rL3a2XtBm5kWb93D8\">Le Clarence</a></h3>\n<p><em>8th Arrondissement</em></p>\n<p>Very fancy interior.  Feels like you're a guest of Louis the 16th.  Great service and great food.  We booked for lunch since it was really difficult to find a dinner time slot.</p>\n<h2>Asian</h2>\n<h3><a href=\"https://maps.app.goo.gl/KFS5n58XTF4GeMxb7\">Jun</a></h3>\n<p><em>6th Arrondissement</em></p>\n<p>Jun wins again for the best bento box lunch deal.  It's fancy and a bit expensive, but for 32 € you get a big double decker bento box that will fill you up!</p>\n<h3><a href=\"https://maps.app.goo.gl/3bcqqgQ6DeW3w5nV8\">Crying Tiger</a></h3>\n<p><em>6th Arrondissement</em></p>\n<p>Really good Thai food with very healthy almost American sized portions.</p>\n<h2>Faster, Cheaper</h2>\n<p>Nothing is really cheap in Paris, but these places are on the more economical side.</p>\n<h3><a href=\"https://maps.app.goo.gl/xhSVL5k5wn2QMMtk9\">Cosi</a></h3>\n<p><em>6th Arrondissement</em></p>\n<p>Great salads and sandwiches.  Very fast but also an open and airy dining room upstairs with free wifi and comfortable tables if you need a place to work.</p>\n<h3><a href=\"https://maps.app.goo.gl/8ny4VPEYcRdrigxh7\">Certified Café</a></h3>\n<p><em>7th Arrondissement</em></p>\n<p>Another comfortable place to hang out and work on your laptop with good coffee and snacks.</p>\n<h3><a href=\"https://maps.app.goo.gl/pbDwmUnyipTc3Huj6\">Comment ça va</a></h3>\n<p><em>12th Arrondissement</em></p>\n<p>Really good Vietnamese Bánh mì.  They also have noodle dishes and ice cream.</p>\n<h3><a href=\"https://maps.app.goo.gl/z24Fr5QDNqr79A6C8\">Madam Guan 关太•一家煎饼果子 奶茶店</a></h3>\n<p><em>6th Arrondissement</em></p>\n<p>We did take out here more times than we should have.  Really huge crepe sandwiches with lots of protein and as spicy as you can take it.  I love the little crunchy wafer that she puts inside.  Plus the takeaway boxes are just too cute.</p>\n<h2>Just too many</h2>\n<p>There are really just too many places to list.  These are the ones that come to mind, and are mostly within a 15 minute walk of where we stayed.  There is a plethora of amazing options when it comes to Parisian restaurants, have fun exploring!</p>\n<p><em>bon appétit!</em></p>\n";
+      window.originalMarkdown = "\n# Favorite Paris Restaurants 2025\n\nOur 2025 visit to Paris is coming to a close.  Here are some restaurants that we tried this time around and liked.  \n\n## Reliable Classics\n\n### [Le Bistrot d'Henri](https://maps.app.goo.gl/niHgCcm3NcMR9sV8A)\n*6th Arrondissement*\n\nThis tiny little restaurant a few blocks from Boulevard Saint Germain is one of our favorite places near our apartment.  It's tiny so make sure to make a reservation.  Our favorite escargot in Paris. \n\n### [Lobineau](https://maps.app.goo.gl/hjCJ1eiXkFbDGKrY7)\n*6th Arrondissement*\n\nAnother tiny place in SGP, but this one specializes in seafood.  Try the razor clams if they have them!\n\n## Fancy French\n\n### [Jules Verne](https://maps.app.goo.gl/RgBVcEDgDs9DbCEs5)\n*7th Arrondissement*\n\nGreat food and amazing views. This restaurant is actually in the Eiffel Tower.  Try to book around sunset if you can.  Also don't forget to check out the secret entrance to the private viewing deck.\n\n### [Le Clarence](https://maps.app.goo.gl/rL3a2XtBm5kWb93D8)\n*8th Arrondissement*\n\nVery fancy interior.  Feels like you're a guest of Louis the 16th.  Great service and great food.  We booked for lunch since it was really difficult to find a dinner time slot.\n\n\n## Asian\n\n### [Jun](https://maps.app.goo.gl/KFS5n58XTF4GeMxb7)\n*6th Arrondissement*\n\nJun wins again for the best bento box lunch deal.  It's fancy and a bit expensive, but for 32 € you get a big double decker bento box that will fill you up!\n\n### [Crying Tiger](https://maps.app.goo.gl/3bcqqgQ6DeW3w5nV8)\n*6th Arrondissement*\n\nReally good Thai food with very healthy almost American sized portions.\n\n## Faster, Cheaper\n\nNothing is really cheap in Paris, but these places are on the more economical side.\n\n### [Cosi](https://maps.app.goo.gl/xhSVL5k5wn2QMMtk9)\n*6th Arrondissement*\n\nGreat salads and sandwiches.  Very fast but also an open and airy dining room upstairs with free wifi and comfortable tables if you need a place to work.\n\n### [Certified Café](https://maps.app.goo.gl/8ny4VPEYcRdrigxh7)\n*7th Arrondissement*\n\nAnother comfortable place to hang out and work on your laptop with good coffee and snacks.\n\n### [Comment ça va](https://maps.app.goo.gl/pbDwmUnyipTc3Huj6)\n*12th Arrondissement*\n\nReally good Vietnamese Bánh mì.  They also have noodle dishes and ice cream.\n\n\n### [Madam Guan 关太•一家煎饼果子 奶茶店](https://maps.app.goo.gl/z24Fr5QDNqr79A6C8)\n*6th Arrondissement*\n\nWe did take out here more times than we should have.  Really huge crepe sandwiches with lots of protein and as spicy as you can take it.  I love the little crunchy wafer that she puts inside.  Plus the takeaway boxes are just too cute.\n\n## Just too many\n\nThere are really just too many places to list.  These are the ones that come to mind, and are mostly within a 15 minute walk of where we stayed.  There is a plethora of amazing options when it comes to Parisian restaurants, have fun exploring!\n\n_bon appétit!_";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p>© 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

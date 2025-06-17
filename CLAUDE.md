@@ -5,6 +5,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build Commands
 
 - `npm run build` - Converts markdown files in `posts_src/` to HTML in `posts/` and regenerates `index.html`
+- `npm run build:drafts` - Same as build but includes draft posts (equivalent to `node build.js --buildDrafts`)
+
+## Draft Posts
+
+Posts can be marked as drafts by adding `draft: true` to the frontmatter. Draft posts are excluded from builds by default but can be included using the `--buildDrafts` or `-D` flag. Draft posts are visually marked with a "DRAFT" badge when included in builds.
 
 ## Architecture
 

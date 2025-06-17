@@ -9,6 +9,11 @@ const outputDir = "dist";
 const templatePath = "index_template.html";
 const indexOut = "index.html";
 
+// Check for build drafts flag
+const buildDrafts = process.argv.includes('--buildDrafts') || process.argv.includes('-D');
+
+console.log(`Building blog${buildDrafts ? ' (including drafts)' : ''}...`);
+
 // Function to parse frontmatter
 function parseFrontmatter(content) {
   const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
@@ -45,13 +50,19 @@ const postDataList = fs
   .readdirSync(inputDir)
   .filter((f) => path.extname(f) === ".md")
   .map((file) => {
-    const mdContent = fs.readFileSync(path.join(inputDir, file), "utf8");
+    const filePath = path.join(inputDir, file);
+    const mdContent = fs.readFileSync(filePath, "utf8");
     const { frontmatter, content } = parseFrontmatter(mdContent);
+    
+    // Get file creation time for secondary sorting
+    const fileStats = fs.statSync(filePath);
+    const fileCreationTime = fileStats.birthtime;
     
     // Use frontmatter data or fallbacks
     const slug = frontmatter.slug || path.basename(file, ".md");
     const title = frontmatter.title || slug;
     const date = frontmatter.date || "2025-01-01";
+    const draft = frontmatter.draft === 'true' || frontmatter.draft === true;
     
     // Parse date to create directory structure
     const dateObj = new Date(date);
@@ -61,20 +72,38 @@ const postDataList = fs
     // Create the URL path and file path
     const urlPath = `/${year}/${month}/${slug}/`;
     const dirPath = path.join(outputDir, String(year), month, slug);
-    const filePath = path.join(dirPath, 'index.html');
+    const outputFilePath = path.join(dirPath, 'index.html');
     
     return { 
       slug, 
       title, 
       date, 
+      draft,
       mdContent: content, 
       urlPath,
       dirPath,
-      filePath,
-      dateObj
+      filePath: outputFilePath,
+      dateObj,
+      fileCreationTime
     };
   })
-  .sort((a, b) => b.dateObj - a.dateObj); // Sort by date, newest first
+  .filter(post => {
+    // Filter out drafts unless buildDrafts flag is set
+    if (post.draft && !buildDrafts) {
+      console.log(`Skipping draft: ${post.title}`);
+      return false;
+    }
+    return true;
+  })
+  .sort((a, b) => {
+    // Primary sort: by frontmatter date (newest first)
+    const dateDiff = b.dateObj - a.dateObj;
+    if (dateDiff !== 0) {
+      return dateDiff;
+    }
+    // Secondary sort: by file creation time for same dates (newer files first)
+    return b.fileCreationTime - a.fileCreationTime;
+  });
 
 // 2. Build the nav HTML from the postDataList (now empty since we show snippets on index)
 const navLinks = "";
@@ -96,9 +125,10 @@ postDataList.forEach((post) => {
     const visitCounter = `<span class="visit-counter" hx-get="/visits?path=${encodedPath}" hx-trigger="load" hx-swap="innerHTML">
       <span class="visit-count">👁️ Loading...</span>
     </span>`;
+    const draftIndicator = post.draft ? ' • <span class="draft-badge">DRAFT</span>' : '';
     contentWithDate = contentWithDate.replace(
       firstHeaderMatch[0],
-      `${firstHeaderMatch[0]}\n*${dateFormatted} • ${visitCounter}*`
+      `${firstHeaderMatch[0]}\n*${dateFormatted} • ${visitCounter}${draftIndicator}*`
     );
   }
   
@@ -290,10 +320,11 @@ const postSnippets = postDataList.map(post => {
   });
   
   const snippet = generateSnippet(post.mdContent);
+  const draftIndicator = post.draft ? ' <span class="draft-badge">DRAFT</span>' : '';
   
   return `
-    <article class="post-snippet">
-      <h2><a href="${post.urlPath}">${post.title}</a></h2>
+    <article class="post-snippet${post.draft ? ' draft-post' : ''}">
+      <h2><a href="${post.urlPath}">${post.title}${draftIndicator}</a></h2>
       <div class="post-date">${dateFormatted}</div>
       <div class="post-excerpt">${snippet}</div>
       <div class="read-more">
