@@ -98,8 +98,30 @@
           if (response.ok) {
             const data = await response.json();
             if (data.transformedContent) {
-              // Just show the raw transformed content for now to avoid regex issues
-              const transformedHtml = data.transformedContent.replace(/\n/g, '<br>');
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
               
               document.getElementById('post-content').innerHTML = 
                 '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
