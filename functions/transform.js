@@ -123,7 +123,31 @@ ${content}
 
 Please rewrite the entire post maintaining the same structure and key information, but completely change the tone as requested. Keep any code blocks or technical details accurate.`;
 
-    // Call Cloudflare AI with timing and cache logging
+    // Create cache key from tone and content hash
+    const cacheInput = tone + '::' + content;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(cacheInput);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const cacheKey = 'ai_transform_' + hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    // Check cache first
+    console.log(`Checking cache for key: ${cacheKey}`);
+    const cached = await env.VISIT_LOG.get(cacheKey);
+    
+    if (cached) {
+      console.log('🚀 CACHE HIT - Returning cached response');
+      const cachedResponse = JSON.parse(cached);
+      return new Response(JSON.stringify({
+        originalContent: content,
+        transformedContent: cachedResponse.transformedContent,
+        tone: tone
+      }), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Call Cloudflare AI with timing logging
     console.log(`Starting AI transformation for tone: ${tone}, content length: ${content.length}`);
     const startTime = Date.now();
     
@@ -133,11 +157,15 @@ Please rewrite the entire post maintaining the same structure and key informatio
         { role: 'user', content: fullPrompt }
       ],
       max_tokens: 2048
-    }, {
-      gateway: {
-        skipCache: false,  // Enable caching (default behavior)
-        cacheTtl: 86400    // Cache for 24 hours (24 * 60 * 60 seconds)
-      }
+    });
+    
+    // Cache the response for 24 hours
+    const cacheData = {
+      transformedContent: aiResponse.response,
+      cachedAt: new Date().toISOString()
+    };
+    await env.VISIT_LOG.put(cacheKey, JSON.stringify(cacheData), {
+      expirationTtl: 86400  // 24 hours
     });
     
     const endTime = Date.now();
