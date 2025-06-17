@@ -10,13 +10,14 @@ I keep coming up with things I want to write up but don't really have a place to
 
 I'm rolling my own now.  Using HTMX and a little javascript and hosting it at Cloudflare.  This seems like the right thing and it fits my brain.  Let's see how it goes.
 
-You can find the source code for this blog on my git repo: https://github.com/adamb/blog
+You can find the source code for this blog on my git repo:  
+[https://github.com/adamb/blog/](https://github.com/adamb/blog/)
 
 
 ## Day Two
 ### 2025-06-03 09:40:25
 
-Ok, nothing is as simple as you might think.  So I have a build.js script and that's working.  But the pages that were built are just html pages, so it's not really doing anything to use the htmx verus html.  
+Ok, nothing is as simple as you might think.  So I have a build.js script and that's working.  But the pages that were built are just html pages, so it's not really doing anything to use the htmx versus html.  
 
 I'm using htmx in the main page and originally it was cool to have it pull in the snippets of html for each post. But then the direct links to those posts didn't get rendered with the style sheet.  Now the html pages are full pages, and the main page pulls them in and uses `hx-select` to pull the `<article>` out of the html page.  
 
