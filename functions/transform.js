@@ -165,7 +165,7 @@ Please rewrite the entire post maintaining the same structure and key informatio
       cachedAt: new Date().toISOString()
     };
     await env.VISIT_LOG.put(cacheKey, JSON.stringify(cacheData), {
-      expirationTtl: 86400  // 24 hours
+      expirationTtl: 604800  // 1 week (7 * 24 * 60 * 60 seconds)
     });
     
     const endTime = Date.now();
