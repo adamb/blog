@@ -345,3 +345,65 @@ footer {
         max-width: 200px;
     }
 }
+
+/* General Mobile Responsiveness - Target wider range of mobile devices */
+@media (max-width: 768px) {
+    body {
+        /* Override flex settings for a single column layout */
+        display: block;
+        padding-top: 1rem; /* Reduce top padding slightly for mobile */
+    }
+
+    header {
+        margin-bottom: 1rem; /* Reduce bottom margin for mobile */
+    }
+
+    header h1 {
+        font-size: 2.5rem !important; /* Slightly smaller main title for mobile */
+        margin-bottom: 1rem !important; /* Adjust margin for mobile */
+    }
+
+    nav {
+        /* If nav links appear, make them stack */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    nav a {
+        margin: 0.5rem 0; /* Adjust margin for vertical stacking */
+        display: block; /* Make links take full width available in nav */
+        width: 80%;     /* Or a specific width */
+        text-align: center;
+    }
+
+    main {
+        /* Allow main content to use more of the screen width */
+        max-width: 100%;
+        padding: 0.5rem; /* Adjust padding for smaller screens */
+    }
+
+    /* Ensure images within articles scale correctly */
+    article img {
+        max-width: 100%;
+        height: auto;
+        display: block; /* Remove extra space below image */
+        margin: 1rem auto; /* Center images if they are narrower than content */
+    }
+
+    /* Adjust article text for readability */
+    article {
+        font-size: 1rem; /* Ensure a readable base font size */
+    }
+
+    .post-snippet h2 {
+        font-size: 1.5rem; /* Adjust snippet titles */
+    }
+
+    /* Make tone buttons full width in their container on mobile */
+    .tone-btn { /* This will override the 600px media query if screen is <=600px */
+        width: 100%;
+        max-width: none; /* Remove max-width constraint from previous query if needed */
+    }
+}
