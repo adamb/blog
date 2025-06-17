@@ -63,3 +63,34 @@ You can check out the live version at [blog.beguelin.com](https://blog.beguelin.
 The whole thing reinforced my growing suspicion that Claude Code might be the best coding assistant I've ever used. It doesn't just write code - it thinks through problems, suggests better approaches, and even catches when other AIs lead you astray.
 
 Now I just need to figure out what other HTMX shenanigans I can get up to...
+
+## Caveat
+
+This post was actually written by Claude using this prompt:
+
+```text
+This is a text to my friends about my work on this project today. Turn this into a new blog post by
+writing a new entry in the posts_src dir. Add references to everything mentioned. Give the post a
+fun title and try to make it a fun but technical read. try to match the voice of the other posts.
+
+⏺ I need to see the text you want me to turn into a blog post. Could you share it?
+
+> I was trying to figure out something to do with htmx and the blog. so this morning I added
+  ai generated versions of the posts. Man, I’m getting addicted to Claude code.
+
+  I did give Jules a try, https://jules.google.com but it was slow and didn’t seem to figure out
+  the task I gave it. I did like how they are integrating Github and making pull requests.
+
+  Anyway, this version uses Cloudflare AI Workers to convert my posts into different voices:
+  Snarky, Tech Bro, or Sarcastic. Kinda fun.
+
+  ChatGPT lead me down a rabbit hole when it said I could just tell the AI workers to cache
+  responses. I asked Claude to do that and it built it’s own cache. I then pasted in the code that
+  I got from ChatGPT and told it to do that instead. Turns out Claude was right. AI Worker’s don’t
+  do caching. You need something called AI Worker Gateways for that. So I went back to Claude and
+  had it re-do the caching.
+
+  Also I fixed the mobile formatting so it renders much better now.
+
+  https://blog.beguelin.com if you want to take a look.
+```
