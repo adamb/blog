@@ -123,17 +123,8 @@ ${content}
 
 Please rewrite the entire post maintaining the same structure and key information, but completely change the tone as requested. Keep any code blocks or technical details accurate.`;
 
-    // Create cache key from tone and content
-    const cacheInput = tone + '::' + content;
-    const encoder = new TextEncoder();
-    const data = encoder.encode(cacheInput);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const key = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
     // Call Cloudflare AI with timing and cache logging
     console.log(`Starting AI transformation for tone: ${tone}, content length: ${content.length}`);
-    console.log(`Cache key: ${key}`);
     const startTime = Date.now();
     
     const aiResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
@@ -141,10 +132,11 @@ Please rewrite the entire post maintaining the same structure and key informatio
         { role: 'system', content: 'You are a helpful assistant that transforms text into different tones and styles.' },
         { role: 'user', content: fullPrompt }
       ],
-      max_tokens: 2048,
-      cache: {
-        ttl: 86400,  // cache for 24 hours
-        key
+      max_tokens: 2048
+    }, {
+      gateway: {
+        skipCache: false,  // Enable caching (default behavior)
+        cacheTtl: 86400    // Cache for 24 hours (24 * 60 * 60 seconds)
       }
     });
     
