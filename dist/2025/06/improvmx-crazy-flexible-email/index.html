@@ -42,6 +42,30 @@
 
   <main id="content">
     <article>
+    <div id="post-content"><h1>ImprovMX: Crazy flexible email</h1>
+<p><em>June 17, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fimprovmx-crazy-flexible-email%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
+<p><a href="https://improvmx.com">ImprovMX</a> is a really great service for setting up your email forwarding.  I've been using the service for a couple years now.</p>
+<p>I had been using MailHop Forward and it worked ok.  I had some problems with them bouncing emails that were important to me, so I was looking for an alternative and found ImprovMX.</p>
+<h2>Why do I like it?</h2>
+<p>First off, it's dead simple to set up. You just add a few DNS records (an MX and a TXT) and you're good to go. No need to mess with a full-blown mail server or mess around with cPanel or Google Workspace if all you want is to receive email at your domain.</p>
+<p>Second, it's fast. I’ve never noticed any delay in forwarded mail — it shows up almost instantly in my inbox.</p>
+<p>Third, it's reliable. I haven’t lost a single email since switching.</p>
+<p>Finally, it lets me manage all the aliases for all my domains in one dashboard. I can set up <code>hi@domain.com</code> and <code>support@anotherdomain.com</code> and forward them wherever I want, all from the same account.</p>
+<p>I use gmail as my main email reader.  So all my emails end there and I can filter on the address that it was sent to if I want to focus on email from a particular domain.</p>
+<h2>What does it cost?</h2>
+<p>ImprovMX has a free plan that lets you forward up to one domain and unlimited aliases. If you want to use a custom domain for sending or need more advanced features like email logs, catch-all forwarding, or priority support, the paid plans start at around $9/month.</p>
+<p>For small projects or side hustles, the free tier might be all you need.</p>
+<h2>Can it send email?</h2>
+<p>Yes — with a catch.</p>
+<p>You can configure ImprovMX to send mail using your domain, but technically it works through an SMTP relay (like Gmail, SendGrid, Mailgun, etc.). ImprovMX helps you generate the right DNS records (SPF, DKIM) to make sure outgoing emails don’t end up in spam.</p>
+<p>So while ImprovMX itself doesn’t run an outbound mail server, it plays nicely with other services so your domain can send emails too.</p>
+<p>If you need to send email programmatically, I recommend <a href="https://www.duocircle.com/email/outbound-smtp">DuoCircle</a>, they have a REST api that you can use to send email. It's 100x easier to setup than Amazon SES, which sucks in my opinion.  But that's another blog post.</p>
+<h2>Gmail alias trick</h2>
+<p>One cool tip if you're using Gmail as your main inbox: Gmail lets you add a <code>+something</code> to your email address. So if your address is <code>you@gmail.com</code>, you can use <code>you+newsletter@gmail.com</code>, <code>you+test@gmail.com</code>, or <code>you+whatever@gmail.com</code> — and all those emails will still land in your inbox.</p>
+<p>This works great with ImprovMX because you can forward emails to your main Gmail address, then use filters or labels based on the <code>+</code> alias. It’s a handy way to sort incoming messages or track where an email address was used.</p>
+</div>
     
     <div class="tone-controls">
       <h3>🎭 Transform This Post</h3>
@@ -146,30 +170,6 @@
       }
     </script>
   
-    <div id="post-content"><h1>ImprovMX: Crazy flexible email</h1>
-<p><em>June 17, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fimprovmx-crazy-flexible-email%2F" hx-trigger="load" hx-swap="innerHTML">
-<span class="visit-count">👁️ Loading...</span>
-</span></em></p>
-<p><a href="https://improvmx.com">ImprovMX</a> is a really great service for setting up your email forwarding.  I've been using the service for a couple years now.</p>
-<p>I had been using MailHop Forward and it worked ok.  I had some problems with them bouncing emails that were important to me, so I was looking for an alternative and found ImprovMX.</p>
-<h2>Why do I like it?</h2>
-<p>First off, it's dead simple to set up. You just add a few DNS records (an MX and a TXT) and you're good to go. No need to mess with a full-blown mail server or mess around with cPanel or Google Workspace if all you want is to receive email at your domain.</p>
-<p>Second, it's fast. I’ve never noticed any delay in forwarded mail — it shows up almost instantly in my inbox.</p>
-<p>Third, it's reliable. I haven’t lost a single email since switching.</p>
-<p>Finally, it lets me manage all the aliases for all my domains in one dashboard. I can set up <code>hi@domain.com</code> and <code>support@anotherdomain.com</code> and forward them wherever I want, all from the same account.</p>
-<p>I use gmail as my main email reader.  So all my emails end there and I can filter on the address that it was sent to if I want to focus on email from a particular domain.</p>
-<h2>What does it cost?</h2>
-<p>ImprovMX has a free plan that lets you forward up to one domain and unlimited aliases. If you want to use a custom domain for sending or need more advanced features like email logs, catch-all forwarding, or priority support, the paid plans start at around $9/month.</p>
-<p>For small projects or side hustles, the free tier might be all you need.</p>
-<h2>Can it send email?</h2>
-<p>Yes — with a catch.</p>
-<p>You can configure ImprovMX to send mail using your domain, but technically it works through an SMTP relay (like Gmail, SendGrid, Mailgun, etc.). ImprovMX helps you generate the right DNS records (SPF, DKIM) to make sure outgoing emails don’t end up in spam.</p>
-<p>So while ImprovMX itself doesn’t run an outbound mail server, it plays nicely with other services so your domain can send emails too.</p>
-<p>If you need to send email programmatically, I recommend <a href="https://www.duocircle.com/email/outbound-smtp">DuoCircle</a>, they have a REST api that you can use to send email. It's 100x easier to setup than Amazon SES, which sucks in my opinion.  But that's another blog post.</p>
-<h2>Gmail alias trick</h2>
-<p>One cool tip if you're using Gmail as your main inbox: Gmail lets you add a <code>+something</code> to your email address. So if your address is <code>you@gmail.com</code>, you can use <code>you+newsletter@gmail.com</code>, <code>you+test@gmail.com</code>, or <code>you+whatever@gmail.com</code> — and all those emails will still land in your inbox.</p>
-<p>This works great with ImprovMX because you can forward emails to your main Gmail address, then use filters or labels based on the <code>+</code> alias. It’s a handy way to sort incoming messages or track where an email address was used.</p>
-</div>
     <div class="back-link"><a href="/">← Back to Home</a></div>
   </article>
   </main>

@@ -211,8 +211,8 @@ postDataList.forEach((post) => {
   `;
 
   const articleContent = `<article>
-    ${toneButtons}
     <div id="post-content">${htmlBody}</div>
+    ${toneButtons}
     <div class="back-link"><a href="/">← Back to Home</a></div>
   </article>`;
 
