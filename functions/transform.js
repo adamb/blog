@@ -129,7 +129,10 @@ Please rewrite the entire post maintaining the same structure and key informatio
         { role: 'system', content: 'You are a helpful assistant that transforms text into different tones and styles.' },
         { role: 'user', content: fullPrompt }
       ],
-      max_tokens: 2048
+      max_tokens: 2048,
+      cache: {
+        ttl: 86400  // cache for 24 hours
+      }
     });
 
     return new Response(JSON.stringify({
