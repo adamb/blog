@@ -326,10 +326,16 @@ if (fs.existsSync(sourceAssetsDir)) {
 }
 
 // 6. Generate index page with post snippets
+function extractFirstImage(content) {
+  const imageMatch = content.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+  return imageMatch ? imageMatch[2] : null;
+}
+
 function generateSnippet(content, maxLength = 300) {
   // Remove markdown formatting for snippet
   let snippet = content
     .replace(/^#.*$/gm, '') // Remove headers
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '') // Remove images
     .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold
     .replace(/\*(.*?)\*/g, '$1') // Remove italic
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove links, keep text
@@ -355,12 +361,16 @@ const postSnippets = postDataList.map(post => {
   });
   
   const snippet = generateSnippet(post.mdContent);
+  const firstImage = extractFirstImage(post.mdContent);
   const draftIndicator = post.draft ? ' <span class="draft-badge">DRAFT</span>' : '';
+  
+  const imageSection = firstImage ? `<div class="post-image"><img src="${firstImage}" alt="${post.title}"></div>` : '';
   
   return `
     <article class="post-snippet${post.draft ? ' draft-post' : ''}">
       <h2><a href="${post.urlPath}">${post.title}${draftIndicator}</a></h2>
       <div class="post-date">${dateFormatted}</div>
+      ${imageSection}
       <div class="post-excerpt">${snippet}</div>
       <div class="read-more">
         <a href="${post.urlPath}" hx-get="${post.urlPath}" hx-select="article" hx-target="#content" hx-push-url="true">Read more →</a>

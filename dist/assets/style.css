@@ -212,6 +212,18 @@ footer a:hover {
     font-style: italic;
 }
 
+.post-image {
+    margin: 1rem 0;
+}
+
+.post-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
 .post-excerpt {
     color: #e0e0e0;
     line-height: 1.6;
