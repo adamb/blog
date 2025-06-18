@@ -8,7 +8,8 @@ A static blog built with HTMX that generates HTML from markdown files and includ
 - **HTMX Integration**: SPA-like navigation without page reloads
 - **AI Content Transformation**: Transform blog posts into different tones using Cloudflare Workers AI
 - **Visit Tracking**: Analytics using Cloudflare KV storage
-- **Caching**: KV-based caching for AI transformations (24-hour TTL)
+- **Caching**: KV-based caching for AI transformations (1-week TTL)
+- **Static Pages**: Support for non-blog pages like About
 
 ## Architecture
 
@@ -18,7 +19,8 @@ blog/
 ├── index_template.html     ← Base template with NAV_LINKS and MAIN_CONTENT placeholders
 ├── build.js               ← Build script that processes markdown → HTML
 ├── package.json           ← Dependencies (markdown-it)
-├── posts_src/             ← Source markdown files (use "# Title" as first line)
+├── posts_src/             ← Source markdown files for blog posts (use "# Title" as first line)
+├── pages/                 ← Source markdown files for static pages (like about)
 ├── posts/                 ← Generated HTML files (auto-created)
 ├── assets/style.css       ← Styling
 ├── functions/             ← Cloudflare Pages Functions
@@ -30,9 +32,14 @@ blog/
 
 ### Build Process
 
-1. **Content Creation**: Write posts as markdown in `posts_src/`
+1. **Content Creation**: 
+   - Write blog posts as markdown in `posts_src/`
+   - Write static pages as markdown in `pages/`
 2. **Build**: `npm run build` converts markdown to HTML using markdown-it
-3. **Template Processing**: Wraps content in `<article>` tags and generates full pages
+3. **Template Processing**: 
+   - Wraps blog posts in `<article>` tags with AI transformation controls
+   - Generates static pages at root level (e.g., `/about.html`)
+   - Creates full HTML pages using `index_template.html`
 4. **Navigation**: Creates dynamic nav links with HTMX attributes
 
 ### HTMX Navigation
@@ -58,13 +65,13 @@ The transform feature allows readers to rewrite blog posts in different tones:
 3. Function creates SHA-256 cache key from `tone + content`
 4. Checks Cloudflare KV for cached response
 5. If not cached, calls Cloudflare Workers AI (@cf/meta/llama-3.1-8b-instruct)
-6. Caches response in KV with 24-hour expiration
+6. Caches response in KV with 1-week expiration
 7. Returns transformed content to update the page
 
 **Caching Strategy:**
 - Cache key: `ai_transform_[SHA-256 hash of tone::content]`
 - Storage: Cloudflare KV (VISIT_LOG namespace)
-- TTL: 24 hours (`expirationTtl: 86400`)
+- TTL: 1 week (`expirationTtl: 604800`)
 - Cache hits return instantly without AI calls
 
 ### Cloudflare Pages Setup

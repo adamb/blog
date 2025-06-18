@@ -153,6 +153,16 @@ footer {
     margin-top: 3rem;
     font-size: 0.8rem;
     color: #666;
+    text-align: center;
+}
+
+footer a {
+    color: #00f2ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 /* Welcome message styling */

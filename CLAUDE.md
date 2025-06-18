@@ -24,7 +24,8 @@ This is a static blog built with HTMX that generates HTML from markdown files. T
 
 - `build.js` - Main build script that processes markdown and generates HTML
 - `index_template.html` - Base template with `<!-- NAV_LINKS -->` and `<!-- MAIN_CONTENT -->` placeholders
-- `posts_src/*.md` - Source markdown files (use `# Title` for the first line to set page title)
+- `posts_src/*.md` - Source markdown files for blog posts (use `# Title` for the first line to set page title)
+- `pages/*.md` - Source markdown files for static pages (like about)
 - `posts/*.html` - Generated HTML files (auto-created, don't edit directly)
 - `functions/track.js` - Cloudflare Pages function for visit tracking
 - `admin.js` - Analytics worker (separate from main blog)

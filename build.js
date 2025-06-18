@@ -5,6 +5,7 @@ import MarkdownIt from "markdown-it";
 
 const md = new MarkdownIt({ html: true });
 const inputDir = "posts_src";
+const pagesDir = "pages";
 const outputDir = "dist";
 const templatePath = "index_template.html";
 const indexOut = "index.html";
@@ -265,7 +266,41 @@ postDataList.forEach((post) => {
 
 console.log(`Built ${postDataList.length} post page(s).`);
 
-// 4. Copy static assets to dist
+// 4. Generate static pages (like about)
+if (fs.existsSync(pagesDir)) {
+  const pageFiles = fs.readdirSync(pagesDir)
+    .filter(f => path.extname(f) === ".md");
+  
+  pageFiles.forEach(file => {
+    const pagePath = path.join(pagesDir, file);
+    const mdContent = fs.readFileSync(pagePath, "utf8");
+    const { frontmatter, content } = parseFrontmatter(mdContent);
+    
+    const slug = frontmatter.slug || path.basename(file, ".md");
+    const title = frontmatter.title || slug;
+    
+    const htmlBody = md.render(content);
+    
+    const articleContent = `<article>
+      <div id="post-content">${htmlBody}</div>
+      <div class="back-link"><a href="/">← Back to Home</a></div>
+    </article>`;
+
+    let pageHtml = baseTemplateContent;
+    pageHtml = pageHtml.replace("<!-- NAV_LINKS -->", "");
+    pageHtml = pageHtml.replace(
+      "<title>My HTMX Blog</title>",
+      `<title>${title} - Adam's Blog</title>`
+    );
+    pageHtml = pageHtml.replace("<!-- MAIN_CONTENT -->", articleContent);
+
+    const pageOutputPath = path.join(outputDir, `${slug}.html`);
+    fs.writeFileSync(pageOutputPath, pageHtml);
+    console.log(`Built page: /${slug}.html`);
+  });
+}
+
+// 5. Copy static assets to dist
 const assetsDir = path.join(outputDir, 'assets');
 if (!fs.existsSync(assetsDir)) {
   fs.mkdirSync(assetsDir, { recursive: true });
@@ -290,7 +325,7 @@ if (fs.existsSync(sourceAssetsDir)) {
   console.log(`Copied ${assetFiles.length} asset files to dist/assets/`);
 }
 
-// 5. Generate index page with post snippets
+// 6. Generate index page with post snippets
 function generateSnippet(content, maxLength = 300) {
   // Remove markdown formatting for snippet
   let snippet = content

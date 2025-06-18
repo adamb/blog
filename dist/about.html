@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>about - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+      <div id="post-content"><h1>About</h1>
+<p>Hey, I’m Adam — programmer, entrepreneur, investor, teacher, tinkerer, and someone who’s always hunting for the edge.</p>
+<p>This blog is where I document what I’m building, breaking, and learning — from coding experiments and infrastructure hacks to travel adventures and the occasional philosophical detour. If I can automate it, optimize it, or repurpose it in a clever way, you’ll probably find something about it here.</p>
+<p>I split my time between Puerto Rico and wherever curiosity takes me — sometimes it’s a new API or AI model, sometimes a jungle trek or a SpaceX launch. I’m into longevity, quantified living, and understanding how systems (both human and digital) tick. I run a coding school in San Juan that trains underrepresented engineers and helps them find high-leverage work.  I also run a small finca by the sea in Rio Grande where I live with my amazing wife, our dogs, and our chickens.</p>
+<p>You’ll find posts here on:</p>
+<ul>
+<li>Cloudflare, Svelte, HTMX, and AI-powered web apps</li>
+<li>Real estate and tax strategies</li>
+<li>Biohacking, travel, and offbeat tech</li>
+<li>Side projects that may or may not go anywhere</li>
+<li>Glitches in the Matrix</li>
+</ul>
+<p>This is part lab notebook, part public experiment. I don’t write for SEO — I write for myself, and for the kind of curious, slightly obsessive people I’d want to grab coffee with.</p>
+<p>If that’s you, welcome.</p>
+<h2>This Blog</h2>
+<p>This blog is built with HTMX and deployed on Cloudflare Pages. It features:</p>
+<ul>
+<li>Static site generation from markdown</li>
+<li>AI-powered content transformation</li>
+<li>Visit tracking and analytics</li>
+<li>Mobile-responsive design</li>
+</ul>
+<p>You can find the source code on <a href="https://github.com/adamb/blog/">GitHub</a>.</p>
+<h2>Contact</h2>
+<p>Feel free to reach out if you want to discuss technology, have questions about any of my posts, or just want to say hello.</p>
+<ul>
+<li><strong>Email</strong>: blog@beguelin.com</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/adamb">@adamb</a></li>
+<li><strong>LinkedIn</strong>: <a href="https://linkedin.com/in/beguelin">@beguelin</a></li>
+<li><strong>Twitter</strong>: <a href="https://twitter.com/ab90">@ab90</a></li>
+<li><strong>Location</strong>: Mostly in Puerto Rico, often in Europe and Asia</li>
+</ul>
+</div>
+      <div class="back-link"><a href="/">← Back to Home</a></div>
+    </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>
