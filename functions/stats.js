@@ -25,6 +25,7 @@ export async function onRequestGet({ env }) {
     let totalVisits = 0;
     let recentVisits = [];
     let dayCounts = {};
+    let countryCounts = {};
     let uniqueIPs = new Set();
     
     if (useV1Schema) {
@@ -77,6 +78,10 @@ export async function onRequestGet({ env }) {
             // Count by day
             const day = parsed.ts.split('T')[0];
             dayCounts[day] = (dayCounts[day] || 0) + 1;
+            
+            // Count by country
+            const country = parsed.country || 'unknown';
+            countryCounts[country] = (countryCounts[country] || 0) + 1;
           } catch (e) {
             console.error('Failed to parse visit data:', e);
           }
@@ -112,6 +117,10 @@ export async function onRequestGet({ env }) {
             // Count by day
             const day = parsed.ts.split('T')[0];
             dayCounts[day] = (dayCounts[day] || 0) + 1;
+            
+            // Count by country
+            const country = parsed.country || 'unknown';
+            countryCounts[country] = (countryCounts[country] || 0) + 1;
           } catch (e) {
             console.error('Failed to parse visit data:', e);
           }
@@ -242,6 +251,26 @@ export async function onRequestGet({ env }) {
     </tbody>
   </table>
 
+  <h2>Visits by Country</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Visits</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${Object.entries(countryCounts)
+        .sort(([,a], [,b]) => b - a)
+        .map(([country, count]) => `
+          <tr>
+            <td>${country.toUpperCase()}</td>
+            <td>${count}</td>
+          </tr>
+        `).join('')}
+    </tbody>
+  </table>
+
   <h2>Recent Visits</h2>
   <table>
     <thead>
@@ -249,6 +278,7 @@ export async function onRequestGet({ env }) {
         <th>Time</th>
         <th>Path</th>
         <th>IP</th>
+        <th>Country</th>
       </tr>
     </thead>
     <tbody>
@@ -257,6 +287,7 @@ export async function onRequestGet({ env }) {
           <td>${new Date(visit.ts).toLocaleString()}</td>
           <td>${visit.path || 'unknown'}</td>
           <td>${visit.ip}</td>
+          <td>${(visit.country || 'unknown').toUpperCase()}</td>
         </tr>
       `).join('')}
     </tbody>
