@@ -364,7 +364,7 @@ const postSnippets = postDataList.map(post => {
   const firstImage = extractFirstImage(post.mdContent);
   const draftIndicator = post.draft ? ' <span class="draft-badge">DRAFT</span>' : '';
   
-  const imageSection = firstImage ? `<div class="post-image"><img src="${firstImage}" alt="${post.title}"></div>` : '';
+  const imageSection = firstImage ? `<div class="post-image"><a href="${post.urlPath}"><img src="${firstImage}" alt="${post.title}"></a></div>` : '';
   
   return `
     <article class="post-snippet${post.draft ? ' draft-post' : ''}">
@@ -373,7 +373,7 @@ const postSnippets = postDataList.map(post => {
       ${imageSection}
       <div class="post-excerpt">${snippet}</div>
       <div class="read-more">
-        <a href="${post.urlPath}" hx-get="${post.urlPath}" hx-select="article" hx-target="#content" hx-push-url="true">Read more →</a>
+        <a href="${post.urlPath}">Read more →</a>
       </div>
     </article>
   `;

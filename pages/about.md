@@ -1,5 +1,8 @@
 # About
 
+<img src="/assets/chatgpt-ai-image-1.jpg" alt="Adam Beguelin" style="float: right; width: 200px; height: auto; margin: 0 0 15px 15px; border-radius: 8px;">
+
+
 Hey, I’m Adam — programmer, entrepreneur, investor, teacher, tinkerer, and someone who’s always hunting for the edge.
 
 This blog is where I document what I’m building, breaking, and learning — from coding experiments and infrastructure hacks to travel adventures and the occasional philosophical detour. If I can automate it, optimize it, or repurpose it in a clever way, you’ll probably find something about it here.
@@ -38,4 +41,4 @@ Feel free to reach out if you want to discuss technology, have questions about a
 - **GitHub**: [@adamb](https://github.com/adamb)
 - **LinkedIn**: [@beguelin](https://linkedin.com/in/beguelin)
 - **Twitter**: [@ab90](https://twitter.com/ab90)
-- **Location**: Mostly in Puerto Rico, often in Europe and Asia
+- **Location**: Mostly in Puerto Rico, often in Europe and Asia, rarely in the states
