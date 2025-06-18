@@ -29,39 +29,62 @@ export async function onRequestGet({ env }) {
     let uniqueIPs = new Set();
     
     if (useV1Schema) {
-      // Use efficient v1 schema with pre-computed path counters
-      console.log('Using v1 schema for fast stats');
+      // Use efficient v2 schema with all pre-computed counters
+      console.log('Using v2 schema with cached counters');
       
       // Get all keys and separate by type
       const { keys } = await env.VISIT_LOG.list();
       const pathKeys = keys.filter(k => k.name.startsWith('path:'));
+      const countryKeys = keys.filter(k => k.name.startsWith('country:'));
+      const dayKeys = keys.filter(k => k.name.startsWith('day:'));
       const visitKeys = keys.filter(k => k.name.startsWith('visit:'));
       
-      // Get path counts from pre-computed counters (batched)
-      console.log(`Fetching ${pathKeys.length} path counters...`);
-      const pathCountsStart = Date.now();
-      const pathValues = await Promise.all(
-        pathKeys.map(key => env.VISIT_LOG.get(key.name))
-      );
-      console.log(`Path counters fetched in ${Date.now() - pathCountsStart}ms`);
+      // Get all cached counters in parallel
+      console.log(`Fetching cached counters: ${pathKeys.length} paths, ${countryKeys.length} countries, ${dayKeys.length} days...`);
+      const countersStart = Date.now();
       
+      const [pathValues, countryValues, dayValues, totalVisitsValue] = await Promise.all([
+        Promise.all(pathKeys.map(key => env.VISIT_LOG.get(key.name))),
+        Promise.all(countryKeys.map(key => env.VISIT_LOG.get(key.name))),
+        Promise.all(dayKeys.map(key => env.VISIT_LOG.get(key.name))),
+        env.VISIT_LOG.get('total_visits')
+      ]);
+      
+      console.log(`Cached counters fetched in ${Date.now() - countersStart}ms`);
+      
+      // Build count objects from cached values
       pathKeys.forEach((key, index) => {
         const count = pathValues[index];
         if (count) {
           const path = key.name.replace('path:', '');
-          const countNum = parseInt(count);
-          pathCounts[path] = countNum;
-          totalVisits += countNum;
+          pathCounts[path] = parseInt(count);
         }
       });
       
-      // Get recent visits (limit to 50 for performance)
+      countryKeys.forEach((key, index) => {
+        const count = countryValues[index];
+        if (count) {
+          const country = key.name.replace('country:', '');
+          countryCounts[country] = parseInt(count);
+        }
+      });
+      
+      dayKeys.forEach((key, index) => {
+        const count = dayValues[index];
+        if (count) {
+          const day = key.name.replace('day:', '');
+          dayCounts[day] = parseInt(count);
+        }
+      });
+      
+      totalVisits = totalVisitsValue ? parseInt(totalVisitsValue) : 0;
+      
+      // Get recent visits for display only (limit to 10 for speed)
       const recentVisitKeys = visitKeys
         .sort((a, b) => b.name.localeCompare(a.name))
-        .slice(0, 50);
+        .slice(0, 10);
       
-      // Get recent visits (batched)
-      console.log(`Fetching ${recentVisitKeys.length} recent visits...`);
+      console.log(`Fetching ${recentVisitKeys.length} recent visits for display...`);
       const visitsStart = Date.now();
       const visitValues = await Promise.all(
         recentVisitKeys.map(key => env.VISIT_LOG.get(key.name))
@@ -74,14 +97,6 @@ export async function onRequestGet({ env }) {
             const parsed = JSON.parse(visitData);
             recentVisits.push(parsed);
             uniqueIPs.add(parsed.ip);
-            
-            // Count by day
-            const day = parsed.ts.split('T')[0];
-            dayCounts[day] = (dayCounts[day] || 0) + 1;
-            
-            // Count by country
-            const country = parsed.country || 'unknown';
-            countryCounts[country] = (countryCounts[country] || 0) + 1;
           } catch (e) {
             console.error('Failed to parse visit data:', e);
           }
@@ -128,14 +143,19 @@ export async function onRequestGet({ env }) {
       });
       
       totalVisits = recentVisits.length;
-      // Sort recent visits by timestamp and limit to 50
+      // Sort recent visits by timestamp and limit to 25
       recentVisits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
-      recentVisits = recentVisits.slice(0, 50);
+      recentVisits = recentVisits.slice(0, 25);
     }
     
     // Sort recent visits by timestamp
     recentVisits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
 
+    // Pre-build sorted arrays for faster HTML generation
+    const sortedPaths = Object.entries(pathCounts).sort(([,a], [,b]) => b - a);
+    const sortedDays = Object.entries(dayCounts).sort(([a], [b]) => b.localeCompare(a));
+    const sortedCountries = Object.entries(countryCounts).sort(([,a], [,b]) => b - a);
+    
     // Generate HTML report
     console.log(`Stats generation completed in ${Date.now() - startTime}ms`);
     const html = `
@@ -198,7 +218,7 @@ export async function onRequestGet({ env }) {
   
   <h1>Visit Statistics</h1>
   <div style="text-align: center; margin-bottom: 1rem; color: #666; font-size: 0.9rem;">
-    Schema: ${useV1Schema ? 'v1 (fast)' : 'v0 (computed)'}
+    Schema: ${useV1Schema ? 'v2 (cached counters)' : 'v0 (computed)'}
   </div>
   
   <div class="stat-box">
@@ -220,14 +240,7 @@ export async function onRequestGet({ env }) {
       </tr>
     </thead>
     <tbody>
-      ${Object.entries(pathCounts)
-        .sort(([,a], [,b]) => b - a)
-        .map(([path, count]) => `
-          <tr>
-            <td>${path}</td>
-            <td>${count}</td>
-          </tr>
-        `).join('')}
+      ${sortedPaths.map(([path, count]) => `<tr><td>${path}</td><td>${count}</td></tr>`).join('')}
     </tbody>
   </table>
 
@@ -240,14 +253,7 @@ export async function onRequestGet({ env }) {
       </tr>
     </thead>
     <tbody>
-      ${Object.entries(dayCounts)
-        .sort(([a], [b]) => b.localeCompare(a))
-        .map(([day, count]) => `
-          <tr>
-            <td>${day}</td>
-            <td>${count}</td>
-          </tr>
-        `).join('')}
+      ${sortedDays.map(([day, count]) => `<tr><td>${day}</td><td>${count}</td></tr>`).join('')}
     </tbody>
   </table>
 
@@ -260,14 +266,7 @@ export async function onRequestGet({ env }) {
       </tr>
     </thead>
     <tbody>
-      ${Object.entries(countryCounts)
-        .sort(([,a], [,b]) => b - a)
-        .map(([country, count]) => `
-          <tr>
-            <td>${country.toUpperCase()}</td>
-            <td>${count}</td>
-          </tr>
-        `).join('')}
+      ${sortedCountries.map(([country, count]) => `<tr><td>${country.toUpperCase()}</td><td>${count}</td></tr>`).join('')}
     </tbody>
   </table>
 
@@ -282,14 +281,7 @@ export async function onRequestGet({ env }) {
       </tr>
     </thead>
     <tbody>
-      ${recentVisits.slice(0, 20).map(visit => `
-        <tr>
-          <td>${new Date(visit.ts).toLocaleString()}</td>
-          <td>${visit.path || 'unknown'}</td>
-          <td>${visit.ip}</td>
-          <td>${(visit.country || 'unknown').toUpperCase()}</td>
-        </tr>
-      `).join('')}
+      ${recentVisits.map(visit => `<tr><td>${new Date(visit.ts).toLocaleString()}</td><td>${visit.path || 'unknown'}</td><td>${visit.ip}</td><td>${(visit.country || 'unknown').toUpperCase()}</td></tr>`).join('')}
     </tbody>
   </table>
 </body>
@@ -298,7 +290,7 @@ export async function onRequestGet({ env }) {
     return new Response(html, {
       headers: {
         'Content-Type': 'text/html',
-        'Cache-Control': 'public, max-age=60', // Cache for 60 seconds
+        'Cache-Control': 'public, max-age=300', // Cache for 5 minutes
       },
     });
 

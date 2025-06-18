@@ -20,11 +20,29 @@ export async function onRequestPost({ request, env }) {
         ip, ua, ts: now, path, country
       }));
       
-      // Update per-page counter
-      const pathKey = `path:${path}`;
-      const currentCount = await env.VISIT_LOG.get(pathKey);
-      const newCount = currentCount ? parseInt(currentCount) + 1 : 1;
-      await env.VISIT_LOG.put(pathKey, newCount.toString());
+      // Get current day for day counter
+      const day = now.split('T')[0]; // YYYY-MM-DD format
+      
+      // Update all counters in parallel
+      const [pathCount, countryCount, dayCount, totalCount] = await Promise.all([
+        env.VISIT_LOG.get(`path:${path}`),
+        env.VISIT_LOG.get(`country:${country}`),
+        env.VISIT_LOG.get(`day:${day}`),
+        env.VISIT_LOG.get('total_visits')
+      ]);
+      
+      const newPathCount = pathCount ? parseInt(pathCount) + 1 : 1;
+      const newCountryCount = countryCount ? parseInt(countryCount) + 1 : 1;
+      const newDayCount = dayCount ? parseInt(dayCount) + 1 : 1;
+      const newTotalCount = totalCount ? parseInt(totalCount) + 1 : 1;
+      
+      // Update all counters in parallel
+      await Promise.all([
+        env.VISIT_LOG.put(`path:${path}`, newPathCount.toString()),
+        env.VISIT_LOG.put(`country:${country}`, newCountryCount.toString()),
+        env.VISIT_LOG.put(`day:${day}`, newDayCount.toString()),
+        env.VISIT_LOG.put('total_visits', newTotalCount.toString())
+      ]);
       
     } else {
       console.log("Track visit (KV not available):", { ip, ua, path, country, ts: now });
