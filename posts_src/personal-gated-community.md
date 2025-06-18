@@ -6,7 +6,9 @@ slug: "personal-gated-community"
 
 # Personal Gated Community
 
-*All your gate are belong to us*
+
+![*All your gate are belong to us*](/assets/all-your-gate.webp)
+
 
 When we first moved to Puerto Rico and started looking for a place to live we were directed mostly to gated communities like Dorado, Palmas del Mar, Bahía, and Rio Mar. These are all great places to live, but we were used to owning our own home and didn't like the idea of having to deal with an HOA (Home Owners Association).
 
@@ -16,15 +18,17 @@ A few months ago we built a new concrete wall in front of the house and the cont
 
 That's when I found this bad boy: [The Remootio Smart Garage Door Opener](https://www.amazon.com/gp/product/B08F2V9KVD/). Turns out it works on gates too.
 
-![Remootio Smart Gate Opener device](/assets/remootio-device.jpg)
+![Remootio Smart Garage Door Opener product](/assets/remootio-product.jpg)
 
 I was suspicious that it would work but Amazon has a good return policy so what did I have to lose? Turns out there is a little 2" x 2" box with a circuit board that connects to your gate hardware. I looked at the manual and was a bit miffed. So I took a picture of my gate hardware and tried to google around a little bit, but no luck.
+
+![My gate hardware control panel](/assets/gate-hardware.jpg)
 
 I then sent this picture to their support email and asked how I connect the Remootio to this mess. I had very low expectations. I figured after a week or so I would just return the box to Amazon.
 
 But lo and behold! The next day I get a response with this image and a simple instruction:
 
-![Gate installation wiring diagram](/assets/gate-installation.jpg)
+![Wiring diagram from Remootio support](/assets/wiring-diagram.png)
 
 *You'll need to wire Remootio's control output to terminals GND and BOT*
 
