@@ -1,4 +1,7 @@
 export async function onRequestGet({ env }) {
+  const startTime = Date.now();
+  console.log('Stats generation started');
+  
   try {
     // Check schema version
     const schemaVersionRaw = await env.VISIT_LOG.get('schema_version');
@@ -33,24 +36,38 @@ export async function onRequestGet({ env }) {
       const pathKeys = keys.filter(k => k.name.startsWith('path:'));
       const visitKeys = keys.filter(k => k.name.startsWith('visit:'));
       
-      // Get path counts from pre-computed counters
-      for (const key of pathKeys) {
-        const count = await env.VISIT_LOG.get(key.name);
+      // Get path counts from pre-computed counters (batched)
+      console.log(`Fetching ${pathKeys.length} path counters...`);
+      const pathCountsStart = Date.now();
+      const pathValues = await Promise.all(
+        pathKeys.map(key => env.VISIT_LOG.get(key.name))
+      );
+      console.log(`Path counters fetched in ${Date.now() - pathCountsStart}ms`);
+      
+      pathKeys.forEach((key, index) => {
+        const count = pathValues[index];
         if (count) {
           const path = key.name.replace('path:', '');
           const countNum = parseInt(count);
           pathCounts[path] = countNum;
           totalVisits += countNum;
         }
-      }
+      });
       
       // Get recent visits (limit to 50 for performance)
       const recentVisitKeys = visitKeys
         .sort((a, b) => b.name.localeCompare(a.name))
         .slice(0, 50);
       
-      for (const key of recentVisitKeys) {
-        const visitData = await env.VISIT_LOG.get(key.name);
+      // Get recent visits (batched)
+      console.log(`Fetching ${recentVisitKeys.length} recent visits...`);
+      const visitsStart = Date.now();
+      const visitValues = await Promise.all(
+        recentVisitKeys.map(key => env.VISIT_LOG.get(key.name))
+      );
+      console.log(`Recent visits fetched in ${Date.now() - visitsStart}ms`);
+      
+      visitValues.forEach(visitData => {
         if (visitData) {
           try {
             const parsed = JSON.parse(visitData);
@@ -64,7 +81,7 @@ export async function onRequestGet({ env }) {
             console.error('Failed to parse visit data:', e);
           }
         }
-      }
+      });
       
     } else {
       // Fallback to v0 schema (compute everything from visit records)
@@ -73,9 +90,15 @@ export async function onRequestGet({ env }) {
       const { keys } = await env.VISIT_LOG.list();
       const visitKeys = keys.filter(k => k.name.startsWith('visit:'));
       
-      // Process all visits (slower but works with old schema)
-      for (const key of visitKeys) {
-        const visitData = await env.VISIT_LOG.get(key.name);
+      // Process all visits (slower but works with old schema) - batched
+      console.log(`Processing ${visitKeys.length} visit records (v0 schema)...`);
+      const v0Start = Date.now();
+      const allVisitValues = await Promise.all(
+        visitKeys.map(key => env.VISIT_LOG.get(key.name))
+      );
+      console.log(`All visits fetched in ${Date.now() - v0Start}ms`);
+      
+      allVisitValues.forEach(visitData => {
         if (visitData) {
           try {
             const parsed = JSON.parse(visitData);
@@ -93,7 +116,7 @@ export async function onRequestGet({ env }) {
             console.error('Failed to parse visit data:', e);
           }
         }
-      }
+      });
       
       totalVisits = recentVisits.length;
       // Sort recent visits by timestamp and limit to 50
@@ -105,6 +128,7 @@ export async function onRequestGet({ env }) {
     recentVisits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
 
     // Generate HTML report
+    console.log(`Stats generation completed in ${Date.now() - startTime}ms`);
     const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -243,6 +267,7 @@ export async function onRequestGet({ env }) {
     return new Response(html, {
       headers: {
         'Content-Type': 'text/html',
+        'Cache-Control': 'public, max-age=60', // Cache for 60 seconds
       },
     });
 
