@@ -106,6 +106,14 @@ article p {
     margin-bottom: 1rem;
 }
 
+article img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+}
+
 article a {
     color: #00f2ff;
     text-decoration: none;
@@ -394,13 +402,7 @@ footer a:hover {
         padding: 0.5rem; /* Adjust padding for smaller screens */
     }
 
-    /* Ensure images within articles scale correctly */
-    article img {
-        max-width: 100%;
-        height: auto;
-        display: block; /* Remove extra space below image */
-        margin: 1rem auto; /* Center images if they are narrower than content */
-    }
+    /* Mobile image styling is handled by global article img rule */
 
     /* Adjust article text for readability */
     article {

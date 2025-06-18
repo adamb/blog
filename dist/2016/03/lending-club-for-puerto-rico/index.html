@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lending Club for Puerto Rico - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>Lending Club for Puerto Rico</h1>
+<p><em>March 23, 2016 • <span class="visit-counter" hx-get="/visits?path=%2F2016%2F03%2Flending-club-for-puerto-rico%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
+<p>Puerto Rico needs a peer-to-peer lending platform, and there could be a great source of investment for such a platform.</p>
+<p>Peer-to-peer lenders like Prosper and Lending Club run online platforms that can quickly and automatically match borrowers seeking a loan to investors willing to provide funds at an attractive interest rate.</p>
+<p>In Puerto Rico, the Act 22 community is a high net worth group with incentives to generate Puerto Rico sourced interest and dividends. If you hold an Act 22 tax decree, Puerto Rico sourced interest and dividends are tax-free. However, there are not many safe Puerto Rican investments these days.</p>
+<p>The two leading p2p lending companies, Prosper and The Lending Club, do not offer services in Puerto Rico. I did find that Peerform does lend in Puerto Rico, so at least the market is being served.</p>
+<p>I asked support at The Lending Club if there was a way to restrict my loans to Puerto Rico, and got this response:</p>
+<blockquote>
+<p>To answer your question though, we don't lend in PR. However, you should review the prospectus – you're earning interest from Lending Club notes, not the underlying borrower, so location would not matter.</p>
+</blockquote>
+<p>There are probably reasons for having the payments come from LC notes, not the underlying borrower. To tap into the Act 22 funds, this issue could be solved by having the interest payments come from a Puerto Rican company.</p>
+<p>I wonder if there is a way to test this idea by creating a Puerto Rican company that is in the business of making loans only in PR. What are the regulatory hurdles that need to be overcome? How big is the market?</p>
+<p>I currently have funds invested with The Lending Club and I'm making over 8%. How great would it be if investors in Puerto Rico could get 8% tax-free and local borrowers could have access to funds more easily and more cheaply than other alternatives?</p>
+<p>Here's hoping someone will create The Lending Club for Puerto Rico. I would certainly be interested in investing.</p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>Lending Club for Puerto Rico</h1>\n<p><em>March 23, 2016 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2016%2F03%2Flending-club-for-puerto-rico%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p>Puerto Rico needs a peer-to-peer lending platform, and there could be a great source of investment for such a platform.</p>\n<p>Peer-to-peer lenders like Prosper and Lending Club run online platforms that can quickly and automatically match borrowers seeking a loan to investors willing to provide funds at an attractive interest rate.</p>\n<p>In Puerto Rico, the Act 22 community is a high net worth group with incentives to generate Puerto Rico sourced interest and dividends. If you hold an Act 22 tax decree, Puerto Rico sourced interest and dividends are tax-free. However, there are not many safe Puerto Rican investments these days.</p>\n<p>The two leading p2p lending companies, Prosper and The Lending Club, do not offer services in Puerto Rico. I did find that Peerform does lend in Puerto Rico, so at least the market is being served.</p>\n<p>I asked support at The Lending Club if there was a way to restrict my loans to Puerto Rico, and got this response:</p>\n<blockquote>\n<p>To answer your question though, we don't lend in PR. However, you should review the prospectus – you're earning interest from Lending Club notes, not the underlying borrower, so location would not matter.</p>\n</blockquote>\n<p>There are probably reasons for having the payments come from LC notes, not the underlying borrower. To tap into the Act 22 funds, this issue could be solved by having the interest payments come from a Puerto Rican company.</p>\n<p>I wonder if there is a way to test this idea by creating a Puerto Rican company that is in the business of making loans only in PR. What are the regulatory hurdles that need to be overcome? How big is the market?</p>\n<p>I currently have funds invested with The Lending Club and I'm making over 8%. How great would it be if investors in Puerto Rico could get 8% tax-free and local borrowers could have access to funds more easily and more cheaply than other alternatives?</p>\n<p>Here's hoping someone will create The Lending Club for Puerto Rico. I would certainly be interested in investing.</p>\n";
+      window.originalMarkdown = "\n# Lending Club for Puerto Rico\n\nPuerto Rico needs a peer-to-peer lending platform, and there could be a great source of investment for such a platform.\n\nPeer-to-peer lenders like Prosper and Lending Club run online platforms that can quickly and automatically match borrowers seeking a loan to investors willing to provide funds at an attractive interest rate.\n\nIn Puerto Rico, the Act 22 community is a high net worth group with incentives to generate Puerto Rico sourced interest and dividends. If you hold an Act 22 tax decree, Puerto Rico sourced interest and dividends are tax-free. However, there are not many safe Puerto Rican investments these days.\n\nThe two leading p2p lending companies, Prosper and The Lending Club, do not offer services in Puerto Rico. I did find that Peerform does lend in Puerto Rico, so at least the market is being served.\n\nI asked support at The Lending Club if there was a way to restrict my loans to Puerto Rico, and got this response:\n\n> To answer your question though, we don't lend in PR. However, you should review the prospectus – you're earning interest from Lending Club notes, not the underlying borrower, so location would not matter.\n\nThere are probably reasons for having the payments come from LC notes, not the underlying borrower. To tap into the Act 22 funds, this issue could be solved by having the interest payments come from a Puerto Rican company.\n\nI wonder if there is a way to test this idea by creating a Puerto Rican company that is in the business of making loans only in PR. What are the regulatory hurdles that need to be overcome? How big is the market?\n\nI currently have funds invested with The Lending Club and I'm making over 8%. How great would it be if investors in Puerto Rico could get 8% tax-free and local borrowers could have access to funds more easily and more cheaply than other alternatives?\n\nHere's hoping someone will create The Lending Club for Puerto Rico. I would certainly be interested in investing.";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

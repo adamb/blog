@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USB Tethering to Mac with Nexus 5 - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>USB Tethering to Mac with Nexus 5</h1>
+<p><em>February 14, 2014 • <span class="visit-counter" hx-get="/visits?path=%2F2014%2F02%2Fusb-tethering-to-mac-with-nexus-5%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
+<p>I've been traveling around Australia for over a month now. Mainly we've been staying at hotels where we have some sort of status, Hyatt, Hilton, Sheraton, etc., and the WiFi has been free.</p>
+<p>This week I'm staying where they outsource the WiFi to <a href="http://www.tomizone.com/">Tomizone</a>, which is fine, but they only let you use one device at a time, even though I've paid $60 for my 9 days. I'm using a Nexus 5 lately so I've been using the N5 on the WiFi and then tethering to my Mac over bluetooth. This works but seems a bit flakey. Occasionally the Mac can't connect and I have to turn the N5 bluetooth on and back off.</p>
+<p>Luckily Android also supports USB Tethering. Great, but of course the Mac doesn't support that out of the box. A quick search lead me to <a href="http://joshuawise.com/horndis">HoRNDIS by Joshua Wise</a>. It works like a charm. Extra bonus, my N5 is always charging while I'm using the Mac.</p>
+<p>Thanks to Mactip for the great <a href="http://www.mactip.net/usb-tethering-a-mac-to-an-android-phone/">Android Mac USB Tethering howto guide</a>.</p>
+<p>Next step, turn on internet sharing and get my Kindle and Nexus 7 on the net through the Mac via WiFi!</p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>USB Tethering to Mac with Nexus 5</h1>\n<p><em>February 14, 2014 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2014%2F02%2Fusb-tethering-to-mac-with-nexus-5%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p>I've been traveling around Australia for over a month now. Mainly we've been staying at hotels where we have some sort of status, Hyatt, Hilton, Sheraton, etc., and the WiFi has been free.</p>\n<p>This week I'm staying where they outsource the WiFi to <a href=\"http://www.tomizone.com/\">Tomizone</a>, which is fine, but they only let you use one device at a time, even though I've paid $60 for my 9 days. I'm using a Nexus 5 lately so I've been using the N5 on the WiFi and then tethering to my Mac over bluetooth. This works but seems a bit flakey. Occasionally the Mac can't connect and I have to turn the N5 bluetooth on and back off.</p>\n<p>Luckily Android also supports USB Tethering. Great, but of course the Mac doesn't support that out of the box. A quick search lead me to <a href=\"http://joshuawise.com/horndis\">HoRNDIS by Joshua Wise</a>. It works like a charm. Extra bonus, my N5 is always charging while I'm using the Mac.</p>\n<p>Thanks to Mactip for the great <a href=\"http://www.mactip.net/usb-tethering-a-mac-to-an-android-phone/\">Android Mac USB Tethering howto guide</a>.</p>\n<p>Next step, turn on internet sharing and get my Kindle and Nexus 7 on the net through the Mac via WiFi!</p>\n";
+      window.originalMarkdown = "\n# USB Tethering to Mac with Nexus 5\n\nI've been traveling around Australia for over a month now. Mainly we've been staying at hotels where we have some sort of status, Hyatt, Hilton, Sheraton, etc., and the WiFi has been free.\n\nThis week I'm staying where they outsource the WiFi to [Tomizone](http://www.tomizone.com/), which is fine, but they only let you use one device at a time, even though I've paid $60 for my 9 days. I'm using a Nexus 5 lately so I've been using the N5 on the WiFi and then tethering to my Mac over bluetooth. This works but seems a bit flakey. Occasionally the Mac can't connect and I have to turn the N5 bluetooth on and back off.\n\nLuckily Android also supports USB Tethering. Great, but of course the Mac doesn't support that out of the box. A quick search lead me to [HoRNDIS by Joshua Wise](http://joshuawise.com/horndis). It works like a charm. Extra bonus, my N5 is always charging while I'm using the Mac.\n\nThanks to Mactip for the great [Android Mac USB Tethering howto guide](http://www.mactip.net/usb-tethering-a-mac-to-an-android-phone/).\n\nNext step, turn on internet sharing and get my Kindle and Nexus 7 on the net through the Mac via WiFi!";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

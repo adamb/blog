@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cool tech and the meaning of life - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>Cool tech and the meaning of life</h1>
+<p><em>November 26, 2022 • <span class="visit-counter" hx-get="/visits?path=%2F2022%2F11%2Fcool-tech-and-meaning-of-life%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
+<p><em>Random stuff that excited me this week</em></p>
+<p>I've always been excited by ideas and technology. Especially tech that I can touch, build upon, and use in my daily life. This week has been a pretty good week in terms of getting new tech working and part of making my life easier and more interesting.</p>
+<p><img src="/assets/puerto-rico-beach-view.jpg" alt="The view from our pull up bars in rural Puerto Rico"></p>
+<h2>Starlink is great, except when it's not</h2>
+<p>We live in rural Puerto Rico, which is amazing. We're building an off the grid home and learning a ton about solar, rainwater collection, and crappy internet connectivity. When we first started building our house I convinced my neighbor to let me connect some cameras to her wifi. This worked well since she had an unlimited plan from AT&amp;T and didn't mind me being on her wifi.</p>
+<p>Initially, I set up IP cameras connected to Sensr.net (a cloud storage company I started in 2010). After tearing down the original house, I switched to Blink cameras, which run on batteries for months. My neighbor allowed me to place a Blink sync module in her place with power and internet.</p>
+<p>Eventually, we got power on our property and used a T-Mobile hotspot. But I quickly blew through the bandwidth limit. T-Mobile wouldn't let me upgrade, even though I was willing to pay more.</p>
+<p>I discovered the <a href="https://www.facebook.com/groups/908597552628182">LTE 5G Hacks</a> Facebook group, which led me to <a href="https://www.firstnet.com/">Firstnet</a>, a network for first responders. Through a family connection, I obtained an unlimited Firstnet plan.</p>
+<p>Here's what my Starlink connection looks like on a typical day:</p>
+<p><img src="/assets/starlink-screenshot.png" alt="Starlink speed test screenshot"></p>
+<p>The group also introduced me to <a href="https://www.openmptcprouter.com/">OMR (Open MultipathTCP Router)</a>, an open-source project that bonds multiple internet connections. After two years of work, I've set up a Raspberry Pi 4 that combines Starlink and Firstnet connections, providing more reliable internet.</p>
+<p><img src="/assets/raspberry-pi-setup.jpg" alt="Raspberry Pi setup for bonding connections"></p>
+<h2>Contacts clutter in WhatsApp</h2>
+<p>I discovered a hack to send WhatsApp messages without saving contacts. For iOS, you can use a JavaScript snippet saved as a Safari shortcut. I've posted the code on <a href="https://github.com/adamb/whatsapp">GitHub</a>.</p>
+<h2>What's next?</h2>
+<p>I'm exploring generative AI, augmented reality, and home automation. One cool product I'm using is the <a href="https://www.amazon.com/Remootio-Bluetooth-SmartThings-Shortcuts-Adapter/dp/B08P5Q9KF4">Remootio</a> smart garage door opener that integrates with HomeKit and provides excellent control over gate access.</p>
+<p>The intersection of practical technology and meaningful living continues to fascinate me. Building systems that work reliably in remote locations while maintaining connection to the digital world feels like the perfect balance of independence and connectivity.</p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>Cool tech and the meaning of life</h1>\n<p><em>November 26, 2022 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2022%2F11%2Fcool-tech-and-meaning-of-life%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p><em>Random stuff that excited me this week</em></p>\n<p>I've always been excited by ideas and technology. Especially tech that I can touch, build upon, and use in my daily life. This week has been a pretty good week in terms of getting new tech working and part of making my life easier and more interesting.</p>\n<p><img src=\"/assets/puerto-rico-beach-view.jpg\" alt=\"The view from our pull up bars in rural Puerto Rico\"></p>\n<h2>Starlink is great, except when it's not</h2>\n<p>We live in rural Puerto Rico, which is amazing. We're building an off the grid home and learning a ton about solar, rainwater collection, and crappy internet connectivity. When we first started building our house I convinced my neighbor to let me connect some cameras to her wifi. This worked well since she had an unlimited plan from AT&amp;T and didn't mind me being on her wifi.</p>\n<p>Initially, I set up IP cameras connected to Sensr.net (a cloud storage company I started in 2010). After tearing down the original house, I switched to Blink cameras, which run on batteries for months. My neighbor allowed me to place a Blink sync module in her place with power and internet.</p>\n<p>Eventually, we got power on our property and used a T-Mobile hotspot. But I quickly blew through the bandwidth limit. T-Mobile wouldn't let me upgrade, even though I was willing to pay more.</p>\n<p>I discovered the <a href=\"https://www.facebook.com/groups/908597552628182\">LTE 5G Hacks</a> Facebook group, which led me to <a href=\"https://www.firstnet.com/\">Firstnet</a>, a network for first responders. Through a family connection, I obtained an unlimited Firstnet plan.</p>\n<p>Here's what my Starlink connection looks like on a typical day:</p>\n<p><img src=\"/assets/starlink-screenshot.png\" alt=\"Starlink speed test screenshot\"></p>\n<p>The group also introduced me to <a href=\"https://www.openmptcprouter.com/\">OMR (Open MultipathTCP Router)</a>, an open-source project that bonds multiple internet connections. After two years of work, I've set up a Raspberry Pi 4 that combines Starlink and Firstnet connections, providing more reliable internet.</p>\n<p><img src=\"/assets/raspberry-pi-setup.jpg\" alt=\"Raspberry Pi setup for bonding connections\"></p>\n<h2>Contacts clutter in WhatsApp</h2>\n<p>I discovered a hack to send WhatsApp messages without saving contacts. For iOS, you can use a JavaScript snippet saved as a Safari shortcut. I've posted the code on <a href=\"https://github.com/adamb/whatsapp\">GitHub</a>.</p>\n<h2>What's next?</h2>\n<p>I'm exploring generative AI, augmented reality, and home automation. One cool product I'm using is the <a href=\"https://www.amazon.com/Remootio-Bluetooth-SmartThings-Shortcuts-Adapter/dp/B08P5Q9KF4\">Remootio</a> smart garage door opener that integrates with HomeKit and provides excellent control over gate access.</p>\n<p>The intersection of practical technology and meaningful living continues to fascinate me. Building systems that work reliably in remote locations while maintaining connection to the digital world feels like the perfect balance of independence and connectivity.</p>\n";
+      window.originalMarkdown = "\n# Cool tech and the meaning of life\n\n*Random stuff that excited me this week*\n\nI've always been excited by ideas and technology. Especially tech that I can touch, build upon, and use in my daily life. This week has been a pretty good week in terms of getting new tech working and part of making my life easier and more interesting.\n\n![The view from our pull up bars in rural Puerto Rico](/assets/puerto-rico-beach-view.jpg)\n\n## Starlink is great, except when it's not\n\nWe live in rural Puerto Rico, which is amazing. We're building an off the grid home and learning a ton about solar, rainwater collection, and crappy internet connectivity. When we first started building our house I convinced my neighbor to let me connect some cameras to her wifi. This worked well since she had an unlimited plan from AT&T and didn't mind me being on her wifi.\n\nInitially, I set up IP cameras connected to Sensr.net (a cloud storage company I started in 2010). After tearing down the original house, I switched to Blink cameras, which run on batteries for months. My neighbor allowed me to place a Blink sync module in her place with power and internet.\n\nEventually, we got power on our property and used a T-Mobile hotspot. But I quickly blew through the bandwidth limit. T-Mobile wouldn't let me upgrade, even though I was willing to pay more.\n\nI discovered the [LTE 5G Hacks](https://www.facebook.com/groups/908597552628182) Facebook group, which led me to [Firstnet](https://www.firstnet.com/), a network for first responders. Through a family connection, I obtained an unlimited Firstnet plan.\n\nHere's what my Starlink connection looks like on a typical day:\n\n![Starlink speed test screenshot](/assets/starlink-screenshot.png)\n\nThe group also introduced me to [OMR (Open MultipathTCP Router)](https://www.openmptcprouter.com/), an open-source project that bonds multiple internet connections. After two years of work, I've set up a Raspberry Pi 4 that combines Starlink and Firstnet connections, providing more reliable internet.\n\n![Raspberry Pi setup for bonding connections](/assets/raspberry-pi-setup.jpg)\n\n## Contacts clutter in WhatsApp\n\nI discovered a hack to send WhatsApp messages without saving contacts. For iOS, you can use a JavaScript snippet saved as a Safari shortcut. I've posted the code on [GitHub](https://github.com/adamb/whatsapp).\n\n## What's next?\n\nI'm exploring generative AI, augmented reality, and home automation. One cool product I'm using is the [Remootio](https://www.amazon.com/Remootio-Bluetooth-SmartThings-Shortcuts-Adapter/dp/B08P5Q9KF4) smart garage door opener that integrates with HomeKit and provides excellent control over gate access.\n\nThe intersection of practical technology and meaningful living continues to fascinate me. Building systems that work reliably in remote locations while maintaining connection to the digital world feels like the perfect balance of independence and connectivity.";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>
