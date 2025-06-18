@@ -6,6 +6,8 @@ slug: "favorite-paris-restaurants-2025"
 
 # Favorite Paris Restaurants 2025
 
+![Paris dining scene](/assets/paris-restaurants-2025.jpg)
+
 Our 2025 visit to Paris is coming to a close.  Here are some restaurants that we tried this time around and liked.  
 
 ## Reliable Classics
