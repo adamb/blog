@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Gated Community - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>Personal Gated Community</h1>
+<p><em>November 29, 2022 • <span class="visit-counter" hx-get="/visits?path=%2F2022%2F11%2Fpersonal-gated-community%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
+<p><em>All your gate are belong to us</em></p>
+<p>When we first moved to Puerto Rico and started looking for a place to live we were directed mostly to gated communities like Dorado, Palmas del Mar, Bahía, and Rio Mar. These are all great places to live, but we were used to owning our own home and didn't like the idea of having to deal with an HOA (Home Owners Association).</p>
+<p>Luckily we found a place on the beach in Las Picúas about 45 minutes east of San Juan. We've spent the last 5+ years building a home here and until a few months ago, we didn't have an automated gate. Ok, so we don't live in a gated community, but we do have a gate. And we did spend <em>a lot</em> of time thinking and building walls and fences around our property. More on that in another post...</p>
+<p>A few months ago we built a new concrete wall in front of the house and the contractor installed a motor with a remote control so we could easily open and close the gate. He gave us two remotes (aka beepers) and he was done. Having only two remotes was a recipe for disaster. Surely there was a better way.</p>
+<p>That's when I found this bad boy: <a href="https://www.amazon.com/gp/product/B08F2V9KVD/">The Remootio Smart Garage Door Opener</a>. Turns out it works on gates too.</p>
+<p><img src="/assets/remootio-device.jpg" alt="Remootio Smart Gate Opener device"></p>
+<p>I was suspicious that it would work but Amazon has a good return policy so what did I have to lose? Turns out there is a little 2&quot; x 2&quot; box with a circuit board that connects to your gate hardware. I looked at the manual and was a bit miffed. So I took a picture of my gate hardware and tried to google around a little bit, but no luck.</p>
+<p>I then sent this picture to their support email and asked how I connect the Remootio to this mess. I had very low expectations. I figured after a week or so I would just return the box to Amazon.</p>
+<p>But lo and behold! The next day I get a response with this image and a simple instruction:</p>
+<p><img src="/assets/gate-installation.jpg" alt="Gate installation wiring diagram"></p>
+<p><em>You'll need to wire Remootio's control output to terminals GND and BOT</em></p>
+<p>That was it! Simple and clear. I connected two wires and boom - I had a smart gate.</p>
+<h2>The Magic Features</h2>
+<p>Now here's where it gets cool. The Remootio app lets me:</p>
+<p><strong>Control from anywhere</strong>: As long as I have internet, I can open the gate from anywhere in the world. Useful when contractors show up and I'm not home.</p>
+<p><strong>Virtual keys</strong>: I can create temporary &quot;keys&quot; for people. Give a contractor access for just the days they're working, then revoke it when they're done.</p>
+<p><strong>Notifications</strong>: I get alerts whenever the gate opens or closes, so I know who's coming and going.</p>
+<p><strong>Backup options</strong>: Even if the internet is down, I still have the original remotes, plus there's a manual key override.</p>
+<h2>The Puerto Rico Context</h2>
+<p>This setup works particularly well here because:</p>
+<ol>
+<li>
+<p><strong>Reliable power</strong>: We have solar panels and Tesla Powerwalls, so even during grid outages, the gate system stays powered.</p>
+</li>
+<li>
+<p><strong>Good internet</strong>: Starlink provides reliable connectivity even in our rural location.</p>
+</li>
+<li>
+<p><strong>Security needs</strong>: Being somewhat remote, it's nice to know exactly when someone enters the property.</p>
+</li>
+<li>
+<p><strong>Contractor culture</strong>: In Puerto Rico, contractors often show up at unexpected times. Being able to let them in remotely is incredibly convenient.</p>
+</li>
+</ol>
+<h2>What I Learned</h2>
+<p><strong>Support matters</strong>: Remootio's quick, helpful response turned what could have been a frustrating return into a successful installation.</p>
+<p><strong>Simple solutions work</strong>: Two wires. That's all it took to upgrade from basic remote controls to a full smart gate system.</p>
+<p><strong>Infrastructure enables innovation</strong>: Our investment in solar power and Starlink internet makes projects like this possible in a way that wouldn't work everywhere.</p>
+<h2>The Bigger Picture</h2>
+<p>Living in a place like Las Picúas means creating your own infrastructure. We've built our own power generation, internet connectivity, and now gate automation. It's not exactly a gated community, but it's our own version of one.</p>
+<p>The combination of reliable power, good internet, and smart devices is creating new possibilities for living in remote locations. You can have the benefits of rural living without giving up the conveniences of modern technology.</p>
+<p>Plus, there's something satisfying about pulling up to your own gate and having it open automatically - even if you're the only one who thinks it's cool.</p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>Personal Gated Community</h1>\n<p><em>November 29, 2022 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2022%2F11%2Fpersonal-gated-community%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p><em>All your gate are belong to us</em></p>\n<p>When we first moved to Puerto Rico and started looking for a place to live we were directed mostly to gated communities like Dorado, Palmas del Mar, Bahía, and Rio Mar. These are all great places to live, but we were used to owning our own home and didn't like the idea of having to deal with an HOA (Home Owners Association).</p>\n<p>Luckily we found a place on the beach in Las Picúas about 45 minutes east of San Juan. We've spent the last 5+ years building a home here and until a few months ago, we didn't have an automated gate. Ok, so we don't live in a gated community, but we do have a gate. And we did spend <em>a lot</em> of time thinking and building walls and fences around our property. More on that in another post...</p>\n<p>A few months ago we built a new concrete wall in front of the house and the contractor installed a motor with a remote control so we could easily open and close the gate. He gave us two remotes (aka beepers) and he was done. Having only two remotes was a recipe for disaster. Surely there was a better way.</p>\n<p>That's when I found this bad boy: <a href=\"https://www.amazon.com/gp/product/B08F2V9KVD/\">The Remootio Smart Garage Door Opener</a>. Turns out it works on gates too.</p>\n<p><img src=\"/assets/remootio-device.jpg\" alt=\"Remootio Smart Gate Opener device\"></p>\n<p>I was suspicious that it would work but Amazon has a good return policy so what did I have to lose? Turns out there is a little 2&quot; x 2&quot; box with a circuit board that connects to your gate hardware. I looked at the manual and was a bit miffed. So I took a picture of my gate hardware and tried to google around a little bit, but no luck.</p>\n<p>I then sent this picture to their support email and asked how I connect the Remootio to this mess. I had very low expectations. I figured after a week or so I would just return the box to Amazon.</p>\n<p>But lo and behold! The next day I get a response with this image and a simple instruction:</p>\n<p><img src=\"/assets/gate-installation.jpg\" alt=\"Gate installation wiring diagram\"></p>\n<p><em>You'll need to wire Remootio's control output to terminals GND and BOT</em></p>\n<p>That was it! Simple and clear. I connected two wires and boom - I had a smart gate.</p>\n<h2>The Magic Features</h2>\n<p>Now here's where it gets cool. The Remootio app lets me:</p>\n<p><strong>Control from anywhere</strong>: As long as I have internet, I can open the gate from anywhere in the world. Useful when contractors show up and I'm not home.</p>\n<p><strong>Virtual keys</strong>: I can create temporary &quot;keys&quot; for people. Give a contractor access for just the days they're working, then revoke it when they're done.</p>\n<p><strong>Notifications</strong>: I get alerts whenever the gate opens or closes, so I know who's coming and going.</p>\n<p><strong>Backup options</strong>: Even if the internet is down, I still have the original remotes, plus there's a manual key override.</p>\n<h2>The Puerto Rico Context</h2>\n<p>This setup works particularly well here because:</p>\n<ol>\n<li>\n<p><strong>Reliable power</strong>: We have solar panels and Tesla Powerwalls, so even during grid outages, the gate system stays powered.</p>\n</li>\n<li>\n<p><strong>Good internet</strong>: Starlink provides reliable connectivity even in our rural location.</p>\n</li>\n<li>\n<p><strong>Security needs</strong>: Being somewhat remote, it's nice to know exactly when someone enters the property.</p>\n</li>\n<li>\n<p><strong>Contractor culture</strong>: In Puerto Rico, contractors often show up at unexpected times. Being able to let them in remotely is incredibly convenient.</p>\n</li>\n</ol>\n<h2>What I Learned</h2>\n<p><strong>Support matters</strong>: Remootio's quick, helpful response turned what could have been a frustrating return into a successful installation.</p>\n<p><strong>Simple solutions work</strong>: Two wires. That's all it took to upgrade from basic remote controls to a full smart gate system.</p>\n<p><strong>Infrastructure enables innovation</strong>: Our investment in solar power and Starlink internet makes projects like this possible in a way that wouldn't work everywhere.</p>\n<h2>The Bigger Picture</h2>\n<p>Living in a place like Las Picúas means creating your own infrastructure. We've built our own power generation, internet connectivity, and now gate automation. It's not exactly a gated community, but it's our own version of one.</p>\n<p>The combination of reliable power, good internet, and smart devices is creating new possibilities for living in remote locations. You can have the benefits of rural living without giving up the conveniences of modern technology.</p>\n<p>Plus, there's something satisfying about pulling up to your own gate and having it open automatically - even if you're the only one who thinks it's cool.</p>\n";
+      window.originalMarkdown = "\n# Personal Gated Community\n\n*All your gate are belong to us*\n\nWhen we first moved to Puerto Rico and started looking for a place to live we were directed mostly to gated communities like Dorado, Palmas del Mar, Bahía, and Rio Mar. These are all great places to live, but we were used to owning our own home and didn't like the idea of having to deal with an HOA (Home Owners Association).\n\nLuckily we found a place on the beach in Las Picúas about 45 minutes east of San Juan. We've spent the last 5+ years building a home here and until a few months ago, we didn't have an automated gate. Ok, so we don't live in a gated community, but we do have a gate. And we did spend *a lot* of time thinking and building walls and fences around our property. More on that in another post...\n\nA few months ago we built a new concrete wall in front of the house and the contractor installed a motor with a remote control so we could easily open and close the gate. He gave us two remotes (aka beepers) and he was done. Having only two remotes was a recipe for disaster. Surely there was a better way.\n\nThat's when I found this bad boy: [The Remootio Smart Garage Door Opener](https://www.amazon.com/gp/product/B08F2V9KVD/). Turns out it works on gates too.\n\n![Remootio Smart Gate Opener device](/assets/remootio-device.jpg)\n\nI was suspicious that it would work but Amazon has a good return policy so what did I have to lose? Turns out there is a little 2\" x 2\" box with a circuit board that connects to your gate hardware. I looked at the manual and was a bit miffed. So I took a picture of my gate hardware and tried to google around a little bit, but no luck.\n\nI then sent this picture to their support email and asked how I connect the Remootio to this mess. I had very low expectations. I figured after a week or so I would just return the box to Amazon.\n\nBut lo and behold! The next day I get a response with this image and a simple instruction:\n\n![Gate installation wiring diagram](/assets/gate-installation.jpg)\n\n*You'll need to wire Remootio's control output to terminals GND and BOT*\n\nThat was it! Simple and clear. I connected two wires and boom - I had a smart gate.\n\n## The Magic Features\n\nNow here's where it gets cool. The Remootio app lets me:\n\n**Control from anywhere**: As long as I have internet, I can open the gate from anywhere in the world. Useful when contractors show up and I'm not home.\n\n**Virtual keys**: I can create temporary \"keys\" for people. Give a contractor access for just the days they're working, then revoke it when they're done.\n\n**Notifications**: I get alerts whenever the gate opens or closes, so I know who's coming and going.\n\n**Backup options**: Even if the internet is down, I still have the original remotes, plus there's a manual key override.\n\n## The Puerto Rico Context\n\nThis setup works particularly well here because:\n\n1. **Reliable power**: We have solar panels and Tesla Powerwalls, so even during grid outages, the gate system stays powered.\n\n2. **Good internet**: Starlink provides reliable connectivity even in our rural location.\n\n3. **Security needs**: Being somewhat remote, it's nice to know exactly when someone enters the property.\n\n4. **Contractor culture**: In Puerto Rico, contractors often show up at unexpected times. Being able to let them in remotely is incredibly convenient.\n\n## What I Learned\n\n**Support matters**: Remootio's quick, helpful response turned what could have been a frustrating return into a successful installation.\n\n**Simple solutions work**: Two wires. That's all it took to upgrade from basic remote controls to a full smart gate system.\n\n**Infrastructure enables innovation**: Our investment in solar power and Starlink internet makes projects like this possible in a way that wouldn't work everywhere.\n\n## The Bigger Picture\n\nLiving in a place like Las Picúas means creating your own infrastructure. We've built our own power generation, internet connectivity, and now gate automation. It's not exactly a gated community, but it's our own version of one.\n\nThe combination of reliable power, good internet, and smart devices is creating new possibilities for living in remote locations. You can have the benefits of rural living without giving up the conveniences of modern technology.\n\nPlus, there's something satisfying about pulling up to your own gate and having it open automatically - even if you're the only one who thinks it's cool.";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

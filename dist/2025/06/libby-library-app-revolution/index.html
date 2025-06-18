@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libby: The Library App That Changed How I Read - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>Libby: The Library App That Changed How I Read</h1>
+<p><em>June 18, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Flibby-library-app-revolution%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span> • <span class="draft-badge">DRAFT</span></em></p>
+<p>I've been using the <a href="https://libbyapp.com/">Libby app</a> by OverDrive for a few years now, and it's honestly revolutionized how I consume books. If you're not familiar with it, Libby connects you to your local library's digital collection - ebooks, audiobooks, magazines - all free with your library card.</p>
+<h2>The Magic of Multiple Library Cards</h2>
+<p>Here's where it gets interesting: you can add multiple library cards to the same Libby account. I have cards from several library systems, which dramatically expands my available catalog. Some libraries have better tech book collections, others excel at fiction, and some have shorter wait times for popular titles.</p>
+<p><strong>Pro tip</strong>: Many libraries allow non-residents to get digital-only cards for a small annual fee. The Brooklyn Public Library, for example, offers this for around $50/year and has an excellent collection.</p>
+<h2>Features That Actually Work</h2>
+<h3>Seamless Sync</h3>
+<p>Start reading on your phone during a commute, pick up on your tablet at home, then switch to your Kindle before bed. Your place is automatically synced across all devices.</p>
+<h3>Smart Download Management</h3>
+<p>Libby automatically downloads your next holds when they become available and returns books when you're done (or when they're due). No late fees, no manual management.</p>
+<h3>Reading Analytics</h3>
+<p>The app tracks your reading stats - books finished, time spent reading, pages read. It's motivating to see those numbers climb.</p>
+<h2>The Economics Are Compelling</h2>
+<p>I used to spend $200+ per month on books. Between Kindle purchases, audiobook subscriptions, and physical books, it added up fast. Now I get most of my reading through Libby for the cost of... nothing (beyond taxes that fund libraries).</p>
+<h2>Current Limitations</h2>
+<ul>
+<li><strong>Wait times</strong>: Popular new releases can have holds measured in months</li>
+<li><strong>Limited simultaneous loans</strong>: Most libraries cap you at 10-20 items at once</li>
+<li><strong>Platform restrictions</strong>: You can't easily export highlights or notes</li>
+<li><strong>Geographic restrictions</strong>: Some libraries are only available to residents</li>
+</ul>
+<h2>My Current Setup</h2>
+<p>I typically have 5-6 books in various stages:</p>
+<ul>
+<li>1-2 audiobooks for commuting/exercising</li>
+<li>2-3 ebooks for focused reading</li>
+<li>1-2 technical books for reference</li>
+</ul>
+<p>The key is building a pipeline. Always have holds queued up so when you finish something, the next book is ready.</p>
+<h2>Why This Matters</h2>
+<p>Libby represents something bigger than just &quot;free books.&quot; It's a reminder that public libraries are quietly becoming some of our best digital infrastructure. While we debate streaming service costs and subscription fatigue, libraries are out here providing world-class digital experiences funded by the community, for the community.</p>
+<p>If you haven't tried Libby yet, download it and get your library card connected. You might rediscover why libraries are one of humanity's best ideas.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://libbyapp.com/">Libby app download</a></li>
+<li><a href="https://www.bklynlibrary.org/use-the-library/borrow">Brooklyn Public Library digital card</a></li>
+<li><a href="https://www.publiclibraries.com/">Find your local library</a></li>
+</ul>
+<p><em>What's your experience with Libby or digital library services? Any tips for maximizing the platform?</em></p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>Libby: The Library App That Changed How I Read</h1>\n<p><em>June 18, 2025 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2025%2F06%2Flibby-library-app-revolution%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span> • <span class=\"draft-badge\">DRAFT</span></em></p>\n<p>I've been using the <a href=\"https://libbyapp.com/\">Libby app</a> by OverDrive for a few years now, and it's honestly revolutionized how I consume books. If you're not familiar with it, Libby connects you to your local library's digital collection - ebooks, audiobooks, magazines - all free with your library card.</p>\n<h2>The Magic of Multiple Library Cards</h2>\n<p>Here's where it gets interesting: you can add multiple library cards to the same Libby account. I have cards from several library systems, which dramatically expands my available catalog. Some libraries have better tech book collections, others excel at fiction, and some have shorter wait times for popular titles.</p>\n<p><strong>Pro tip</strong>: Many libraries allow non-residents to get digital-only cards for a small annual fee. The Brooklyn Public Library, for example, offers this for around $50/year and has an excellent collection.</p>\n<h2>Features That Actually Work</h2>\n<h3>Seamless Sync</h3>\n<p>Start reading on your phone during a commute, pick up on your tablet at home, then switch to your Kindle before bed. Your place is automatically synced across all devices.</p>\n<h3>Smart Download Management</h3>\n<p>Libby automatically downloads your next holds when they become available and returns books when you're done (or when they're due). No late fees, no manual management.</p>\n<h3>Reading Analytics</h3>\n<p>The app tracks your reading stats - books finished, time spent reading, pages read. It's motivating to see those numbers climb.</p>\n<h2>The Economics Are Compelling</h2>\n<p>I used to spend $200+ per month on books. Between Kindle purchases, audiobook subscriptions, and physical books, it added up fast. Now I get most of my reading through Libby for the cost of... nothing (beyond taxes that fund libraries).</p>\n<h2>Current Limitations</h2>\n<ul>\n<li><strong>Wait times</strong>: Popular new releases can have holds measured in months</li>\n<li><strong>Limited simultaneous loans</strong>: Most libraries cap you at 10-20 items at once</li>\n<li><strong>Platform restrictions</strong>: You can't easily export highlights or notes</li>\n<li><strong>Geographic restrictions</strong>: Some libraries are only available to residents</li>\n</ul>\n<h2>My Current Setup</h2>\n<p>I typically have 5-6 books in various stages:</p>\n<ul>\n<li>1-2 audiobooks for commuting/exercising</li>\n<li>2-3 ebooks for focused reading</li>\n<li>1-2 technical books for reference</li>\n</ul>\n<p>The key is building a pipeline. Always have holds queued up so when you finish something, the next book is ready.</p>\n<h2>Why This Matters</h2>\n<p>Libby represents something bigger than just &quot;free books.&quot; It's a reminder that public libraries are quietly becoming some of our best digital infrastructure. While we debate streaming service costs and subscription fatigue, libraries are out here providing world-class digital experiences funded by the community, for the community.</p>\n<p>If you haven't tried Libby yet, download it and get your library card connected. You might rediscover why libraries are one of humanity's best ideas.</p>\n<h2>Resources</h2>\n<ul>\n<li><a href=\"https://libbyapp.com/\">Libby app download</a></li>\n<li><a href=\"https://www.bklynlibrary.org/use-the-library/borrow\">Brooklyn Public Library digital card</a></li>\n<li><a href=\"https://www.publiclibraries.com/\">Find your local library</a></li>\n</ul>\n<p><em>What's your experience with Libby or digital library services? Any tips for maximizing the platform?</em></p>\n";
+      window.originalMarkdown = "\n# Libby: The Library App That Changed How I Read\n\nI've been using the [Libby app](https://libbyapp.com/) by OverDrive for a few years now, and it's honestly revolutionized how I consume books. If you're not familiar with it, Libby connects you to your local library's digital collection - ebooks, audiobooks, magazines - all free with your library card.\n\n## The Magic of Multiple Library Cards\n\nHere's where it gets interesting: you can add multiple library cards to the same Libby account. I have cards from several library systems, which dramatically expands my available catalog. Some libraries have better tech book collections, others excel at fiction, and some have shorter wait times for popular titles.\n\n**Pro tip**: Many libraries allow non-residents to get digital-only cards for a small annual fee. The Brooklyn Public Library, for example, offers this for around $50/year and has an excellent collection.\n\n## Features That Actually Work\n\n### Seamless Sync\nStart reading on your phone during a commute, pick up on your tablet at home, then switch to your Kindle before bed. Your place is automatically synced across all devices.\n\n### Smart Download Management\nLibby automatically downloads your next holds when they become available and returns books when you're done (or when they're due). No late fees, no manual management.\n\n### Reading Analytics\nThe app tracks your reading stats - books finished, time spent reading, pages read. It's motivating to see those numbers climb.\n\n## The Economics Are Compelling\n\nI used to spend $200+ per month on books. Between Kindle purchases, audiobook subscriptions, and physical books, it added up fast. Now I get most of my reading through Libby for the cost of... nothing (beyond taxes that fund libraries).\n\n## Current Limitations\n\n- **Wait times**: Popular new releases can have holds measured in months\n- **Limited simultaneous loans**: Most libraries cap you at 10-20 items at once\n- **Platform restrictions**: You can't easily export highlights or notes\n- **Geographic restrictions**: Some libraries are only available to residents\n\n## My Current Setup\n\nI typically have 5-6 books in various stages:\n- 1-2 audiobooks for commuting/exercising\n- 2-3 ebooks for focused reading\n- 1-2 technical books for reference\n\nThe key is building a pipeline. Always have holds queued up so when you finish something, the next book is ready.\n\n## Why This Matters\n\nLibby represents something bigger than just \"free books.\" It's a reminder that public libraries are quietly becoming some of our best digital infrastructure. While we debate streaming service costs and subscription fatigue, libraries are out here providing world-class digital experiences funded by the community, for the community.\n\nIf you haven't tried Libby yet, download it and get your library card connected. You might rediscover why libraries are one of humanity's best ideas.\n\n## Resources\n\n- [Libby app download](https://libbyapp.com/)\n- [Brooklyn Public Library digital card](https://www.bklynlibrary.org/use-the-library/borrow)\n- [Find your local library](https://www.publiclibraries.com/)\n\n*What's your experience with Libby or digital library services? Any tips for maximizing the platform?*";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

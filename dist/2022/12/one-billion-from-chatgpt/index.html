@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$1 Billion from ChatGPT? - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>$1 Billion from ChatGPT?</h1>
+<p><em>December 17, 2022 • <span class="visit-counter" hx-get="/visits?path=%2F2022%2F12%2Fone-billion-from-chatgpt%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
+<p>I'm late to the game on ChatGPT. I heard about it but didn't try it until this week. What a mistake that was.</p>
+<p>Some friends have done interesting experiments with it. Like simulating an entire Linux terminal, writing JavaScript, and creating detailed marketing plans. OpenAI apparently is predicting <a href="https://www.reuters.com/business/chatgpt-owner-openai-projects-1-billion-revenue-by-2024-sources-2022-12-15/">$1B in revenue from it in 2024</a>.</p>
+<p>This week, I decided to see what I could do with AI-generated content. I used <a href="https://www.astria.ai/">Astria</a>, which is built on Stable Diffusion, to create some self-portraits.</p>
+<p>The process is simple: upload 20 photos of yourself, pay $5, wait 30 minutes for training, then generate images. Here are a couple of results:</p>
+<p><img src="/assets/chatgpt-ai-image-1.jpg" alt="AI-generated self-portrait in Borderlands style"></p>
+<p><img src="/assets/chatgpt-ai-image-2.jpg" alt="AI-generated self-portrait in Grand Budapest Hotel style"></p>
+<p>The first one has a &quot;Borderlands 3&quot; mad scientist vibe. The second looks like I could be a character in &quot;The Grand Budapest Hotel.&quot;</p>
+<h2>AI-Generated Stories</h2>
+<p>Then I asked ChatGPT to write stories based on these images. Here's what it came up with:</p>
+<p><strong>Story 1 (Grand Budapest Hotel style):</strong></p>
+<p><em>The concierge at the Grand Budapest Hotel was known for his impeccable service and attention to detail. He had been working at the hotel for over a decade, and in that time, he had seen many guests come and go. But there was something different about the guest in room 237.</em></p>
+<p><em>The guest was a man in his thirties, with dark hair and a serious expression. He rarely spoke to anyone, and when he did, it was only to request the most basic of services. The concierge couldn't shake the feeling that there was more to this guest than met the eye.</em></p>
+<p><em>One evening, as the concierge was making his rounds, he noticed that the guest's room was dark, even though it was only 8 PM. Curious, he knocked on the door. There was no answer. He used his master key to enter the room, and what he found inside would change everything.</em></p>
+<p><strong>Story 2 (Mad scientist style):</strong></p>
+<p><em>Dr. Rodriguez had been working in his laboratory for three days straight, fueled only by coffee and determination. He was on the verge of a breakthrough that could change everything – a way to harness renewable energy that was both efficient and affordable.</em></p>
+<p><em>The power had been going out frequently in Puerto Rico, and he knew that his work could make a real difference in people's lives. As he adjusted the final parameters on his experiment, the lights flickered and went out completely.</em></p>
+<p><em>But Dr. Rodriguez was prepared. His Tesla PowerWall kicked in immediately, providing backup power to his essential equipment. This was the moment he had been working toward – the test that would prove his theory once and for all.</em></p>
+<h2>The Puerto Rico Power Situation</h2>
+<p>Speaking of power, we've been dealing with our own electrical challenges here in Puerto Rico. Our local grid isn't the most reliable, which is why we invested in Tesla PowerWall batteries for backup power.</p>
+<p>Usually, these work flawlessly. But this week, I made the mistake of adjusting some settings while learning about our energy usage patterns. I set the backup reserve too low, and sure enough, we had a power outage the next day.</p>
+<p>The batteries had discharged too much during the night, so when the grid went down, we didn't have enough backup power. It's a good reminder that even the best technology requires understanding and proper configuration.</p>
+<h2>What's Fascinating About This Moment</h2>
+<p>What strikes me about these AI tools is how they're democratizing creative capabilities. Five years ago, creating images like these would have required significant artistic skill or expensive software and training. Now, anyone can generate professional-looking artwork for $5.</p>
+<p>The same goes for writing. ChatGPT can produce coherent, engaging stories in seconds. While they might not win literary awards, they're certainly good enough for many practical applications.</p>
+<p>We're at an inflection point where AI is becoming genuinely useful for everyday tasks. The combination of improved models, better interfaces, and accessible pricing is making these tools mainstream.</p>
+<p>Whether OpenAI hits that $1B revenue target remains to be seen, but based on my experience this week, I wouldn't bet against them.</p>
+<p>The future is arriving faster than most of us expected.</p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>$1 Billion from ChatGPT?</h1>\n<p><em>December 17, 2022 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2022%2F12%2Fone-billion-from-chatgpt%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p>I'm late to the game on ChatGPT. I heard about it but didn't try it until this week. What a mistake that was.</p>\n<p>Some friends have done interesting experiments with it. Like simulating an entire Linux terminal, writing JavaScript, and creating detailed marketing plans. OpenAI apparently is predicting <a href=\"https://www.reuters.com/business/chatgpt-owner-openai-projects-1-billion-revenue-by-2024-sources-2022-12-15/\">$1B in revenue from it in 2024</a>.</p>\n<p>This week, I decided to see what I could do with AI-generated content. I used <a href=\"https://www.astria.ai/\">Astria</a>, which is built on Stable Diffusion, to create some self-portraits.</p>\n<p>The process is simple: upload 20 photos of yourself, pay $5, wait 30 minutes for training, then generate images. Here are a couple of results:</p>\n<p><img src=\"/assets/chatgpt-ai-image-1.jpg\" alt=\"AI-generated self-portrait in Borderlands style\"></p>\n<p><img src=\"/assets/chatgpt-ai-image-2.jpg\" alt=\"AI-generated self-portrait in Grand Budapest Hotel style\"></p>\n<p>The first one has a &quot;Borderlands 3&quot; mad scientist vibe. The second looks like I could be a character in &quot;The Grand Budapest Hotel.&quot;</p>\n<h2>AI-Generated Stories</h2>\n<p>Then I asked ChatGPT to write stories based on these images. Here's what it came up with:</p>\n<p><strong>Story 1 (Grand Budapest Hotel style):</strong></p>\n<p><em>The concierge at the Grand Budapest Hotel was known for his impeccable service and attention to detail. He had been working at the hotel for over a decade, and in that time, he had seen many guests come and go. But there was something different about the guest in room 237.</em></p>\n<p><em>The guest was a man in his thirties, with dark hair and a serious expression. He rarely spoke to anyone, and when he did, it was only to request the most basic of services. The concierge couldn't shake the feeling that there was more to this guest than met the eye.</em></p>\n<p><em>One evening, as the concierge was making his rounds, he noticed that the guest's room was dark, even though it was only 8 PM. Curious, he knocked on the door. There was no answer. He used his master key to enter the room, and what he found inside would change everything.</em></p>\n<p><strong>Story 2 (Mad scientist style):</strong></p>\n<p><em>Dr. Rodriguez had been working in his laboratory for three days straight, fueled only by coffee and determination. He was on the verge of a breakthrough that could change everything – a way to harness renewable energy that was both efficient and affordable.</em></p>\n<p><em>The power had been going out frequently in Puerto Rico, and he knew that his work could make a real difference in people's lives. As he adjusted the final parameters on his experiment, the lights flickered and went out completely.</em></p>\n<p><em>But Dr. Rodriguez was prepared. His Tesla PowerWall kicked in immediately, providing backup power to his essential equipment. This was the moment he had been working toward – the test that would prove his theory once and for all.</em></p>\n<h2>The Puerto Rico Power Situation</h2>\n<p>Speaking of power, we've been dealing with our own electrical challenges here in Puerto Rico. Our local grid isn't the most reliable, which is why we invested in Tesla PowerWall batteries for backup power.</p>\n<p>Usually, these work flawlessly. But this week, I made the mistake of adjusting some settings while learning about our energy usage patterns. I set the backup reserve too low, and sure enough, we had a power outage the next day.</p>\n<p>The batteries had discharged too much during the night, so when the grid went down, we didn't have enough backup power. It's a good reminder that even the best technology requires understanding and proper configuration.</p>\n<h2>What's Fascinating About This Moment</h2>\n<p>What strikes me about these AI tools is how they're democratizing creative capabilities. Five years ago, creating images like these would have required significant artistic skill or expensive software and training. Now, anyone can generate professional-looking artwork for $5.</p>\n<p>The same goes for writing. ChatGPT can produce coherent, engaging stories in seconds. While they might not win literary awards, they're certainly good enough for many practical applications.</p>\n<p>We're at an inflection point where AI is becoming genuinely useful for everyday tasks. The combination of improved models, better interfaces, and accessible pricing is making these tools mainstream.</p>\n<p>Whether OpenAI hits that $1B revenue target remains to be seen, but based on my experience this week, I wouldn't bet against them.</p>\n<p>The future is arriving faster than most of us expected.</p>\n";
+      window.originalMarkdown = "\n# $1 Billion from ChatGPT?\n\nI'm late to the game on ChatGPT. I heard about it but didn't try it until this week. What a mistake that was.\n\nSome friends have done interesting experiments with it. Like simulating an entire Linux terminal, writing JavaScript, and creating detailed marketing plans. OpenAI apparently is predicting [$1B in revenue from it in 2024](https://www.reuters.com/business/chatgpt-owner-openai-projects-1-billion-revenue-by-2024-sources-2022-12-15/).\n\nThis week, I decided to see what I could do with AI-generated content. I used [Astria](https://www.astria.ai/), which is built on Stable Diffusion, to create some self-portraits.\n\nThe process is simple: upload 20 photos of yourself, pay $5, wait 30 minutes for training, then generate images. Here are a couple of results:\n\n![AI-generated self-portrait in Borderlands style](/assets/chatgpt-ai-image-1.jpg)\n\n![AI-generated self-portrait in Grand Budapest Hotel style](/assets/chatgpt-ai-image-2.jpg)\n\nThe first one has a \"Borderlands 3\" mad scientist vibe. The second looks like I could be a character in \"The Grand Budapest Hotel.\"\n\n## AI-Generated Stories\n\nThen I asked ChatGPT to write stories based on these images. Here's what it came up with:\n\n**Story 1 (Grand Budapest Hotel style):**\n\n*The concierge at the Grand Budapest Hotel was known for his impeccable service and attention to detail. He had been working at the hotel for over a decade, and in that time, he had seen many guests come and go. But there was something different about the guest in room 237.*\n\n*The guest was a man in his thirties, with dark hair and a serious expression. He rarely spoke to anyone, and when he did, it was only to request the most basic of services. The concierge couldn't shake the feeling that there was more to this guest than met the eye.*\n\n*One evening, as the concierge was making his rounds, he noticed that the guest's room was dark, even though it was only 8 PM. Curious, he knocked on the door. There was no answer. He used his master key to enter the room, and what he found inside would change everything.*\n\n**Story 2 (Mad scientist style):**\n\n*Dr. Rodriguez had been working in his laboratory for three days straight, fueled only by coffee and determination. He was on the verge of a breakthrough that could change everything – a way to harness renewable energy that was both efficient and affordable.*\n\n*The power had been going out frequently in Puerto Rico, and he knew that his work could make a real difference in people's lives. As he adjusted the final parameters on his experiment, the lights flickered and went out completely.*\n\n*But Dr. Rodriguez was prepared. His Tesla PowerWall kicked in immediately, providing backup power to his essential equipment. This was the moment he had been working toward – the test that would prove his theory once and for all.*\n\n## The Puerto Rico Power Situation\n\nSpeaking of power, we've been dealing with our own electrical challenges here in Puerto Rico. Our local grid isn't the most reliable, which is why we invested in Tesla PowerWall batteries for backup power.\n\nUsually, these work flawlessly. But this week, I made the mistake of adjusting some settings while learning about our energy usage patterns. I set the backup reserve too low, and sure enough, we had a power outage the next day.\n\nThe batteries had discharged too much during the night, so when the grid went down, we didn't have enough backup power. It's a good reminder that even the best technology requires understanding and proper configuration.\n\n## What's Fascinating About This Moment\n\nWhat strikes me about these AI tools is how they're democratizing creative capabilities. Five years ago, creating images like these would have required significant artistic skill or expensive software and training. Now, anyone can generate professional-looking artwork for $5.\n\nThe same goes for writing. ChatGPT can produce coherent, engaging stories in seconds. While they might not win literary awards, they're certainly good enough for many practical applications.\n\nWe're at an inflection point where AI is becoming genuinely useful for everyday tasks. The combination of improved models, better interfaces, and accessible pricing is making these tools mainstream.\n\nWhether OpenAI hits that $1B revenue target remains to be seen, but based on my experience this week, I wouldn't bet against them.\n\nThe future is arriving faster than most of us expected.";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>

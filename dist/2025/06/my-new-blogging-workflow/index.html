@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My New Blogging Workflow: From Idea to AI-Enhanced Post - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>My New Blogging Workflow: From Idea to AI-Enhanced Post</h1>
+<p><em>June 18, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fmy-new-blogging-workflow%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span> • <span class="draft-badge">DRAFT</span></em></p>
+<p>After building this HTMX blog platform and integrating AI transformations, I've settled into a writing workflow that feels pretty efficient. Here's how I go from random idea to published post.</p>
+<h2>The Stack</h2>
+<ul>
+<li><strong>Writing</strong>: Markdown files in <code>posts_src/</code></li>
+<li><strong>Build</strong>: Node.js script that converts to HTML</li>
+<li><strong>AI Enhancement</strong>: Cloudflare Workers AI for tone transformations</li>
+<li><strong>Deployment</strong>: Cloudflare Pages with automatic builds</li>
+<li><strong>Editing</strong>: Claude Code for most file operations</li>
+</ul>
+<h2>Step 1: Capture Ideas</h2>
+<p>I keep a running list of post ideas in Apple Notes, but honestly, most posts start as:</p>
+<ul>
+<li>Random conversations that spark something</li>
+<li>Technical problems I solve</li>
+<li>&quot;I should write this down&quot; moments while traveling</li>
+</ul>
+<h2>Step 2: Draft Creation</h2>
+<p>When I'm ready to write, I create a new markdown file in <code>posts_src/</code>. The frontmatter is simple:</p>
+<pre><code class="language-markdown">---
+title: &quot;Post Title&quot;
+date: &quot;2025-06-18&quot;
+slug: &quot;url-friendly-slug&quot;
+draft: true
+---
+</code></pre>
+<p>I always start with <code>draft: true</code> so I can iterate without publishing accidentally.</p>
+<h2>Step 3: The Writing Process</h2>
+<p>I write in markdown because:</p>
+<ul>
+<li>It's portable and future-proof</li>
+<li>GitHub renders it nicely for previews</li>
+<li>The build system handles all the HTML conversion</li>
+<li>I can focus on content, not formatting</li>
+</ul>
+<p>My typical post structure:</p>
+<ol>
+<li><strong>Hook</strong>: Start with something concrete or relatable</li>
+<li><strong>Context</strong>: Why does this matter?</li>
+<li><strong>Details</strong>: The technical or practical meat</li>
+<li><strong>Reflection</strong>: What did I learn? What's next?</li>
+</ol>
+<h2>Step 4: Claude Code Integration</h2>
+<p>This is where the workflow gets interesting. I've been using <a href="https://claude.ai/code">Claude Code</a> for most blog operations:</p>
+<ul>
+<li><strong>File creation</strong>: &quot;Create a draft post about X&quot;</li>
+<li><strong>Content migration</strong>: &quot;Add this post from my old blog&quot;</li>
+<li><strong>Technical edits</strong>: &quot;Fix the image sizing CSS&quot;</li>
+<li><strong>Feature additions</strong>: &quot;Add draft support like Hugo&quot;</li>
+</ul>
+<p>Claude Code understands the codebase structure and can make systematic changes across multiple files. It's like having a very patient coding partner.</p>
+<h2>Step 5: AI Tone Transformations</h2>
+<p>Once a post is live, readers can transform it into different voices:</p>
+<ul>
+<li><strong>Sarcastic</strong>: For when the original is too earnest</li>
+<li><strong>Tech Bro</strong>: Silicon Valley buzzword edition</li>
+<li><strong>Uber Snarky</strong>: Maximum attitude version</li>
+</ul>
+<p>The transformations are cached for a week, so repeated requests are instant. It's fun to see the same content through different lenses.</p>
+<h2>Step 6: Build and Deploy</h2>
+<pre><code class="language-bash">npm run build        # Standard build (excludes drafts)
+npm run build:drafts # Include drafts for preview
+</code></pre>
+<p>Cloudflare Pages automatically deploys on git push. The entire process from writing to live site is under a minute.</p>
+<h2>What's Working Well</h2>
+<p><strong>Speed</strong>: From idea to published post is usually under an hour for technical content.</p>
+<p><strong>Flexibility</strong>: Markdown + git means I can write anywhere, edit on any device, and version control everything.</p>
+<p><strong>Enhancement</strong>: The AI transformations add value without me doing extra work.</p>
+<p><strong>Maintenance</strong>: Static site + Cloudflare means basically zero operational overhead.</p>
+<h2>Current Friction Points</h2>
+<p><strong>Image handling</strong>: Still manual. I have to download, resize, and reference images manually.</p>
+<p><strong>SEO metadata</strong>: Not thinking about this much, but probably should be.</p>
+<p><strong>Analytics</strong>: I have visit tracking but could use better insights into what resonates.</p>
+<p><strong>Cross-posting</strong>: Would be nice to automatically syndicate to other platforms.</p>
+<h2>The Meta Layer</h2>
+<p>Writing about my writing workflow feels very meta, but I think these kinds of &quot;how the sausage is made&quot; posts are valuable. They help other people build their own systems and remind me to be intentional about my tools.</p>
+<p>The best workflow is the one you actually use. This setup removes enough friction that I write more, while adding enough structure that the output looks professional.</p>
+<h2>What's Next</h2>
+<p>I'm considering:</p>
+<ul>
+<li><strong>Automated image optimization</strong> during the build process</li>
+<li><strong>Integration with Apple Notes</strong> for smoother idea capture</li>
+<li><strong>RSS feed generation</strong> for people who want updates</li>
+<li><strong>Comment system</strong> using something lightweight</li>
+</ul>
+<p>But honestly, the current system works well enough that I'm not in a hurry to complicate it.</p>
+<p><em>How do you handle your writing workflow? Any tools or processes that have been game-changers?</em></p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>My New Blogging Workflow: From Idea to AI-Enhanced Post</h1>\n<p><em>June 18, 2025 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2025%2F06%2Fmy-new-blogging-workflow%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span> • <span class=\"draft-badge\">DRAFT</span></em></p>\n<p>After building this HTMX blog platform and integrating AI transformations, I've settled into a writing workflow that feels pretty efficient. Here's how I go from random idea to published post.</p>\n<h2>The Stack</h2>\n<ul>\n<li><strong>Writing</strong>: Markdown files in <code>posts_src/</code></li>\n<li><strong>Build</strong>: Node.js script that converts to HTML</li>\n<li><strong>AI Enhancement</strong>: Cloudflare Workers AI for tone transformations</li>\n<li><strong>Deployment</strong>: Cloudflare Pages with automatic builds</li>\n<li><strong>Editing</strong>: Claude Code for most file operations</li>\n</ul>\n<h2>Step 1: Capture Ideas</h2>\n<p>I keep a running list of post ideas in Apple Notes, but honestly, most posts start as:</p>\n<ul>\n<li>Random conversations that spark something</li>\n<li>Technical problems I solve</li>\n<li>&quot;I should write this down&quot; moments while traveling</li>\n</ul>\n<h2>Step 2: Draft Creation</h2>\n<p>When I'm ready to write, I create a new markdown file in <code>posts_src/</code>. The frontmatter is simple:</p>\n<pre><code class=\"language-markdown\">---\ntitle: &quot;Post Title&quot;\ndate: &quot;2025-06-18&quot;\nslug: &quot;url-friendly-slug&quot;\ndraft: true\n---\n</code></pre>\n<p>I always start with <code>draft: true</code> so I can iterate without publishing accidentally.</p>\n<h2>Step 3: The Writing Process</h2>\n<p>I write in markdown because:</p>\n<ul>\n<li>It's portable and future-proof</li>\n<li>GitHub renders it nicely for previews</li>\n<li>The build system handles all the HTML conversion</li>\n<li>I can focus on content, not formatting</li>\n</ul>\n<p>My typical post structure:</p>\n<ol>\n<li><strong>Hook</strong>: Start with something concrete or relatable</li>\n<li><strong>Context</strong>: Why does this matter?</li>\n<li><strong>Details</strong>: The technical or practical meat</li>\n<li><strong>Reflection</strong>: What did I learn? What's next?</li>\n</ol>\n<h2>Step 4: Claude Code Integration</h2>\n<p>This is where the workflow gets interesting. I've been using <a href=\"https://claude.ai/code\">Claude Code</a> for most blog operations:</p>\n<ul>\n<li><strong>File creation</strong>: &quot;Create a draft post about X&quot;</li>\n<li><strong>Content migration</strong>: &quot;Add this post from my old blog&quot;</li>\n<li><strong>Technical edits</strong>: &quot;Fix the image sizing CSS&quot;</li>\n<li><strong>Feature additions</strong>: &quot;Add draft support like Hugo&quot;</li>\n</ul>\n<p>Claude Code understands the codebase structure and can make systematic changes across multiple files. It's like having a very patient coding partner.</p>\n<h2>Step 5: AI Tone Transformations</h2>\n<p>Once a post is live, readers can transform it into different voices:</p>\n<ul>\n<li><strong>Sarcastic</strong>: For when the original is too earnest</li>\n<li><strong>Tech Bro</strong>: Silicon Valley buzzword edition</li>\n<li><strong>Uber Snarky</strong>: Maximum attitude version</li>\n</ul>\n<p>The transformations are cached for a week, so repeated requests are instant. It's fun to see the same content through different lenses.</p>\n<h2>Step 6: Build and Deploy</h2>\n<pre><code class=\"language-bash\">npm run build        # Standard build (excludes drafts)\nnpm run build:drafts # Include drafts for preview\n</code></pre>\n<p>Cloudflare Pages automatically deploys on git push. The entire process from writing to live site is under a minute.</p>\n<h2>What's Working Well</h2>\n<p><strong>Speed</strong>: From idea to published post is usually under an hour for technical content.</p>\n<p><strong>Flexibility</strong>: Markdown + git means I can write anywhere, edit on any device, and version control everything.</p>\n<p><strong>Enhancement</strong>: The AI transformations add value without me doing extra work.</p>\n<p><strong>Maintenance</strong>: Static site + Cloudflare means basically zero operational overhead.</p>\n<h2>Current Friction Points</h2>\n<p><strong>Image handling</strong>: Still manual. I have to download, resize, and reference images manually.</p>\n<p><strong>SEO metadata</strong>: Not thinking about this much, but probably should be.</p>\n<p><strong>Analytics</strong>: I have visit tracking but could use better insights into what resonates.</p>\n<p><strong>Cross-posting</strong>: Would be nice to automatically syndicate to other platforms.</p>\n<h2>The Meta Layer</h2>\n<p>Writing about my writing workflow feels very meta, but I think these kinds of &quot;how the sausage is made&quot; posts are valuable. They help other people build their own systems and remind me to be intentional about my tools.</p>\n<p>The best workflow is the one you actually use. This setup removes enough friction that I write more, while adding enough structure that the output looks professional.</p>\n<h2>What's Next</h2>\n<p>I'm considering:</p>\n<ul>\n<li><strong>Automated image optimization</strong> during the build process</li>\n<li><strong>Integration with Apple Notes</strong> for smoother idea capture</li>\n<li><strong>RSS feed generation</strong> for people who want updates</li>\n<li><strong>Comment system</strong> using something lightweight</li>\n</ul>\n<p>But honestly, the current system works well enough that I'm not in a hurry to complicate it.</p>\n<p><em>How do you handle your writing workflow? Any tools or processes that have been game-changers?</em></p>\n";
+      window.originalMarkdown = "\n# My New Blogging Workflow: From Idea to AI-Enhanced Post\n\nAfter building this HTMX blog platform and integrating AI transformations, I've settled into a writing workflow that feels pretty efficient. Here's how I go from random idea to published post.\n\n## The Stack\n\n- **Writing**: Markdown files in `posts_src/`\n- **Build**: Node.js script that converts to HTML\n- **AI Enhancement**: Cloudflare Workers AI for tone transformations\n- **Deployment**: Cloudflare Pages with automatic builds\n- **Editing**: Claude Code for most file operations\n\n## Step 1: Capture Ideas\n\nI keep a running list of post ideas in Apple Notes, but honestly, most posts start as:\n- Random conversations that spark something\n- Technical problems I solve\n- \"I should write this down\" moments while traveling\n\n## Step 2: Draft Creation\n\nWhen I'm ready to write, I create a new markdown file in `posts_src/`. The frontmatter is simple:\n\n```markdown\n---\ntitle: \"Post Title\"\ndate: \"2025-06-18\"\nslug: \"url-friendly-slug\"\ndraft: true\n---\n```\n\nI always start with `draft: true` so I can iterate without publishing accidentally.\n\n## Step 3: The Writing Process\n\nI write in markdown because:\n- It's portable and future-proof\n- GitHub renders it nicely for previews\n- The build system handles all the HTML conversion\n- I can focus on content, not formatting\n\nMy typical post structure:\n1. **Hook**: Start with something concrete or relatable\n2. **Context**: Why does this matter?\n3. **Details**: The technical or practical meat\n4. **Reflection**: What did I learn? What's next?\n\n## Step 4: Claude Code Integration\n\nThis is where the workflow gets interesting. I've been using [Claude Code](https://claude.ai/code) for most blog operations:\n\n- **File creation**: \"Create a draft post about X\"\n- **Content migration**: \"Add this post from my old blog\"\n- **Technical edits**: \"Fix the image sizing CSS\"\n- **Feature additions**: \"Add draft support like Hugo\"\n\nClaude Code understands the codebase structure and can make systematic changes across multiple files. It's like having a very patient coding partner.\n\n## Step 5: AI Tone Transformations\n\nOnce a post is live, readers can transform it into different voices:\n- **Sarcastic**: For when the original is too earnest\n- **Tech Bro**: Silicon Valley buzzword edition\n- **Uber Snarky**: Maximum attitude version\n\nThe transformations are cached for a week, so repeated requests are instant. It's fun to see the same content through different lenses.\n\n## Step 6: Build and Deploy\n\n```bash\nnpm run build        # Standard build (excludes drafts)\nnpm run build:drafts # Include drafts for preview\n```\n\nCloudflare Pages automatically deploys on git push. The entire process from writing to live site is under a minute.\n\n## What's Working Well\n\n**Speed**: From idea to published post is usually under an hour for technical content.\n\n**Flexibility**: Markdown + git means I can write anywhere, edit on any device, and version control everything.\n\n**Enhancement**: The AI transformations add value without me doing extra work.\n\n**Maintenance**: Static site + Cloudflare means basically zero operational overhead.\n\n## Current Friction Points\n\n**Image handling**: Still manual. I have to download, resize, and reference images manually.\n\n**SEO metadata**: Not thinking about this much, but probably should be.\n\n**Analytics**: I have visit tracking but could use better insights into what resonates.\n\n**Cross-posting**: Would be nice to automatically syndicate to other platforms.\n\n## The Meta Layer\n\nWriting about my writing workflow feels very meta, but I think these kinds of \"how the sausage is made\" posts are valuable. They help other people build their own systems and remind me to be intentional about my tools.\n\nThe best workflow is the one you actually use. This setup removes enough friction that I write more, while adding enough structure that the output looks professional.\n\n## What's Next\n\nI'm considering:\n- **Automated image optimization** during the build process\n- **Integration with Apple Notes** for smoother idea capture\n- **RSS feed generation** for people who want updates\n- **Comment system** using something lightweight\n\nBut honestly, the current system works well enough that I'm not in a hurry to complicate it.\n\n*How do you handle your writing workflow? Any tools or processes that have been game-changers?*";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about" hx-get="/about" hx-select="article" hx-target="#content" hx-push-url="true">About</a> • © 2025 Adam Beguelin</p>
+  </footer>
+</body>
+</html>
