@@ -2,6 +2,7 @@
 import fs from "fs";
 import path from "path";
 import MarkdownIt from "markdown-it";
+import { execSync } from "child_process";
 
 const md = new MarkdownIt({ html: true });
 const inputDir = "posts_src";
@@ -13,7 +14,20 @@ const indexOut = "index.html";
 // Check for build drafts flag
 const buildDrafts = process.argv.includes('--buildDrafts') || process.argv.includes('-D');
 
-console.log(`Building blog${buildDrafts ? ' (including drafts)' : ''}...`);
+// Get git information
+function getGitInfo() {
+  try {
+    const branch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' }).trim();
+    const hash = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
+    return { branch, hash };
+  } catch (error) {
+    console.warn('Could not get git info:', error.message);
+    return { branch: 'unknown', hash: 'unknown' };
+  }
+}
+
+const gitInfo = getGitInfo();
+console.log(`Building blog${buildDrafts ? ' (including drafts)' : ''} from ${gitInfo.branch}@${gitInfo.hash}...`);
 
 // Function to parse frontmatter
 function parseFrontmatter(content) {
@@ -255,6 +269,7 @@ postDataList.forEach((post) => {
     `<title>${post.title} - Adam's Blog</title>`
   );
   postPageHtml = postPageHtml.replace("<!-- MAIN_CONTENT -->", articleContent);
+  postPageHtml = postPageHtml.replace("<!-- GIT_INFO -->", `${gitInfo.branch}@${gitInfo.hash}`);
 
   // Ensure the directory exists
   fs.mkdirSync(post.dirPath, { recursive: true });
@@ -293,6 +308,7 @@ if (fs.existsSync(pagesDir)) {
       `<title>${title} - Adam's Blog</title>`
     );
     pageHtml = pageHtml.replace("<!-- MAIN_CONTENT -->", articleContent);
+    pageHtml = pageHtml.replace("<!-- GIT_INFO -->", `${gitInfo.branch}@${gitInfo.hash}`);
 
     const pageOutputPath = path.join(outputDir, `${slug}.html`);
     fs.writeFileSync(pageOutputPath, pageHtml);
@@ -382,6 +398,7 @@ const postSnippets = postDataList.map(post => {
 let indexHtml = baseTemplateContent; // Use the already read base template
 indexHtml = indexHtml.replace("<!-- NAV_LINKS -->", navLinks);
 indexHtml = indexHtml.replace("<!-- MAIN_CONTENT -->", `<div id="post-list">${postSnippets}</div>`);
+indexHtml = indexHtml.replace("<!-- GIT_INFO -->", `${gitInfo.branch}@${gitInfo.hash}`);
 fs.writeFileSync(path.join(outputDir, 'index.html'), indexHtml);
 
 console.log("Rebuilt index.html with updated nav and default content.");
