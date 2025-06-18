@@ -29,8 +29,6 @@ The app has gotten slicker over the years.  I still find the UI confusing when s
 
 But, when you search and find a book you want to check out, it will often send you to the library with the shortest wait time, which is great.  
 
-
-
 ## Current Limitations
 
 - **Wait times**: Popular new releases can have holds measured in months
