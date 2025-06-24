@@ -134,12 +134,18 @@ function mousePressed() {
 }
 
 function touchStarted() {
-  // Handle touch events for mobile
+  // Handle touch events for mobile - only if touch is within canvas
   if (touches.length > 0) {
-    addParticleAtPosition(touches[0].x, touches[0].y);
+    let touch = touches[0];
+    // Only add particle if touch is within canvas bounds
+    if (touch.x >= 0 && touch.x <= width && touch.y >= 0 && touch.y <= height) {
+      addParticleAtPosition(touch.x, touch.y);
+      // Only prevent default for touches within the canvas
+      return false;
+    }
   }
-  // Prevent default behavior
-  return false;
+  // Allow normal scrolling for touches outside canvas
+  return true;
 }
 
 function addParticleAtPosition(x, y) {
