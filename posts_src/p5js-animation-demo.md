@@ -10,7 +10,7 @@ I've been experimenting with [p5.js](https://p5js.org/) lately - it's a JavaScri
 
 ## Live Animation
 
-<div id="p5-container" style="text-align: center; margin: 20px 0; border-radius: 8px; overflow: hidden; background: #000;"></div>
+<div id="p5-container" style="text-align: center; margin: 20px auto; padding: 10px; border-radius: 8px; overflow: hidden; background: #000; max-width: 100%; box-sizing: border-box;"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
 <script>
@@ -18,11 +18,19 @@ let particles = [];
 let mouseHistory = [];
 
 function setup() {
-  let canvas = createCanvas(800, 400);
+  // Make canvas responsive to container size
+  let containerWidth = document.getElementById('p5-container').offsetWidth;
+  let canvasWidth = min(containerWidth - 20, 800); // 10px padding on each side
+  let canvasHeight = min(canvasWidth * 0.5, 400); // Maintain aspect ratio, max 400px
+  
+  let canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent('p5-container');
   
+  // Adjust particle count for smaller screens
+  let particleCount = width < 600 ? 30 : 50;
+  
   // Initialize particles
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < particleCount; i++) {
     particles.push({
       x: random(width),
       y: random(height),
@@ -34,12 +42,29 @@ function setup() {
   }
 }
 
+// Handle window resize
+function windowResized() {
+  let containerWidth = document.getElementById('p5-container').offsetWidth;
+  let canvasWidth = min(containerWidth - 20, 800);
+  let canvasHeight = min(canvasWidth * 0.5, 400);
+  resizeCanvas(canvasWidth, canvasHeight);
+}
+
 function draw() {
   background(10, 10, 26, 25); // Fading trail effect
   
-  // Track mouse position
-  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-    mouseHistory.push({x: mouseX, y: mouseY});
+  // Track mouse/touch position
+  let currentX = mouseX;
+  let currentY = mouseY;
+  
+  // Handle touch on mobile
+  if (touches.length > 0) {
+    currentX = touches[0].x;
+    currentY = touches[0].y;
+  }
+  
+  if (currentX > 0 && currentX < width && currentY > 0 && currentY < height) {
+    mouseHistory.push({x: currentX, y: currentY});
     if (mouseHistory.length > 20) {
       mouseHistory.splice(0, 1);
     }
@@ -67,10 +92,10 @@ function draw() {
     if (particle.x <= 0 || particle.x >= width) particle.vx *= -1;
     if (particle.y <= 0 || particle.y >= height) particle.vy *= -1;
     
-    // Attract to mouse
-    if (mouseX > 0 && mouseX < width) {
-      let dx = mouseX - particle.x;
-      let dy = mouseY - particle.y;
+    // Attract to mouse/touch
+    if (currentX > 0 && currentX < width) {
+      let dx = currentX - particle.x;
+      let dy = currentY - particle.y;
       let distance = sqrt(dx * dx + dy * dy);
       
       if (distance < 100) {
@@ -95,28 +120,43 @@ function draw() {
     });
   });
   
-  // Instructions
+  // Instructions (responsive text size)
   fill(224, 224, 224, 150);
   noStroke();
   textAlign(CENTER);
-  textSize(14);
-  text("Click your mouse to create more particles", width/2, height - 20);
+  textSize(width < 600 ? 12 : 14);
+  let instructionText = width < 600 ? "Tap to add particles" : "Move your mouse around to interact with the particles";
+  text(instructionText, width/2, height - 20);
 }
 
 function mousePressed() {
-  // Add new particle at mouse position
-  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+  addParticleAtPosition(mouseX, mouseY);
+}
+
+function touchStarted() {
+  // Handle touch events for mobile
+  if (touches.length > 0) {
+    addParticleAtPosition(touches[0].x, touches[0].y);
+  }
+  // Prevent default behavior
+  return false;
+}
+
+function addParticleAtPosition(x, y) {
+  // Add new particle at specified position
+  if (x > 0 && x < width && y > 0 && y < height) {
     particles.push({
-      x: mouseX,
-      y: mouseY,
+      x: x,
+      y: y,
       vx: random(-3, 3),
       vy: random(-3, 3),
       size: random(4, 10),
       hue: random(180, 220)
     });
     
-    // Limit particle count
-    if (particles.length > 100) {
+    // Limit particle count (lower limit for mobile)
+    let maxParticles = width < 600 ? 75 : 100;
+    if (particles.length > maxParticles) {
       particles.splice(0, 1);
     }
   }
@@ -192,4 +232,4 @@ Some ideas to extend this demo:
 
 Check out the [p5.js examples gallery](https://p5js.org/examples/) for more inspiration!
 
-*Try clicking on the animation above to add more particles.*
+*Try clicking or tapping on the animation above to add more particles.*
