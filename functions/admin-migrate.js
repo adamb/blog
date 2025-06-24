@@ -192,6 +192,7 @@ export async function onRequestPost({ env }) {
     const countryCounts = {};
     const dayCounts = {};
     const pathCounts = {}; // Will verify against existing path: counters
+    const uniqueIPs = new Set();
     
     for (let i = 0; i < visitKeys.length; i += batchSize) {
       const batch = visitKeys.slice(i, i + batchSize);
@@ -219,6 +220,9 @@ export async function onRequestPost({ env }) {
             const path = parsed.path || 'unknown';
             pathCounts[path] = (pathCounts[path] || 0) + 1;
             
+            // Track unique IPs
+            uniqueIPs.add(parsed.ip);
+            
           } catch (e) {
             console.error('Failed to parse visit data:', e);
           }
@@ -230,12 +234,21 @@ export async function onRequestPost({ env }) {
     console.log(`Found ${Object.keys(countryCounts).length} unique countries`);
     console.log(`Found ${Object.keys(dayCounts).length} unique days`);
     console.log(`Found ${Object.keys(pathCounts).length} unique paths`);
+    console.log(`Found ${uniqueIPs.size} unique IPs`);
     
     // Prepare all counter updates
     const updates = [];
     
     // Add total visits counter
     updates.push(['total_visits', totalVisits.toString()]);
+    
+    // Add unique IPs counter
+    updates.push(['unique_ips_count', uniqueIPs.size.toString()]);
+    
+    // Add individual IP markers (for future tracking)
+    uniqueIPs.forEach(ip => {
+      updates.push([`ip:${ip}`, '1']);
+    });
     
     // Add country counters
     Object.entries(countryCounts).forEach(([country, count]) => {
@@ -275,7 +288,8 @@ export async function onRequestPost({ env }) {
       breakdown: {
         countries: Object.keys(countryCounts).length,
         days: Object.keys(dayCounts).length,
-        paths: Object.keys(pathCounts).length
+        paths: Object.keys(pathCounts).length,
+        uniqueIPs: uniqueIPs.size
       },
       topCountries: Object.entries(countryCounts)
         .sort(([,a], [,b]) => b - a)

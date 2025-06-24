@@ -27,6 +27,7 @@ export async function onRequestGet({ env }) {
     let dayCounts = {};
     let countryCounts = {};
     let uniqueIPs = new Set();
+    let uniqueIpsCount = 0;
     
     if (useV1Schema) {
       // Use efficient v2 schema with all pre-computed counters
@@ -43,11 +44,12 @@ export async function onRequestGet({ env }) {
       console.log(`Fetching cached counters: ${pathKeys.length} paths, ${countryKeys.length} countries, ${dayKeys.length} days...`);
       const countersStart = Date.now();
       
-      const [pathValues, countryValues, dayValues, totalVisitsValue] = await Promise.all([
+      const [pathValues, countryValues, dayValues, totalVisitsValue, uniqueIpsValue] = await Promise.all([
         Promise.all(pathKeys.map(key => env.VISIT_LOG.get(key.name))),
         Promise.all(countryKeys.map(key => env.VISIT_LOG.get(key.name))),
         Promise.all(dayKeys.map(key => env.VISIT_LOG.get(key.name))),
-        env.VISIT_LOG.get('total_visits')
+        env.VISIT_LOG.get('total_visits'),
+        env.VISIT_LOG.get('unique_ips_count')
       ]);
       
       console.log(`Cached counters fetched in ${Date.now() - countersStart}ms`);
@@ -79,6 +81,9 @@ export async function onRequestGet({ env }) {
       
       totalVisits = totalVisitsValue ? parseInt(totalVisitsValue) : 0;
       
+      // Get unique IPs count from cached value
+      uniqueIpsCount = uniqueIpsValue ? parseInt(uniqueIpsValue) : 0;
+      
       // Get recent visits for display only (limit to 10 for speed)
       const recentVisitKeys = visitKeys
         .sort((a, b) => b.name.localeCompare(a.name))
@@ -96,7 +101,6 @@ export async function onRequestGet({ env }) {
           try {
             const parsed = JSON.parse(visitData);
             recentVisits.push(parsed);
-            uniqueIPs.add(parsed.ip);
           } catch (e) {
             console.error('Failed to parse visit data:', e);
           }
@@ -143,6 +147,7 @@ export async function onRequestGet({ env }) {
       });
       
       totalVisits = recentVisits.length;
+      uniqueIpsCount = uniqueIPs.size;
       // Sort recent visits by timestamp and limit to 25
       recentVisits.sort((a, b) => new Date(b.ts) - new Date(a.ts));
       recentVisits = recentVisits.slice(0, 25);
@@ -228,7 +233,7 @@ export async function onRequestGet({ env }) {
   
   <div class="stat-box">
     <div>Unique IPs</div>
-    <div class="stat-number">${uniqueIPs.size}</div>
+    <div class="stat-number">${uniqueIpsCount}</div>
   </div>
 
   <h2>Visits by Page</h2>
