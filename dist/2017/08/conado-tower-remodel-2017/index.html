@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conado Tower Remodel 2017 - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      <a href="/about">About</a>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>Conado Tower Remodel 2017</h1>
+<p><em>August 15, 2017 • <span class="visit-counter" hx-get="/visits?path=%2F2017%2F08%2Fconado-tower-remodel-2017%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span> • <span class="draft-badge">DRAFT</span></em></p>
+<p>We bought our place in Condado, San Juan back in 2016 and spent most of 2017 doing a complete gut renovation. It was an ambitious project - taking a 1970s apartment and bringing it into the modern era while dealing with the unique challenges of renovating in Puerto Rico.</p>
+<h2>The Starting Point</h2>
+<p>The apartment was a classic example of 1970s design - lots of dark wood paneling, popcorn ceilings, and a layout that felt closed off from the incredible ocean views. The previous owners had maintained it well, but it definitely needed an update to match our vision.</p>
+<h2>Key Challenges</h2>
+<h3>Hurricane Season</h3>
+<p>We started the renovation in early 2017, which meant dealing with the uncertainty of hurricane season. Little did we know that Hurricane Maria would hit in September, adding unexpected complications to our timeline.</p>
+<h3>Island Logistics</h3>
+<p>Getting materials and coordinating contractors in Puerto Rico requires a different approach than mainland projects. Everything takes longer, but the local craftsmen have incredible skills and attention to detail.</p>
+<h3>Preserving the Views</h3>
+<p>The building's main asset is its stunning views of the Atlantic Ocean. Every design decision had to consider how to maximize these views while creating functional living spaces.</p>
+<h2>Major Changes</h2>
+<h3>Open Floor Plan</h3>
+<p>We removed several walls to create an open concept that flows from the kitchen through the living area to the ocean-facing windows. This transformation completely changed how the space feels.</p>
+<h3>Kitchen Renovation</h3>
+<p>Complete gut of the galley kitchen, opening it up to the main living space. New appliances, modern cabinetry, and a layout that works for both daily cooking and entertaining.</p>
+<h3>Bathroom Updates</h3>
+<p>Both bathrooms got full renovations with modern fixtures, better lighting, and finishes that complement the coastal location.</p>
+<h3>Flooring</h3>
+<p>Replaced all the old carpeting and tile with consistent flooring throughout - something that could handle sandy feet and ocean breezes.</p>
+<h2>Hurricane Maria Impact</h2>
+<p>Just as we were nearing completion, Hurricane Maria hit Puerto Rico in September 2017. The building weathered the storm well, but we had to deal with:</p>
+<ul>
+<li>Water intrusion through windows</li>
+<li>Power outages lasting months</li>
+<li>Supply chain disruptions for finishing materials</li>
+<li>Extended timeline for final completion</li>
+</ul>
+<h2>Lessons Learned</h2>
+<h3>Local Relationships Matter</h3>
+<p>Building relationships with local contractors, suppliers, and neighbors made all the difference. The Puerto Rican construction community is tight-knit and incredibly helpful.</p>
+<h3>Flexibility is Key</h3>
+<p>Island time is real, and fighting it just creates stress. Building buffer time into schedules and staying flexible with timelines led to better outcomes.</p>
+<h3>Quality Over Speed</h3>
+<p>The local craftsmen take pride in their work and don't rush. The results speak for themselves - beautiful tile work, custom millwork, and attention to detail that you rarely see in mainland projects.</p>
+<h2>Final Results</h2>
+<p>The renovation transformed a dated 1970s apartment into a modern coastal retreat that maximizes the incredible location. The open layout, updated systems, and modern finishes create a space that feels connected to the ocean while providing all the comforts of contemporary living.</p>
+<p>Despite the challenges - including a major hurricane mid-project - we couldn't be happier with the results. The space perfectly captures what we love about living in Puerto Rico: the connection to the ocean, the indoor-outdoor lifestyle, and the vibrant local culture.</p>
+<h2>Project Details</h2>
+<ul>
+<li><strong>Timeline</strong>: 8 months (extended to 12+ due to Hurricane Maria)</li>
+<li><strong>Size</strong>: 1,200 sq ft, 2 bedroom/2 bathroom</li>
+<li><strong>Key Features</strong>: Open floor plan, ocean views, modern kitchen, updated bathrooms</li>
+<li><strong>Completion</strong>: Late 2017/Early 2018</li>
+</ul>
+<p><em>Photos and detailed renovation progress coming in future posts...</em></p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store original content and markdown
+      window.originalContent = "<h1>Conado Tower Remodel 2017</h1>\n<p><em>August 15, 2017 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2017%2F08%2Fconado-tower-remodel-2017%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span> • <span class=\"draft-badge\">DRAFT</span></em></p>\n<p>We bought our place in Condado, San Juan back in 2016 and spent most of 2017 doing a complete gut renovation. It was an ambitious project - taking a 1970s apartment and bringing it into the modern era while dealing with the unique challenges of renovating in Puerto Rico.</p>\n<h2>The Starting Point</h2>\n<p>The apartment was a classic example of 1970s design - lots of dark wood paneling, popcorn ceilings, and a layout that felt closed off from the incredible ocean views. The previous owners had maintained it well, but it definitely needed an update to match our vision.</p>\n<h2>Key Challenges</h2>\n<h3>Hurricane Season</h3>\n<p>We started the renovation in early 2017, which meant dealing with the uncertainty of hurricane season. Little did we know that Hurricane Maria would hit in September, adding unexpected complications to our timeline.</p>\n<h3>Island Logistics</h3>\n<p>Getting materials and coordinating contractors in Puerto Rico requires a different approach than mainland projects. Everything takes longer, but the local craftsmen have incredible skills and attention to detail.</p>\n<h3>Preserving the Views</h3>\n<p>The building's main asset is its stunning views of the Atlantic Ocean. Every design decision had to consider how to maximize these views while creating functional living spaces.</p>\n<h2>Major Changes</h2>\n<h3>Open Floor Plan</h3>\n<p>We removed several walls to create an open concept that flows from the kitchen through the living area to the ocean-facing windows. This transformation completely changed how the space feels.</p>\n<h3>Kitchen Renovation</h3>\n<p>Complete gut of the galley kitchen, opening it up to the main living space. New appliances, modern cabinetry, and a layout that works for both daily cooking and entertaining.</p>\n<h3>Bathroom Updates</h3>\n<p>Both bathrooms got full renovations with modern fixtures, better lighting, and finishes that complement the coastal location.</p>\n<h3>Flooring</h3>\n<p>Replaced all the old carpeting and tile with consistent flooring throughout - something that could handle sandy feet and ocean breezes.</p>\n<h2>Hurricane Maria Impact</h2>\n<p>Just as we were nearing completion, Hurricane Maria hit Puerto Rico in September 2017. The building weathered the storm well, but we had to deal with:</p>\n<ul>\n<li>Water intrusion through windows</li>\n<li>Power outages lasting months</li>\n<li>Supply chain disruptions for finishing materials</li>\n<li>Extended timeline for final completion</li>\n</ul>\n<h2>Lessons Learned</h2>\n<h3>Local Relationships Matter</h3>\n<p>Building relationships with local contractors, suppliers, and neighbors made all the difference. The Puerto Rican construction community is tight-knit and incredibly helpful.</p>\n<h3>Flexibility is Key</h3>\n<p>Island time is real, and fighting it just creates stress. Building buffer time into schedules and staying flexible with timelines led to better outcomes.</p>\n<h3>Quality Over Speed</h3>\n<p>The local craftsmen take pride in their work and don't rush. The results speak for themselves - beautiful tile work, custom millwork, and attention to detail that you rarely see in mainland projects.</p>\n<h2>Final Results</h2>\n<p>The renovation transformed a dated 1970s apartment into a modern coastal retreat that maximizes the incredible location. The open layout, updated systems, and modern finishes create a space that feels connected to the ocean while providing all the comforts of contemporary living.</p>\n<p>Despite the challenges - including a major hurricane mid-project - we couldn't be happier with the results. The space perfectly captures what we love about living in Puerto Rico: the connection to the ocean, the indoor-outdoor lifestyle, and the vibrant local culture.</p>\n<h2>Project Details</h2>\n<ul>\n<li><strong>Timeline</strong>: 8 months (extended to 12+ due to Hurricane Maria)</li>\n<li><strong>Size</strong>: 1,200 sq ft, 2 bedroom/2 bathroom</li>\n<li><strong>Key Features</strong>: Open floor plan, ocean views, modern kitchen, updated bathrooms</li>\n<li><strong>Completion</strong>: Late 2017/Early 2018</li>\n</ul>\n<p><em>Photos and detailed renovation progress coming in future posts...</em></p>\n";
+      window.originalMarkdown = "\n# Conado Tower Remodel 2017\n\nWe bought our place in Condado, San Juan back in 2016 and spent most of 2017 doing a complete gut renovation. It was an ambitious project - taking a 1970s apartment and bringing it into the modern era while dealing with the unique challenges of renovating in Puerto Rico.\n\n## The Starting Point\n\nThe apartment was a classic example of 1970s design - lots of dark wood paneling, popcorn ceilings, and a layout that felt closed off from the incredible ocean views. The previous owners had maintained it well, but it definitely needed an update to match our vision.\n\n## Key Challenges\n\n### Hurricane Season\nWe started the renovation in early 2017, which meant dealing with the uncertainty of hurricane season. Little did we know that Hurricane Maria would hit in September, adding unexpected complications to our timeline.\n\n### Island Logistics\nGetting materials and coordinating contractors in Puerto Rico requires a different approach than mainland projects. Everything takes longer, but the local craftsmen have incredible skills and attention to detail.\n\n### Preserving the Views\nThe building's main asset is its stunning views of the Atlantic Ocean. Every design decision had to consider how to maximize these views while creating functional living spaces.\n\n## Major Changes\n\n### Open Floor Plan\nWe removed several walls to create an open concept that flows from the kitchen through the living area to the ocean-facing windows. This transformation completely changed how the space feels.\n\n### Kitchen Renovation\nComplete gut of the galley kitchen, opening it up to the main living space. New appliances, modern cabinetry, and a layout that works for both daily cooking and entertaining.\n\n### Bathroom Updates\nBoth bathrooms got full renovations with modern fixtures, better lighting, and finishes that complement the coastal location.\n\n### Flooring\nReplaced all the old carpeting and tile with consistent flooring throughout - something that could handle sandy feet and ocean breezes.\n\n## Hurricane Maria Impact\n\nJust as we were nearing completion, Hurricane Maria hit Puerto Rico in September 2017. The building weathered the storm well, but we had to deal with:\n- Water intrusion through windows\n- Power outages lasting months\n- Supply chain disruptions for finishing materials\n- Extended timeline for final completion\n\n## Lessons Learned\n\n### Local Relationships Matter\nBuilding relationships with local contractors, suppliers, and neighbors made all the difference. The Puerto Rican construction community is tight-knit and incredibly helpful.\n\n### Flexibility is Key\nIsland time is real, and fighting it just creates stress. Building buffer time into schedules and staying flexible with timelines led to better outcomes.\n\n### Quality Over Speed\nThe local craftsmen take pride in their work and don't rush. The results speak for themselves - beautiful tile work, custom millwork, and attention to detail that you rarely see in mainland projects.\n\n## Final Results\n\nThe renovation transformed a dated 1970s apartment into a modern coastal retreat that maximizes the incredible location. The open layout, updated systems, and modern finishes create a space that feels connected to the ocean while providing all the comforts of contemporary living.\n\nDespite the challenges - including a major hurricane mid-project - we couldn't be happier with the results. The space perfectly captures what we love about living in Puerto Rico: the connection to the ocean, the indoor-outdoor lifestyle, and the vibrant local culture.\n\n## Project Details\n\n- **Timeline**: 8 months (extended to 12+ due to Hurricane Maria)\n- **Size**: 1,200 sq ft, 2 bedroom/2 bathroom\n- **Key Features**: Open floor plan, ocean views, modern kitchen, updated bathrooms\n- **Completion**: Late 2017/Early 2018\n\n*Photos and detailed renovation progress coming in future posts...*";
+      
+      function restoreOriginal() {
+        document.getElementById('post-content').innerHTML = window.originalContent;
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: window.originalMarkdown
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@caaf80f</p>
+  </footer>
+</body>
+</html>
