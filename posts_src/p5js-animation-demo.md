@@ -173,13 +173,22 @@ function addParticleAtPosition(x, y) {
 
 This animation demonstrates several key p5.js concepts:
 
-### Particle System
+### Responsive Canvas Setup
 ```javascript
-let particles = [];
-
 function setup() {
+  // Make canvas responsive to container size
+  let containerWidth = document.getElementById('p5-container').offsetWidth;
+  let canvasWidth = min(containerWidth - 20, 800);
+  let canvasHeight = min(canvasWidth * 0.5, 400);
+  
+  let canvas = createCanvas(canvasWidth, canvasHeight);
+  canvas.parent('p5-container');
+  
+  // Adjust particle count for smaller screens
+  let particleCount = width < 600 ? 30 : 50;
+  
   // Initialize particles with random properties
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < particleCount; i++) {
     particles.push({
       x: random(width),
       y: random(height),
@@ -192,11 +201,21 @@ function setup() {
 }
 ```
 
-### Interactive Mouse Tracking
+### Cross-Platform Input Handling
 ```javascript
-// Attract particles to mouse
-let dx = mouseX - particle.x;
-let dy = mouseY - particle.y;
+// Track mouse/touch position
+let currentX = mouseX;
+let currentY = mouseY;
+
+// Handle touch on mobile
+if (touches.length > 0) {
+  currentX = touches[0].x;
+  currentY = touches[0].y;
+}
+
+// Attract particles to mouse/touch
+let dx = currentX - particle.x;
+let dy = currentY - particle.y;
 let distance = sqrt(dx * dx + dy * dy);
 
 if (distance < 100) {
@@ -217,6 +236,24 @@ particles.forEach(other => {
 });
 ```
 
+### Mobile Touch Support
+```javascript
+function touchStarted() {
+  // Handle touch events for mobile - only if touch is within canvas
+  if (touches.length > 0) {
+    let touch = touches[0];
+    // Only add particle if touch is within canvas bounds
+    if (touch.x >= 0 && touch.x <= width && touch.y >= 0 && touch.y <= height) {
+      addParticleAtPosition(touch.x, touch.y);
+      // Only prevent default for touches within the canvas
+      return false;
+    }
+  }
+  // Allow normal scrolling for touches outside canvas
+  return true;
+}
+```
+
 ## Why p5.js?
 
 p5.js makes creative coding accessible by handling the canvas setup, animation loops, and providing intuitive drawing functions. It's perfect for:
@@ -225,8 +262,9 @@ p5.js makes creative coding accessible by handling the canvas setup, animation l
 - **Interactive art installations** 
 - **Educational coding demos**
 - **Generative art experiments**
+- **Mobile-responsive interactive content**
 
-The library abstracts away WebGL complexity while still giving you access to powerful graphics capabilities. You can literally go from idea to working animation in minutes.
+The library abstracts away WebGL complexity while still giving you access to powerful graphics capabilities. Built-in touch support makes it easy to create experiences that work across devices.
 
 ## Next Steps
 
