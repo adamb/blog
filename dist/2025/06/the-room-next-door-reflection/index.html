@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Room Next Door: A Meditation on Choice and Compassion - Adam's Blog</title>
+  <link rel="icon" type="image/png" href="/assets/blogico.png" />
+  <link rel="shortcut icon" href="/assets/blogico.png" />
+  <link rel="apple-touch-icon" href="/assets/blogico.png" />
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    // Track page visits
+    function trackVisit() {
+      fetch('/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(err => console.log('Tracking failed:', err));
+    }
+
+    // Track initial page load
+    document.addEventListener('DOMContentLoaded', trackVisit);
+
+    // Track HTMX navigation (but not visit counter requests)
+    document.addEventListener('htmx:afterRequest', function(evt) {
+      if (evt.detail.successful && 
+          evt.detail.requestConfig && 
+          evt.detail.requestConfig.url && 
+          !evt.detail.requestConfig.url.includes('/visits') &&
+          !evt.detail.requestConfig.url.includes('/transform')) {
+        trackVisit();
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Adam's Blog</a></h1>
+    <nav>
+      <a href="/about">About</a>
+      
+    </nav>
+  </header>
+
+  <main id="content">
+    <article>
+    <div id="post-content"><h1>The Room Next Door: A Meditation on Choice and Compassion</h1>
+<p><em>June 25, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F06%2Fthe-room-next-door-reflection%2F" hx-trigger="load" hx-swap="innerHTML">
+<span class="visit-count">👁️ Loading...</span>
+</span></em></p>
+<p><img src="/assets/roomnextdoor.jpg" alt="The Room Next Door"></p>
+<p><em>Reflections on Pedro Almodóvar's latest film, watched somewhere between Berlin and Madrid at 35,000 feet</em></p>
+<p>There's something uniquely contemplative about watching a film on a late-night flight. The hum of the engines, the darkened cabin, the sense of being suspended between places—it creates an almost meditative state perfect for absorbing cinema that asks difficult questions. Last night, flying from Berlin to Madrid, I found myself captivated by Pedro Almodóvar's &quot;The Room Next Door,&quot; a film that handles one of our most challenging conversations with remarkable grace and humanity.</p>
+<h2>A Story of Friendship and Final Choices</h2>
+<p>&quot;The Room Next Door&quot; follows Martha (Tilda Swinton) and Ingrid (Julianne Moore), two women whose friendship is tested when Martha, facing terminal cancer, asks Ingrid to stay with her as she chooses to end her life on her own terms. What could have been a heavy-handed treatment of assisted dying instead becomes something far more nuanced—a meditation on autonomy, love, and what it means to truly support someone you care about.</p>
+<p>Almodóvar, known for his vibrant melodramas and complex female characters, brings his signature visual style and emotional intelligence to material that demands both. The film's title itself is revealing: Martha literally moves to the room next door to Ingrid's, but metaphorically, she's asking her friend to accompany her to that ultimate threshold—to be present without trying to change her mind.</p>
+<h2>The Right to Choose</h2>
+<p>The film doesn't shy away from the central question: should people have the right to determine when and how their lives end, particularly when facing terminal illness? Martha's decision isn't presented as tragic or heroic—it simply <em>is</em>. She's made her choice with clear eyes and a sound mind, and what she needs isn't judgment or attempts at dissuasion, but companionship and understanding.</p>
+<p>This resonates deeply with my own belief that personal autonomy should extend to life's final chapter. When someone is facing inevitable suffering with no hope of recovery, the compassionate response isn't to force them to endure it, but to ensure they have options—including the option of a peaceful, dignified death surrounded by love.</p>
+<p>The film shows how this choice affects not just Martha, but everyone around her. Ingrid struggles with her own feelings about the decision, grappling with the difference between supporting her friend and feeling complicit in her death. It's a distinction the film handles with remarkable sophistication.</p>
+<h2>Visual Poetry and Emotional Truth</h2>
+<p>Almodóvar's visual language perfectly serves the story's emotional needs. His characteristic use of bold colors—here more muted but still present—creates spaces that feel both intimate and expansive. The house where much of the action takes place becomes a character itself, with its windows looking out onto natural landscapes that suggest both beauty and impermanence.</p>
+<p>Swinton and Moore deliver performances that are both lived-in and luminous. Their friendship feels real, built on decades of shared experience and genuine affection. When Martha asks Ingrid to &quot;just be there,&quot; both actresses understand the weight of that simple request.</p>
+<h2>Questions Without Easy Answers</h2>
+<p>What I appreciated most about &quot;The Room Next Door&quot; is its refusal to provide simple answers to complex questions. It doesn't advocate for assisted dying so much as it explores what happens when someone makes that choice—how it affects relationships, how love can manifest as presence rather than intervention, and how we can honor someone's autonomy even when it's difficult to accept.</p>
+<p>The film also touches on broader themes about aging, illness, and our culture's often-uncomfortable relationship with death. In a society that tends to medicalize and institutionalize dying, Martha's choice to die at home, peacefully, surrounded by beauty and friendship, feels almost radical.
+But it shouldn't. Within my family, we have discussed this issue often.  And it's hopefully clear that going out peacefully is a valid and honorable choice.</p>
+<h2>Personal Reflections</h2>
+<p>Watching this at 35,000 feet, I couldn't help but think about how we approach these conversations in our own lives. How many of us have actually talked with our loved ones about what we'd want if faced with terminal illness? How many of us are prepared to truly listen to those wishes, even if they're difficult to hear?</p>
+<p>The film suggests that the greatest gift we can give someone in Martha's position isn't our opinion about their choice, but our presence during it. That's a form of love that requires enormous strength and selflessness.</p>
+<p>Being able to choose one's fate can be difficult.  Especially should the illness rob you of your faculties.  When to go and how are important decisions that you should discuss with your loved ones.  And your loved ones should have the legal standing to carry out your wishes should that be necessary.</p>
+<h2>A Necessary Conversation</h2>
+<p>&quot;The Room Next Door&quot; arrives at a time when many countries are grappling with end-of-life legislation. Some places have embraced medical assistance in dying (MAID) with proper safeguards and protocols. Others maintain prohibitions that force people to suffer unnecessarily or seek dangerous alternatives.</p>
+<p>The film doesn't advocate for any particular policy position, but it does make a powerful case for treating this as a deeply personal decision rather than a legal or moral abstraction. When we're talking about someone's final weeks or months, shouldn't the primary consideration be their wishes and their comfort?</p>
+<h2>Final Thoughts</h2>
+<p>Almodóvar has created something rare: a film about death that feels fully alive. &quot;The Room Next Door&quot; doesn't offer easy comfort or false hope, but it does provide something perhaps more valuable—a thoughtful, compassionate exploration of what it means to love someone enough to let them go.</p>
+<p>As my flight began its descent into Madrid, I found myself grateful for cinema's ability to tackle difficult subjects with nuance and humanity. This is a film that will stay with me, not because it provides answers, but because it asks the right questions with such intelligence and heart.</p>
+<p>Sometimes the most profound act of love is simply being present, without trying to fix or change anything. Sometimes the room next door is exactly where we need to be.</p>
+<hr>
+<p><em>&quot;The Room Next Door&quot; is currently in limited theatrical release. While the subject matter is challenging, it's handled with remarkable sensitivity and intelligence. Highly recommended for anyone interested in thoughtful cinema that engages with life's biggest questions.</em></p>
+</div>
+    
+    <div class="tone-controls">
+      <h3>🎭 Transform This Post</h3>
+      <div class="tone-buttons">
+        <button onclick="transformPost('sarcastic')" class="tone-btn">
+          😏 Sarcastic
+        </button>
+        <button onclick="transformPost('techbro')" class="tone-btn">
+          🚀 Tech Bro
+        </button>
+        <button onclick="transformPost('ubersnarky')" class="tone-btn">
+          😤 Uber Snarky
+        </button>
+        <button onclick="restoreOriginal()" class="tone-btn restore-btn">
+          🔄 Original
+        </button>
+      </div>
+      <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <span class="loading-text">🤖 AI is thinking... probably judging your writing style...</span>
+      </div>
+    </div>
+    
+    <script>
+      // Store only the text content for AI transformation (no scripts)
+      const originalMarkdownForAI = "\n# The Room Next Door: A Meditation on Choice and Compassion\n\n![The Room Next Door](/assets/roomnextdoor.jpg)\n\n*Reflections on Pedro Almodóvar's latest film, watched somewhere between Berlin and Madrid at 35,000 feet*\n\nThere's something uniquely contemplative about watching a film on a late-night flight. The hum of the engines, the darkened cabin, the sense of being suspended between places—it creates an almost meditative state perfect for absorbing cinema that asks difficult questions. Last night, flying from Berlin to Madrid, I found myself captivated by Pedro Almodóvar's \"The Room Next Door,\" a film that handles one of our most challenging conversations with remarkable grace and humanity.\n\n## A Story of Friendship and Final Choices\n\n\"The Room Next Door\" follows Martha (Tilda Swinton) and Ingrid (Julianne Moore), two women whose friendship is tested when Martha, facing terminal cancer, asks Ingrid to stay with her as she chooses to end her life on her own terms. What could have been a heavy-handed treatment of assisted dying instead becomes something far more nuanced—a meditation on autonomy, love, and what it means to truly support someone you care about.\n\nAlmodóvar, known for his vibrant melodramas and complex female characters, brings his signature visual style and emotional intelligence to material that demands both. The film's title itself is revealing: Martha literally moves to the room next door to Ingrid's, but metaphorically, she's asking her friend to accompany her to that ultimate threshold—to be present without trying to change her mind.\n\n## The Right to Choose\n\nThe film doesn't shy away from the central question: should people have the right to determine when and how their lives end, particularly when facing terminal illness? Martha's decision isn't presented as tragic or heroic—it simply *is*. She's made her choice with clear eyes and a sound mind, and what she needs isn't judgment or attempts at dissuasion, but companionship and understanding.\n\nThis resonates deeply with my own belief that personal autonomy should extend to life's final chapter. When someone is facing inevitable suffering with no hope of recovery, the compassionate response isn't to force them to endure it, but to ensure they have options—including the option of a peaceful, dignified death surrounded by love.\n\nThe film shows how this choice affects not just Martha, but everyone around her. Ingrid struggles with her own feelings about the decision, grappling with the difference between supporting her friend and feeling complicit in her death. It's a distinction the film handles with remarkable sophistication.\n\n## Visual Poetry and Emotional Truth\n\nAlmodóvar's visual language perfectly serves the story's emotional needs. His characteristic use of bold colors—here more muted but still present—creates spaces that feel both intimate and expansive. The house where much of the action takes place becomes a character itself, with its windows looking out onto natural landscapes that suggest both beauty and impermanence.\n\nSwinton and Moore deliver performances that are both lived-in and luminous. Their friendship feels real, built on decades of shared experience and genuine affection. When Martha asks Ingrid to \"just be there,\" both actresses understand the weight of that simple request.\n\n## Questions Without Easy Answers\n\nWhat I appreciated most about \"The Room Next Door\" is its refusal to provide simple answers to complex questions. It doesn't advocate for assisted dying so much as it explores what happens when someone makes that choice—how it affects relationships, how love can manifest as presence rather than intervention, and how we can honor someone's autonomy even when it's difficult to accept.\n\nThe film also touches on broader themes about aging, illness, and our culture's often-uncomfortable relationship with death. In a society that tends to medicalize and institutionalize dying, Martha's choice to die at home, peacefully, surrounded by beauty and friendship, feels almost radical.\nBut it shouldn't. Within my family, we have discussed this issue often.  And it's hopefully clear that going out peacefully is a valid and honorable choice.\n\n\n## Personal Reflections\n\nWatching this at 35,000 feet, I couldn't help but think about how we approach these conversations in our own lives. How many of us have actually talked with our loved ones about what we'd want if faced with terminal illness? How many of us are prepared to truly listen to those wishes, even if they're difficult to hear?\n\nThe film suggests that the greatest gift we can give someone in Martha's position isn't our opinion about their choice, but our presence during it. That's a form of love that requires enormous strength and selflessness.\n\nBeing able to choose one's fate can be difficult.  Especially should the illness rob you of your faculties.  When to go and how are important decisions that you should discuss with your loved ones.  And your loved ones should have the legal standing to carry out your wishes should that be necessary.  \n\n## A Necessary Conversation\n\n\"The Room Next Door\" arrives at a time when many countries are grappling with end-of-life legislation. Some places have embraced medical assistance in dying (MAID) with proper safeguards and protocols. Others maintain prohibitions that force people to suffer unnecessarily or seek dangerous alternatives.\n\nThe film doesn't advocate for any particular policy position, but it does make a powerful case for treating this as a deeply personal decision rather than a legal or moral abstraction. When we're talking about someone's final weeks or months, shouldn't the primary consideration be their wishes and their comfort?\n\n## Final Thoughts\n\nAlmodóvar has created something rare: a film about death that feels fully alive. \"The Room Next Door\" doesn't offer easy comfort or false hope, but it does provide something perhaps more valuable—a thoughtful, compassionate exploration of what it means to love someone enough to let them go.\n\nAs my flight began its descent into Madrid, I found myself grateful for cinema's ability to tackle difficult subjects with nuance and humanity. This is a film that will stay with me, not because it provides answers, but because it asks the right questions with such intelligence and heart.\n\nSometimes the most profound act of love is simply being present, without trying to fix or change anything. Sometimes the room next door is exactly where we need to be.\n\n---\n\n*\"The Room Next Door\" is currently in limited theatrical release. While the subject matter is challenging, it's handled with remarkable sensitivity and intelligence. Highly recommended for anyone interested in thoughtful cinema that engages with life's biggest questions.*";
+      
+      function restoreOriginal() {
+        // Simply reload the page to restore original content
+        window.location.reload();
+      }
+      
+      async function transformPost(tone) {
+        console.log('transformPost called with tone:', tone);
+        
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('loading-indicator');
+        console.log('Loading indicator element:', loadingIndicator);
+        if (loadingIndicator) {
+          loadingIndicator.style.display = 'block';
+        }
+        
+        try {
+          const response = await fetch('/transform', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tone: tone,
+              content: originalMarkdownForAI
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transformedContent) {
+              // Convert markdown to HTML for transformed content
+              let transformedHtml = data.transformedContent;
+              
+              // Convert headers (order matters - do h3 first)
+              transformedHtml = transformedHtml.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+              transformedHtml = transformedHtml.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+              transformedHtml = transformedHtml.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+              
+              // Convert bold and italic
+              transformedHtml = transformedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              transformedHtml = transformedHtml.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Convert links
+              transformedHtml = transformedHtml.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+              
+              // Convert simple line breaks and paragraphs
+              transformedHtml = transformedHtml.replace(/\n\n/g, '</p><p>');
+              transformedHtml = transformedHtml.replace(/\n/g, '<br>');
+              transformedHtml = '<p>' + transformedHtml + '</p>';
+              
+              // Clean up empty paragraphs
+              transformedHtml = transformedHtml.replace(/<p><\/p>/g, '');
+              transformedHtml = transformedHtml.replace(/<p>(<h[1-6]>)/g, '$1');
+              transformedHtml = transformedHtml.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+              
+              document.getElementById('post-content').innerHTML = 
+                '<div class="transformed-content"><em>🎭 ' + tone.charAt(0).toUpperCase() + tone.slice(1) + ' version:</em><br><br>' + 
+                transformedHtml + '</div>';
+            }
+          } else {
+            document.getElementById('post-content').innerHTML = 
+              '<div class="transformed-content"><em>❌ Failed to transform content. Try again!</em></div>';
+          }
+        } catch (error) {
+          console.error('Transformation error:', error);
+          const postContent = document.getElementById('post-content');
+          if (postContent) {
+            postContent.innerHTML = 
+              '<div class="transformed-content"><em>❌ Network error: ' + error.message + '</em></div>';
+          }
+        }
+        
+        // Hide loading indicator
+        document.getElementById('loading-indicator').style.display = 'none';
+      }
+    </script>
+  
+    <div class="back-link"><a href="/">← Back to Home</a></div>
+  </article>
+  </main>
+
+  <footer>
+    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@13b3f20</p>
+  </footer>
+</body>
+</html>
