@@ -2,6 +2,7 @@
 title: "Thinking Machines Frame Buffer"
 date: 2025-06-25
 slug: thinking-machines-frame-buffer
+draft: true
 ---
 
 # Generative Art on a Supercomputer (CM-2, circa 1989)
