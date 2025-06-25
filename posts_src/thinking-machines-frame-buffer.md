@@ -13,11 +13,11 @@ slug: thinking-machines-frame-buffer
 
 In the late 1980s, I had the rare opportunity to write code for a **Connection Machine CM-2**, one of the most visually striking and conceptually ambitious supercomputers of the time. The machine was located at [**NOAA**](https://www.noaa.gov/) in Boulder, Colorado, and to access it, I had to drive up to the facility and sit down at a terminal hooked into one of the most powerful computing systems of the day.
 
-Looking back on this I remember the feeling of doing something special.  I had to sign up for a time slot and it was in the evening (probably a weekend) when I got my time slot with the machine.  NOAA in Boulder is an imposing building up on the foothills of the Rocky Mountains.  I must admit I felt a little bit like I was approaching some villain's secret lair driving up there in the dark on a weekend. 
+Looking back on this I remember the feeling of doing something special.  I had to sign up for a time slot and it was in the evening (probably a weekend) when I got my time slot with the machine.  NCAR in Boulder is an imposing building up on the foothills of the Rocky Mountains.  I must admit I felt a little bit like I was approaching some villain's secret lair driving up there in the dark on a weekend. 
 
-![NOAA Boulder](/assets/NOAABoulder.jpg)
+![NCAR Boulder](/assets/NOAABoulder.jpg)
 
-[*The NOAA Mesa Laboratory*](https://en.wikipedia.org/wiki/Mesa_Laboratory)* in Boulder, Colorado. Definitely giving off some serious "secret mountain fortress where the evil genius plots world domination" vibes. It housed one of the most advanced supercomputers on the planet. Close enough. *
+[*The NCAR Mesa Laboratory*](https://en.wikipedia.org/wiki/Mesa_Laboratory)* in Boulder, Colorado. Definitely giving off some serious "secret mountain fortress where the evil genius plots world domination" vibes. It housed one of the most advanced supercomputers on the planet. Close enough. *
 
 
 By <a href="https://en.wikipedia.org/wiki/user:Daderot" class="extiw" title="en:user:Daderot">en:user:Daderot</a> - Original photo, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=628312">Link</a>
