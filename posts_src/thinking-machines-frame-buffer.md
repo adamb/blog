@@ -2,7 +2,6 @@
 title: "Thinking Machines Frame Buffer"
 date: 2025-06-25
 slug: thinking-machines-frame-buffer
-draft: true
 ---
 
 # Generative Art on a Supercomputer (CM-2, circa 1989)
@@ -14,7 +13,16 @@ draft: true
 
 In the late 1980s, I had the rare opportunity to write code for a **Connection Machine CM-2**, one of the most visually striking and conceptually ambitious supercomputers of the time. The machine was located at [**NOAA**](https://www.noaa.gov/) in Boulder, Colorado, and to access it, I had to drive up to the facility and sit down at a terminal hooked into one of the most powerful computing systems of the day.
 
-Looking back on this I remember the feeling of doing something special.  I had to sign up for a time slot and it was in the evening (probably a weekend) when I got my time slot with the machine.  NOAA in Boulder is an imposing building up on the foothills of the Rocky Mountains.  I must admit I felt a little bit like I was approaching some villain's secret lair driving up there in the dark on a weekend.  
+Looking back on this I remember the feeling of doing something special.  I had to sign up for a time slot and it was in the evening (probably a weekend) when I got my time slot with the machine.  NOAA in Boulder is an imposing building up on the foothills of the Rocky Mountains.  I must admit I felt a little bit like I was approaching some villain's secret lair driving up there in the dark on a weekend. 
+
+![NOAA Boulder](/assets/NOAABoulder.jpg)
+
+[*The NOAA Mesa Laboratory*](https://en.wikipedia.org/wiki/Mesa_Laboratory)* in Boulder, Colorado. Definitely giving off some serious "secret mountain fortress where the evil genius plots world domination" vibes. It housed one of the most advanced supercomputers on the planet. Close enough. *
+
+
+By <a href="https://en.wikipedia.org/wiki/user:Daderot" class="extiw" title="en:user:Daderot">en:user:Daderot</a> - Original photo, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=628312">Link</a>
+
+
 
 ## The Machine: Thinking Machines Corporation CM-2
 
@@ -139,13 +147,6 @@ Working on the CM-2 was like painting with a galaxy of blinking neurons. It was 
 
 > "The CM-2 didn’t just compute—it pulsed, it shimmered, it came alive." — Me, probably
 
-## Image References
-
-* CM-2 front panel: ![CM-2 LEDs](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/ConnectionMachine2-front.jpg/800px-ConnectionMachine2-front.jpg)
-* NOAA Boulder Facility: ![NOAA Boulder](https://www.esrl.noaa.gov/images/banner/home_banner.jpg)
-* TMC Ad Imagery: *\[Add relevant historical ads or photos if available]*
-
----
 
 If you're into generative art, creative coding, or computer history, hit me up—I'd love to hear from others who remember the CM-2 or are reimagining it in modern code.
 
