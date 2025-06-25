@@ -11,7 +11,7 @@ slug: thinking-machines-frame-buffer
 *Connection Machine CM-2 on display. Photo by Billie Grace Ward from New York, USA. [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), via [Wikimedia Commons](https://commons.wikimedia.org/w/index.php?curid=115757772)*
 
 
-In the late 1980s, I had the rare opportunity to write code for a **Connection Machine CM-2**, one of the most visually striking and conceptually ambitious supercomputers of the time. The machine was located at [**NOAA**](https://www.noaa.gov/) in Boulder, Colorado, and to access it, I had to drive up to the facility and sit down at a terminal hooked into one of the most powerful computing systems of the day.
+In the late 1980s, I had the rare opportunity to write code for a **Connection Machine CM-2**, one of the most visually striking and conceptually ambitious supercomputers of the time. The machine was located at [**NCAR**](https://ncar.ucar.edu) in Boulder, Colorado, and to access it, I had to drive up to the facility and sit down at a terminal hooked into one of the most powerful computing systems of the day.
 
 Looking back on this I remember the feeling of doing something special.  I had to sign up for a time slot and it was in the evening (probably a weekend) when I got my time slot with the machine.  NCAR in Boulder is an imposing building up on the foothills of the Rocky Mountains.  I must admit I felt a little bit like I was approaching some villain's secret lair driving up there in the dark on a weekend. 
 
