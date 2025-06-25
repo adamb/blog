@@ -91,13 +91,12 @@ mysql&gt; show slave status \G
     </div>
     
     <script>
-      // Store original content and markdown
-      window.originalContent = "<h1>MySQL New Slave Settings</h1>\n<p><em>December 20, 2016 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2016%2F12%2Fmysql-new-slave-settings%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p>I can never remember which fields are important. It's the <code>master_log_file</code> and <code>master_log_pos</code> but these come from <code>show slave status</code>. <code>Master_log_file</code> is from <code>master_log_file</code> but <code>master_log_pos</code> comes from <code>exec_master_pos</code>.</p>\n<pre><code class=\"language-sql\">CHANGE MASTER TO master_user = 'dbp3',   \n  MASTER_PASSWORD='...',   \n  master_log_file=&quot;mysql-bin.006818&quot;,   \n  master_log_pos=234867554;  \n  \nstop slave;  \nmysql&gt; show slave status \\G\n</code></pre>\n<p>The output shows key details like:</p>\n<ul>\n<li><code>Master_Log_File</code>: mysql-bin.006818</li>\n<li><code>Exec_Master_Log_Pos</code>: 234867554</li>\n<li><code>Slave_IO_Running</code>: No</li>\n<li><code>Slave_SQL_Running</code>: No</li>\n</ul>\n<p>Note the important fields for configuring MySQL replication, particularly the log file and position.</p>\n";
-      window.originalMarkdown = "\n# MySQL New Slave Settings\n\nI can never remember which fields are important. It's the `master_log_file` and `master_log_pos` but these come from `show slave status`. `Master_log_file` is from `master_log_file` but `master_log_pos` comes from `exec_master_pos`.\n\n```sql\nCHANGE MASTER TO master_user = 'dbp3',   \n  MASTER_PASSWORD='...',   \n  master_log_file=\"mysql-bin.006818\",   \n  master_log_pos=234867554;  \n  \nstop slave;  \nmysql> show slave status \\G\n```\n\nThe output shows key details like:\n- `Master_Log_File`: mysql-bin.006818\n- `Exec_Master_Log_Pos`: 234867554\n- `Slave_IO_Running`: No\n- `Slave_SQL_Running`: No\n\nNote the important fields for configuring MySQL replication, particularly the log file and position.";
+      // Store only the text content for AI transformation (no scripts)
+      const originalMarkdownForAI = "\n# MySQL New Slave Settings\n\nI can never remember which fields are important. It's the `master_log_file` and `master_log_pos` but these come from `show slave status`. `Master_log_file` is from `master_log_file` but `master_log_pos` comes from `exec_master_pos`.\n\n```sql\nCHANGE MASTER TO master_user = 'dbp3',   \n  MASTER_PASSWORD='...',   \n  master_log_file=\"mysql-bin.006818\",   \n  master_log_pos=234867554;  \n  \nstop slave;  \nmysql> show slave status \\G\n```\n\nThe output shows key details like:\n- `Master_Log_File`: mysql-bin.006818\n- `Exec_Master_Log_Pos`: 234867554\n- `Slave_IO_Running`: No\n- `Slave_SQL_Running`: No\n\nNote the important fields for configuring MySQL replication, particularly the log file and position.";
       
       function restoreOriginal() {
-        document.getElementById('post-content').innerHTML = window.originalContent;
-        document.getElementById('loading-indicator').style.display = 'none';
+        // Simply reload the page to restore original content
+        window.location.reload();
       }
       
       async function transformPost(tone) {
@@ -118,7 +117,7 @@ mysql&gt; show slave status \G
             },
             body: JSON.stringify({
               tone: tone,
-              content: window.originalMarkdown
+              content: originalMarkdownForAI
             })
           });
           
@@ -177,7 +176,7 @@ mysql&gt; show slave status \G
   </main>
 
   <footer>
-    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@f00f1ea</p>
+    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@16c8dab</p>
   </footer>
 </body>
 </html>

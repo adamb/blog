@@ -79,13 +79,12 @@
     </div>
     
     <script>
-      // Store original content and markdown
-      window.originalContent = "<h1>USB Tethering to Mac with Nexus 5</h1>\n<p><em>February 14, 2014 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2014%2F02%2Fusb-tethering-to-mac-with-nexus-5%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p>I've been traveling around Australia for over a month now. Mainly we've been staying at hotels where we have some sort of status, Hyatt, Hilton, Sheraton, etc., and the WiFi has been free.</p>\n<p>This week I'm staying where they outsource the WiFi to <a href=\"http://www.tomizone.com/\">Tomizone</a>, which is fine, but they only let you use one device at a time, even though I've paid $60 for my 9 days. I'm using a Nexus 5 lately so I've been using the N5 on the WiFi and then tethering to my Mac over bluetooth. This works but seems a bit flakey. Occasionally the Mac can't connect and I have to turn the N5 bluetooth on and back off.</p>\n<p>Luckily Android also supports USB Tethering. Great, but of course the Mac doesn't support that out of the box. A quick search lead me to <a href=\"http://joshuawise.com/horndis\">HoRNDIS by Joshua Wise</a>. It works like a charm. Extra bonus, my N5 is always charging while I'm using the Mac.</p>\n<p>Thanks to Mactip for the great <a href=\"http://www.mactip.net/usb-tethering-a-mac-to-an-android-phone/\">Android Mac USB Tethering howto guide</a>.</p>\n<p>Next step, turn on internet sharing and get my Kindle and Nexus 7 on the net through the Mac via WiFi!</p>\n";
-      window.originalMarkdown = "\n# USB Tethering to Mac with Nexus 5\n\nI've been traveling around Australia for over a month now. Mainly we've been staying at hotels where we have some sort of status, Hyatt, Hilton, Sheraton, etc., and the WiFi has been free.\n\nThis week I'm staying where they outsource the WiFi to [Tomizone](http://www.tomizone.com/), which is fine, but they only let you use one device at a time, even though I've paid $60 for my 9 days. I'm using a Nexus 5 lately so I've been using the N5 on the WiFi and then tethering to my Mac over bluetooth. This works but seems a bit flakey. Occasionally the Mac can't connect and I have to turn the N5 bluetooth on and back off.\n\nLuckily Android also supports USB Tethering. Great, but of course the Mac doesn't support that out of the box. A quick search lead me to [HoRNDIS by Joshua Wise](http://joshuawise.com/horndis). It works like a charm. Extra bonus, my N5 is always charging while I'm using the Mac.\n\nThanks to Mactip for the great [Android Mac USB Tethering howto guide](http://www.mactip.net/usb-tethering-a-mac-to-an-android-phone/).\n\nNext step, turn on internet sharing and get my Kindle and Nexus 7 on the net through the Mac via WiFi!";
+      // Store only the text content for AI transformation (no scripts)
+      const originalMarkdownForAI = "\n# USB Tethering to Mac with Nexus 5\n\nI've been traveling around Australia for over a month now. Mainly we've been staying at hotels where we have some sort of status, Hyatt, Hilton, Sheraton, etc., and the WiFi has been free.\n\nThis week I'm staying where they outsource the WiFi to [Tomizone](http://www.tomizone.com/), which is fine, but they only let you use one device at a time, even though I've paid $60 for my 9 days. I'm using a Nexus 5 lately so I've been using the N5 on the WiFi and then tethering to my Mac over bluetooth. This works but seems a bit flakey. Occasionally the Mac can't connect and I have to turn the N5 bluetooth on and back off.\n\nLuckily Android also supports USB Tethering. Great, but of course the Mac doesn't support that out of the box. A quick search lead me to [HoRNDIS by Joshua Wise](http://joshuawise.com/horndis). It works like a charm. Extra bonus, my N5 is always charging while I'm using the Mac.\n\nThanks to Mactip for the great [Android Mac USB Tethering howto guide](http://www.mactip.net/usb-tethering-a-mac-to-an-android-phone/).\n\nNext step, turn on internet sharing and get my Kindle and Nexus 7 on the net through the Mac via WiFi!";
       
       function restoreOriginal() {
-        document.getElementById('post-content').innerHTML = window.originalContent;
-        document.getElementById('loading-indicator').style.display = 'none';
+        // Simply reload the page to restore original content
+        window.location.reload();
       }
       
       async function transformPost(tone) {
@@ -106,7 +105,7 @@
             },
             body: JSON.stringify({
               tone: tone,
-              content: window.originalMarkdown
+              content: originalMarkdownForAI
             })
           });
           
@@ -165,7 +164,7 @@
   </main>
 
   <footer>
-    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@f00f1ea</p>
+    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@16c8dab</p>
   </footer>
 </body>
 </html>

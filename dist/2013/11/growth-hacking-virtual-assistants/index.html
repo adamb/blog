@@ -94,13 +94,12 @@
     </div>
     
     <script>
-      // Store original content and markdown
-      window.originalContent = "<h1>Growth Hacking with Virtual Assistants</h1>\n<p><em>November 15, 2013 • <span class=\"visit-counter\" hx-get=\"/visits?path=%2F2013%2F11%2Fgrowth-hacking-virtual-assistants%2F\" hx-trigger=\"load\" hx-swap=\"innerHTML\">\n<span class=\"visit-count\">👁️ Loading...</span>\n</span></em></p>\n<p><img src=\"/assets/growth-hacking-virtual-assistants.jpg\" alt=\"Virtual Assistants\"></p>\n<p>I first encountered virtual assistants (VAs) through Tim Ferriss's book &quot;The Four Hour Work Week&quot;. My initial attempt to hire a VA in 2007 was challenging, particularly when trying to find storage for a Tesla Roadster.</p>\n<p>In 2013, I revisited the VA strategy with a specific goal: finding and contacting Amazon product reviewers for IP cameras to potentially promote my service, Sensr.net.</p>\n<h2>Approach</h2>\n<ul>\n<li>Identified popular camera models on Sensr.net</li>\n<li>Created a detailed spreadsheet for tracking reviewer information</li>\n<li>Used oDesk to hire virtual assistants</li>\n<li>Paid between $1.17 and $3.33 per hour</li>\n<li>Hired three VAs to research different camera models</li>\n</ul>\n<h2>Goal</h2>\n<p>Compile a list of around 100 people interested in IP cameras, with the ultimate aim of reaching out personally to potentially get them to review or mention Sensr.net.</p>\n<p>I'm seeking additional suggestions on effectively using virtual assistants and leveraging the collected data.</p>\n<h2>Key Insights</h2>\n<ul>\n<li>Careful preparation is crucial when working with VAs</li>\n<li>Quality of work varies with price</li>\n<li>Targeted research can help identify potential marketing opportunities</li>\n</ul>\n";
-      window.originalMarkdown = "\n# Growth Hacking with Virtual Assistants\n\n![Virtual Assistants](/assets/growth-hacking-virtual-assistants.jpg)\n\nI first encountered virtual assistants (VAs) through Tim Ferriss's book \"The Four Hour Work Week\". My initial attempt to hire a VA in 2007 was challenging, particularly when trying to find storage for a Tesla Roadster.\n\nIn 2013, I revisited the VA strategy with a specific goal: finding and contacting Amazon product reviewers for IP cameras to potentially promote my service, Sensr.net.\n\n## Approach\n\n- Identified popular camera models on Sensr.net\n- Created a detailed spreadsheet for tracking reviewer information\n- Used oDesk to hire virtual assistants\n- Paid between $1.17 and $3.33 per hour\n- Hired three VAs to research different camera models\n\n## Goal\n\nCompile a list of around 100 people interested in IP cameras, with the ultimate aim of reaching out personally to potentially get them to review or mention Sensr.net.\n\nI'm seeking additional suggestions on effectively using virtual assistants and leveraging the collected data.\n\n## Key Insights\n\n- Careful preparation is crucial when working with VAs\n- Quality of work varies with price\n- Targeted research can help identify potential marketing opportunities";
+      // Store only the text content for AI transformation (no scripts)
+      const originalMarkdownForAI = "\n# Growth Hacking with Virtual Assistants\n\n![Virtual Assistants](/assets/growth-hacking-virtual-assistants.jpg)\n\nI first encountered virtual assistants (VAs) through Tim Ferriss's book \"The Four Hour Work Week\". My initial attempt to hire a VA in 2007 was challenging, particularly when trying to find storage for a Tesla Roadster.\n\nIn 2013, I revisited the VA strategy with a specific goal: finding and contacting Amazon product reviewers for IP cameras to potentially promote my service, Sensr.net.\n\n## Approach\n\n- Identified popular camera models on Sensr.net\n- Created a detailed spreadsheet for tracking reviewer information\n- Used oDesk to hire virtual assistants\n- Paid between $1.17 and $3.33 per hour\n- Hired three VAs to research different camera models\n\n## Goal\n\nCompile a list of around 100 people interested in IP cameras, with the ultimate aim of reaching out personally to potentially get them to review or mention Sensr.net.\n\nI'm seeking additional suggestions on effectively using virtual assistants and leveraging the collected data.\n\n## Key Insights\n\n- Careful preparation is crucial when working with VAs\n- Quality of work varies with price\n- Targeted research can help identify potential marketing opportunities";
       
       function restoreOriginal() {
-        document.getElementById('post-content').innerHTML = window.originalContent;
-        document.getElementById('loading-indicator').style.display = 'none';
+        // Simply reload the page to restore original content
+        window.location.reload();
       }
       
       async function transformPost(tone) {
@@ -121,7 +120,7 @@
             },
             body: JSON.stringify({
               tone: tone,
-              content: window.originalMarkdown
+              content: originalMarkdownForAI
             })
           });
           
@@ -180,7 +179,7 @@
   </main>
 
   <footer>
-    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@f00f1ea</p>
+    <p><a href="/about">About</a> • © 2025 Adam Beguelin • main@16c8dab</p>
   </footer>
 </body>
 </html>

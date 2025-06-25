@@ -150,6 +150,9 @@ postDataList.forEach((post) => {
   const htmlBody = md.render(contentWithDate);
   
   // Create tone transformation buttons
+  // Remove script tags from HTML for tone transformation storage
+  const htmlBodyForTone = htmlBody.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+  
   const toneButtons = `
     <div class="tone-controls">
       <h3>🎭 Transform This Post</h3>
@@ -173,13 +176,12 @@ postDataList.forEach((post) => {
     </div>
     
     <script>
-      // Store original content and markdown
-      window.originalContent = ${JSON.stringify(htmlBody)};
-      window.originalMarkdown = ${JSON.stringify(post.mdContent)};
+      // Store only the text content for AI transformation (no scripts)
+      const originalMarkdownForAI = ${JSON.stringify(post.mdContent.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ''))};
       
       function restoreOriginal() {
-        document.getElementById('post-content').innerHTML = window.originalContent;
-        document.getElementById('loading-indicator').style.display = 'none';
+        // Simply reload the page to restore original content
+        window.location.reload();
       }
       
       async function transformPost(tone) {
@@ -200,7 +202,7 @@ postDataList.forEach((post) => {
             },
             body: JSON.stringify({
               tone: tone,
-              content: window.originalMarkdown
+              content: originalMarkdownForAI
             })
           });
           
