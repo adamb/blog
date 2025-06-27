@@ -9,6 +9,10 @@ name = "blog"
 binding = "VISIT_LOG"
 id = "1938ea1eb1184f289d783cbe40148911"
 
+[[env.production.kv_namespaces]]
+binding = "BLOG_SUBS"
+id = "4ceaedf3e8244825bdd1d94fe3f76f8e"
+
 [env.production.ai]
 binding = "AI"
 
@@ -17,6 +21,10 @@ binding = "AI"
 [[env.preview.kv_namespaces]]
 binding = "VISIT_LOG"
 id = "d12e5a239be045dd84af2473e771be07"
+
+[[env.preview.kv_namespaces]]
+binding = "BLOG_SUBS"
+id = "4ceaedf3e8244825bdd1d94fe3f76f8e"
 
 [env.preview.ai]
 binding = "AI"

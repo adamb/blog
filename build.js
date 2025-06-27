@@ -257,9 +257,13 @@ postDataList.forEach((post) => {
     </script>
   `;
 
+  // Subscription form temporarily disabled
+  const subscriptionForm = '';
+
   const articleContent = `<article>
     <div id="post-content">${htmlBody}</div>
     ${toneButtons}
+    ${subscriptionForm}
     <div class="back-link"><a href="/">← Back to Home</a></div>
   </article>`;
 

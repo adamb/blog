@@ -58,3 +58,36 @@ Transformations use Cloudflare Workers AI (@cf/meta/llama-3.1-8b-instruct) with 
 - KV namespace `VISIT_LOG` for tracking and AI caching (different bindings for preview/production)
 - Workers AI binding for content transformation
 - Functions at `/functions/` provide API endpoints for tracking, analytics, and AI transformation
+
+## Email Subscription System
+
+The blog includes an HTMX-powered email subscription system with email verification:
+
+### Components
+- `functions/api/subscribe.js` - Handles email subscription and sends verification email
+- `functions/api/verify.js` - Handles email verification from verification links
+- `functions/api/unsubscribe.js` - Handles one-click unsubscribe via secure tokens
+- Uses `BLOG_SUBS` KV namespace for subscriber management
+- Email verification system with separate verification and unsubscribe tokens
+
+### KV Storage Structure
+- Key: `email:user@example.com`
+- Value: `{subscribed: boolean, verified: boolean, verifyToken: string, unsubscribeToken: string, subscribedAt: string, verifiedAt: string|null, unsubscribedAt: string|null}`
+
+### Flow
+1. User submits email → stored as unverified with verification token
+2. Verification email sent with link to `/api/verify?token=abc123&email=user@example.com`
+3. User clicks verification link → email marked as verified
+4. Only verified subscribers receive newsletter emails
+5. All emails include unsubscribe link with separate unsubscribe token
+
+### Integration
+- Subscription forms use HTMX for seamless UX
+- Forms can be embedded in any page/post template
+- Verification and unsubscribe links work without JavaScript
+- No additional verification needed for unsubscribe (one-click compliance)
+
+### Testing
+- Uses Vitest with mocked email services
+- Local development uses mock email sending
+- KV operations tested with in-memory mocks

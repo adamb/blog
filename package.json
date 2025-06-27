@@ -4,9 +4,14 @@
   "type": "module",
   "scripts": {
     "build": "node build.js",
-    "build:drafts": "node build.js --buildDrafts"
+    "build:drafts": "node build.js --buildDrafts",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "markdown-it": "^13.0.1"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0"
   }
 }
