@@ -6,6 +6,8 @@ slug: "vanguard-vs-schwab"
 
 # Vanguard vs Schwab: Investing and Banking
 
+![Vanguard Boxers](/assets/vangboxers.jpg)
+
 I have used Vanguard for many years.  It's the low cost leader and mainly I'm investing in boring things like VOO, VEU, and BOXX. More on BOXX in another post. 
 
 Here are my nitpicks about Schwab and Vanguard.
