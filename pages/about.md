@@ -17,6 +17,8 @@ You’ll find posts here on:
 - Side projects that may or may not go anywhere  
 - Glitches in the Matrix  
 
+I wrote a book called [Silicon Valley Stories](https://www.amazon.com/Silicon-Valley-Stories-sampler-startups-ebook/dp/B086YP97DS/) — a collection of startup tales and tech industry observations.
+
 This is part lab notebook, part public experiment. I don’t write for SEO — I write for myself, and for the kind of curious, slightly obsessive people I’d want to grab coffee with.
 
 If that’s you, welcome.
