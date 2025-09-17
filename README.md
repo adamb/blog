@@ -85,6 +85,7 @@ The transform feature allows readers to rewrite blog posts in different tones:
 
 ### Build Commands
 - `npm run build` - Converts markdown files to HTML and regenerates index.html
+- `npm run build:drafts` - Same as build but includes draft posts (equivalent to `node build.js --buildDrafts`)
 
 ### Local Development
 - Functions run locally with mock responses when AI binding unavailable
