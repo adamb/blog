@@ -6,7 +6,7 @@ slug: "starter-villain-review"
 
 # Starter Villain: John Scalzi's Delightfully Chaotic Superhero Comedy
 
-![Starter Villain Book Cover](https://m.media-amazon.com/images/I/71gKXQeRxOL._SY466_.jpg)
+![Starter Villain Book Cover](/assets/starter.jpeg)
 
 John Scalzi's *Starter Villain* is exactly what you'd expect from the author who brought us *Old Man's War* and *The Kaiju Preservation Society* — a clever, fast-paced romp that takes familiar tropes and spins them into something fresh and genuinely entertaining.
 
