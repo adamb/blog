@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MySQL New Slave Settings - Adam's Blog</title>
+  <title>Thoughts on Programming Languages - Adam's Blog</title>
   <link rel="icon" type="image/png" href="/assets/blogico.png" />
   <link rel="shortcut icon" href="/assets/blogico.png" />
   <link rel="apple-touch-icon" href="/assets/blogico.png" />
@@ -46,27 +46,16 @@
 
   <main id="content">
     <article>
-    <div id="post-content"><h1>MySQL New Slave Settings</h1>
-<p><em>December 20, 2016 • <span class="visit-counter" hx-get="/visits?path=%2F2016%2F12%2Fmysql-new-slave-settings%2F" hx-trigger="load" hx-swap="innerHTML">
+    <div id="post-content"><h1>Should I Learn Rust?</h1>
+<p><em>September 17, 2025 • <span class="visit-counter" hx-get="/visits?path=%2F2025%2F09%2Fthoughts-on-programming-languages%2F" hx-trigger="load" hx-swap="innerHTML">
 <span class="visit-count">👁️ Loading...</span>
 </span></em></p>
-<p>I can never remember which fields are important. It's the <code>master_log_file</code> and <code>master_log_pos</code> but these come from <code>show slave status</code>. <code>Master_log_file</code> is from <code>master_log_file</code> but <code>master_log_pos</code> comes from <code>exec_master_pos</code>.</p>
-<pre><code class="language-sql">CHANGE MASTER TO master_user = 'dbp3',   
-  MASTER_PASSWORD='...',   
-  master_log_file=&quot;mysql-bin.006818&quot;,   
-  master_log_pos=234867554;  
-  
-stop slave;  
-mysql&gt; show slave status \G
-</code></pre>
-<p>The output shows key details like:</p>
-<ul>
-<li><code>Master_Log_File</code>: mysql-bin.006818</li>
-<li><code>Exec_Master_Log_Pos</code>: 234867554</li>
-<li><code>Slave_IO_Running</code>: No</li>
-<li><code>Slave_SQL_Running</code>: No</li>
-</ul>
-<p>Note the important fields for configuring MySQL replication, particularly the log file and position.</p>
+<p>I have a WhatsApp group for our Holberton grads and one grad was talking about learning Rust.  Another grad commented that he's actively looking for jobs and rarely sees Rust as a requirement.  It made me think and I wrote up this response which I thought was worth turning into a post.</p>
+<p>It’s good to think about what languages will get you jobs. But it’s also good work on things that interest you.  If Rust sparks your interest, there is a better chance you’ll dig into it and get good at it.  This is the <em>Build it and they will come</em> philosophy.</p>
+<p>So if you like Rust, spend some time on it. But realize that the job market is smaller.  Smaller isn’t always bad.  If there are fewer Rust developers, then maybe there is also less competition for jobs coding in Rust….</p>
+<p>I spent a while playing with Go and liked it a lot.  C the first language I loved and Go is very similar.  I like Go because it’s efficient and compiles down to an executable that you can just move around.  No need to worry about a bunch of environment setup.</p>
+<p>Also look at tooling around the language.  I liked Ruby a lot but then got trapped by all the tooling to run it.  Keeping all the versions up to date or consistent was a big pain.  It eventually killed the company that I built on top of it because I couldn’t deal with updating the software under it.  But Ruby is also a fun and elegant language.</p>
+<p>Also think about the fact that once you have deployed something, like a product or a website, how much work it will be to maintain that.  We built <a href="https://sensr.net">Sensr.net</a> on Ruby and Linux and it ran over a decade.   What killed it was the SSL standard moved ahead and the libraries and software we used were so out of date that I couldn’t move the stack to a new version of Linux that had the latest SSL.  We were storing the underlying data on AWS S3 and S3 stopped supporting the version of SSL we had. Interesting lesson!</p>
 </div>
     
     <div class="tone-controls">
@@ -92,7 +81,7 @@ mysql&gt; show slave status \G
     
     <script>
       // Store only the text content for AI transformation (no scripts)
-      const originalMarkdownForAI = "\n# MySQL New Slave Settings\n\nI can never remember which fields are important. It's the `master_log_file` and `master_log_pos` but these come from `show slave status`. `Master_log_file` is from `master_log_file` but `master_log_pos` comes from `exec_master_pos`.\n\n```sql\nCHANGE MASTER TO master_user = 'dbp3',   \n  MASTER_PASSWORD='...',   \n  master_log_file=\"mysql-bin.006818\",   \n  master_log_pos=234867554;  \n  \nstop slave;  \nmysql> show slave status \\G\n```\n\nThe output shows key details like:\n- `Master_Log_File`: mysql-bin.006818\n- `Exec_Master_Log_Pos`: 234867554\n- `Slave_IO_Running`: No\n- `Slave_SQL_Running`: No\n\nNote the important fields for configuring MySQL replication, particularly the log file and position.";
+      const originalMarkdownForAI = "\n# Should I Learn Rust?\n\nI have a WhatsApp group for our Holberton grads and one grad was talking about learning Rust.  Another grad commented that he's actively looking for jobs and rarely sees Rust as a requirement.  It made me think and I wrote up this response which I thought was worth turning into a post.\n\nIt’s good to think about what languages will get you jobs. But it’s also good work on things that interest you.  If Rust sparks your interest, there is a better chance you’ll dig into it and get good at it.  This is the *Build it and they will come* philosophy.  \n\nSo if you like Rust, spend some time on it. But realize that the job market is smaller.  Smaller isn’t always bad.  If there are fewer Rust developers, then maybe there is also less competition for jobs coding in Rust….\n\nI spent a while playing with Go and liked it a lot.  C the first language I loved and Go is very similar.  I like Go because it’s efficient and compiles down to an executable that you can just move around.  No need to worry about a bunch of environment setup.  \n\nAlso look at tooling around the language.  I liked Ruby a lot but then got trapped by all the tooling to run it.  Keeping all the versions up to date or consistent was a big pain.  It eventually killed the company that I built on top of it because I couldn’t deal with updating the software under it.  But Ruby is also a fun and elegant language.\n\nAlso think about the fact that once you have deployed something, like a product or a website, how much work it will be to maintain that.  We built [Sensr.net](https://sensr.net) on Ruby and Linux and it ran over a decade.   What killed it was the SSL standard moved ahead and the libraries and software we used were so out of date that I couldn’t move the stack to a new version of Linux that had the latest SSL.  We were storing the underlying data on AWS S3 and S3 stopped supporting the version of SSL we had. Interesting lesson!\n";
       
       function restoreOriginal() {
         // Simply reload the page to restore original content
