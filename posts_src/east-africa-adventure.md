@@ -2,6 +2,7 @@
 title: "Exploring East Africa: Rwanda, Uganda, Ethiopia, and Kenya"
 date: "2025-09-17"
 slug: "east-africa-adventure"
+draft: true
 ---
 
 # Exploring East Africa: Rwanda, Uganda, Ethiopia, and Kenya
