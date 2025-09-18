@@ -6,7 +6,9 @@ slug: "thoughts-on-programming-languages"
 
 # Should I Learn Rust?
 
-I have a WhatsApp group for our Holberton grads and one grad was talking about learning Rust.  Another grad commented that he's actively looking for jobs and rarely sees Rust as a requirement.  It made me think and I wrote up this response which I thought was worth turning into a post.
+I have a WhatsApp group for our [Holberton](https://www.holbertonschoolpr.com/) grads and one grad was talking about learning Rust.  Another grad commented that he's actively looking for jobs and rarely sees Rust as a requirement.  It made me think and I wrote up this response which I thought was worth turning into a post.
+
+![Programming language doodles](/assets/thoughts.png)
 
 It’s good to think about what languages will get you jobs. But it’s also good to work on things that interest you.  If Rust sparks your interest, there is a better chance you’ll dig into it and get good at it.  This is the *Build it and they will come* philosophy.  
 
