@@ -1,4 +1,4 @@
-# HTMX Static Blog with AI Content Transformation
+ls # HTMX Static Blog with AI Content Transformation
 
 A static blog built with HTMX that generates HTML from markdown files and includes AI-powered content transformation features.
 
