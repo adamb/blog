@@ -7,6 +7,8 @@ draft: false
 
 # Stuff I like
 
+![Uptime Kuma Dashboard](/assets/kuma-screenshot.png)
+
 It's rare that things really give you joy.  But when they do, it's fun to share them. 
 
 So I'm going to start putting together a list of things that I like. 
