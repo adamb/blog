@@ -30,3 +30,7 @@ I find the Qwen2.5 via ollama is a bit slower but it doesn't seem that different
 
 ![Claude Code running with Qwen3 via Ollama](/assets/claude-ollama-qwen3.png)
 
+## Official Documentation
+
+For more information about using Claude Code with Ollama, check out the [official documentation](https://docs.ollama.com/integrations/claude-code). Here's the official docs for using Ollama and Claude together, which provides detailed instructions on setup, configuration, and troubleshooting.
+
