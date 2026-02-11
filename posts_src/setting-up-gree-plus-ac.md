@@ -64,6 +64,13 @@ The Gree+ app seems to do better if there is a static IP.  If you like having a 
 
 I name each of my units `foo‑ac`. I also link them to Alexa so I can turn the ACs on or off, or adjust them, via Alexa or Home Assistant.
 
+## Model Details
+
+I wrote this guide using **gpt‑oss:120b‑cloud** via the Ollama CLI (`ollama launch claude --model gpt-oss:120b-cloud`). If you’d like to run Claude with a different backend, see my previous post [Claude Code with Ollama Cloud](/2026/01/claude-ollama/).
+
 ### Enjoy
 
+
 That’s it – you now have a fully integrated Gree+ AC that you can control from anywhere the app works. Enjoy the chill!
+
+*Partially written by Claude Code.*
