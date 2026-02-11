@@ -17,7 +17,7 @@ Just got two of my Gree+ ACs back on the Wi‑Fi again – a quick reminder that
 5. **Join the *IOT* network** – This is the network you want the AC to be on.  I have an IOT network for all my devices.
 6. **Open the Gree+ app** – the app will automatically detect the new device. If it doesn’t, you can add it manually.
    - **Automatic** – tap *Add Device* → the app should list the AC by its MAC address.
-   - **Manual** – choose *Add Manually*, then join the wifi SSID named something like `Gree_XXXXXX` mine was just the mac id of the AC
+   - **Manual** – choose *Add Manually*, then join the Wi‑Fi SSID named something like `Gree_XXXXXX`; the SSID is usually the MAC address of the AC
 7. **AC joins the app** – you’ll see a confirmation and the unit appears in your device list.
 8. **Rename the unit** – give it a meaningful name (e.g., “Jade’s Bedroom AC”).
 9. **Reserve a static lease on your router** – optional but handy; assign a fixed IP and give the host a friendly name.
@@ -34,7 +34,7 @@ On the remote, find the *mode‑wifi* button (usually the button with a Wi‑Fi 
 
 ### 3. Wait a Couple of Minutes
 
-Give the unit about **2 minutes** to finish booting. It's ready when you see the weird SSID wifi network.. During this time the AC’s internal Wi‑Fi chipset is preparing a temporary network.
+Give the unit about **2 minutes** to finish booting. It’s ready when you see the weird SSID Wi‑Fi network. During this time the AC’s internal Wi‑Fi chipset is preparing a temporary network.
 
 ### 4‑5. Connect Your Phone
 
@@ -46,8 +46,8 @@ Give the unit about **2 minutes** to finish booting. It's ready when you see t
 Open the **Gree+** app (available on iOS and Android). The app will usually discover the device automatically and show the MAC address and SSID. If it doesn’t:
 
 1. Tap **Add Device** → **Manual**.
-2. Join the **SSID** for the AC (the weird mac address one)
-3. Use the wifi password from the app, 12345678 I think.  My phone rememebered this from before.
+2. Join the **SSID** for the AC (the weird MAC address one)
+3. Use the Wi‑Fi password from the app (e.g., 12345678). My phone remembered this from before.
 4. Confirm and let the app push the Wi‑Fi credentials to the AC.
 
 ### 7. Verify the Connection
@@ -62,7 +62,7 @@ Tap the unit’s entry, choose **Rename**, and give it a name that makes sense i
 
 The Gree+ app seems to do better if there is a static IP.  If you like having a predictable IP address (useful for automations or Home Assistant), log into your router, locate the DHCP lease table, and reserve the AC’s MAC address to a fixed IP. Give the host a friendly name matching what you set in the app.
 
-I'm calling all mine foo-ac for each AC.  I also link to Alexa so I can turn off or adjust the ACs using Alexa or Home Assistant.
+I name each of my units `foo‑ac`. I also link them to Alexa so I can turn the ACs on or off, or adjust them, via Alexa or Home Assistant.
 
 ### Enjoy
 
