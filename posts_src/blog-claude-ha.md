@@ -6,7 +6,7 @@ slug: "claude-code-home-assistant"
 
 # How I Use Claude Code to Manage My Home Assistant Setup
 
-I run a Home Assistant instance that controls lighting, AC, security cameras, a mesh network, and more across my property in Puerto Rico. Over the past few months, I've developed a workflow where I use [Claude Code](https://claude.ai/code) — Anthropic's CLI tool — as my primary interface for building and debugging HA automations. Here's what a typical session looks like.
+I run a [Home Assistant](https://www.home-assistant.io/) instance that controls lighting, AC, security cameras, a mesh network, and more across my property in Puerto Rico. Over the past few months, I've developed a workflow where I use [Claude Code](https://claude.ai/code) — Anthropic's CLI tool — as my primary interface for building and debugging HA automations. Here's what a typical session looks like.
 
 ## The Setup
 
