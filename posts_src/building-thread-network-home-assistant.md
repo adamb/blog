@@ -30,7 +30,7 @@ Before you can use Thread devices, you need a Thread border router. This is a de
 
 ### Thread Border Router Options
 
-The [ZBT-2](https://www.nabucasa.com/config/zbt-2/) is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using [Apple Home Pod mini](https://www.apple.com/homepod-mini/) and [Eero](https://eero.com/), but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
+The [Home Assistant ZBT-2](https://www.home-assistant.io/) is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using [Apple HomePod mini](https://www.apple.com/homepod-mini/) and [Eero](https://eero.com/), but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
 
 
 ## Adding Your First Thread Device
@@ -41,9 +41,9 @@ Once your border router is set up, adding Thread devices to Home Assistant is st
 
 Popular Thread-enabled devices include:
 
-- **Lighting**: [Philips Hue](https://www.philips-hue.com/en-us/products) (newer models with Thread support)
+- **Lighting**: [Philips Hue](https://www.philips-hue.com/) (newer models)
 - **Switches & Outlets**: [Eve Energy](https://www.evehome.com/)
-- **Sensors**: [Eve Room](https://www.evehome.com/), [Eve Weather](https://www.evehome.com/)
+- **Sensors**: [Eve Home](https://www.evehome.com/)
 
 
 ## Building a Reliable Thread Network
@@ -56,8 +56,8 @@ Thread works extremely well once it's configured properly, but it's very differe
 
 My setup is based on:
 
-- **[Home Assistant Green](https://www.home-assistant.io/green/)**
-- **[Home Assistant ZBT-2](https://www.nabucasa.com/config/zbt-2/)** USB radio configured as a **Thread Border Router**
+- **[Home Assistant Green](https://green.home-assistant.io/)**
+- **[Home Assistant ZBT-2](https://www.home-assistant.io/)** USB radio configured as a **Thread Border Router**
 
 The ZBT-2 supports both Zigbee and Thread, but I'm using it exclusively for Thread. Be sure it's flashed and configured appropriately for your intended use.
 
@@ -71,7 +71,7 @@ To build a strong mesh, you need **mains-powered Thread devices**, which act as 
 
 ## Devices That Worked Well
 
-### [Inovelli White Series Switches](https://inovelli.com/products/white-series-2-in-1-switch)
+### [Inovelli White Series Switches](https://inovelli.com/)
 
 These became the backbone of my Thread network.
 
@@ -85,7 +85,7 @@ I also installed several Eve Thread switches.
 
 Like the Inovelli switches, they're mains-powered and strengthen the mesh. They integrated cleanly into Home Assistant and have been very reliable.
 
-### [Onvis Thread Smart Plugs](https://www.onvis.com/)
+### [Onvis Thread Smart Plugs](https://www.onvis.com.cn/)
 
 These turned out to be incredibly useful.
 
@@ -95,13 +95,13 @@ When I found a weak spot in the network, I could simply move one of the smart pl
 
 They're probably the fastest and easiest way to improve a Thread network without changing wiring.
 
-### [Smartwings Roller Shades](https://www.smartwingshome.com/)
+### [Smartwings Roller Shades](https://www.smartwings.com/)
 
 I've had great success with Smartwings Thread roller shades.
 
 They're motorized, mains-powered, and integrate seamlessly into Home Assistant. Since they're installed throughout the house, they act as additional Thread Routers and strengthen the mesh network. Plus, they're actually useful—I can control them from automations or manually via HA, which is a nice bonus.
 
-### [IKEA Thread Devices](https://www.ikea.com/us/en/search/products/?q=thread)
+### [IKEA Thread Devices](https://www.ikea.com/)
 
 Once the backbone of the mesh was in place, I started adding battery-powered devices such as:
 
