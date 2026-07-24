@@ -6,7 +6,7 @@ slug: "building-thread-network-home-assistant"
 
 # Building a Thread network for Home Assistant
 
-Thread is a low-power mesh networking protocol that's becoming the backbone of modern smart homes. If you've been thinking about adding Thread devices to your Home Assistant setup, here's what you need to know. Learn more at the [Thread Group official website](https://www.threadgroup.org/).
+Thread is a low-power mesh networking protocol that's becoming the backbone of modern smart homes. If you've been thinking about adding Thread devices to your Home Assistant setup, here's what you need to know. Learn more at the <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>.
 
 ## What is Thread?
 
@@ -30,7 +30,7 @@ Before you can use Thread devices, you need a Thread border router. This is a de
 
 ### Thread Border Router Options
 
-The [Home Assistant ZBT-2](https://www.home-assistant.io/) is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using [Apple HomePod mini](https://www.apple.com/homepod-mini/) and [Eero](https://eero.com/), but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
+The <a href="https://www.home-assistant.io/" target="_blank">Home Assistant ZBT-2</a> is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using <a href="https://www.apple.com/homepod-mini/" target="_blank">Apple HomePod mini</a> and <a href="https://eero.com/" target="_blank">Eero</a>, but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
 
 
 ## Adding Your First Thread Device
@@ -41,9 +41,9 @@ Once your border router is set up, adding Thread devices to Home Assistant is st
 
 Popular Thread-enabled devices include:
 
-- **Lighting**: [Philips Hue](https://www.philips-hue.com/) (newer models)
-- **Switches & Outlets**: [Eve Energy](https://www.evehome.com/)
-- **Sensors**: [Eve Home](https://www.evehome.com/)
+- **Lighting**: <a href="https://www.philips-hue.com/" target="_blank">Philips Hue</a> (newer models)
+- **Switches & Outlets**: <a href="https://www.evehome.com/" target="_blank">Eve Energy</a>
+- **Sensors**: <a href="https://www.evehome.com/" target="_blank">Eve Home</a>
 
 
 ## Building a Reliable Thread Network
@@ -56,8 +56,8 @@ Thread works extremely well once it's configured properly, but it's very differe
 
 My setup is based on:
 
-- **[Home Assistant Green](https://green.home-assistant.io/)**
-- **[Home Assistant ZBT-2](https://www.home-assistant.io/)** USB radio configured as a **Thread Border Router**
+- **<a href="https://green.home-assistant.io/" target="_blank">Home Assistant Green</a>**
+- **<a href="https://www.home-assistant.io/" target="_blank">Home Assistant ZBT-2</a>** USB radio configured as a **Thread Border Router**
 
 The ZBT-2 supports both Zigbee and Thread, but I'm using it exclusively for Thread. Be sure it's flashed and configured appropriately for your intended use.
 
@@ -71,7 +71,7 @@ To build a strong mesh, you need **mains-powered Thread devices**, which act as 
 
 ## Devices That Worked Well
 
-### [Inovelli White Series Switches](https://inovelli.com/)
+### <a href="https://inovelli.com/" target="_blank">Inovelli White Series Switches</a>
 
 These became the backbone of my Thread network.
 
@@ -79,13 +79,13 @@ Because they're permanently powered, they act as Thread Routers and create a sol
 
 Highly recommended if you're wiring a new house or replacing switches anyway.
 
-### [Eve Switches](https://www.evehome.com/)
+### <a href="https://www.evehome.com/" target="_blank">Eve Switches</a>
 
 I also installed several Eve Thread switches.
 
 Like the Inovelli switches, they're mains-powered and strengthen the mesh. They integrated cleanly into Home Assistant and have been very reliable.
 
-### [Onvis Thread Smart Plugs](https://www.onvis.com.cn/)
+### <a href="https://www.onvis.com.cn/" target="_blank">Onvis Thread Smart Plugs</a>
 
 These turned out to be incredibly useful.
 
@@ -95,13 +95,13 @@ When I found a weak spot in the network, I could simply move one of the smart pl
 
 They're probably the fastest and easiest way to improve a Thread network without changing wiring.
 
-### [Smartwings Roller Shades](https://www.smartwings.com/)
+### <a href="https://www.smartwings.com/" target="_blank">Smartwings Roller Shades</a>
 
 I've had great success with Smartwings Thread roller shades.
 
 They're motorized, mains-powered, and integrate seamlessly into Home Assistant. Since they're installed throughout the house, they act as additional Thread Routers and strengthen the mesh network. Plus, they're actually useful—I can control them from automations or manually via HA, which is a nice bonus.
 
-### [IKEA Thread Devices](https://www.ikea.com/)
+### <a href="https://www.ikea.com/" target="_blank">IKEA Thread Devices</a>
 
 Once the backbone of the mesh was in place, I started adding battery-powered devices such as:
 
