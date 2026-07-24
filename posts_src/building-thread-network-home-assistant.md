@@ -10,7 +10,9 @@ Thread is a low-power mesh networking protocol that's becoming the backbone of m
 
 ## What is Thread?
 
-Thread is an IP-based wireless protocol designed specifically for IoT devices. It's built on IEEE 802.15.4 and creates a self-healing mesh network where devices can relay messages through each other to extend range and reliability. Unlike Wi-Fi, Thread is designed for low-power devices that can run for years on batteries.
+Thread is an IP-based wireless protocol designed specifically for IoT devices. It's built on IEEE 802.15.4 and creates a self-healing mesh network where devices can relay messages through each other to extend range and reliability. Unlike Wi-Fi, Thread is designed for low-power devices that can run for years on batteries.  
+
+The fact that it gives out IPv6 addresses is cool but frankly not something you will deal with at all.  I didn't even know this until today when researching this blog entry.
 
 ## Why Thread?
 
