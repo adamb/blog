@@ -12,15 +12,15 @@ Thread is a low-power mesh networking protocol that's becoming the backbone of m
 
 Thread is an IP-based wireless protocol designed specifically for IoT devices. It's built on IEEE 802.15.4 and creates a self-healing mesh network where devices can relay messages through each other to extend range and reliability. Unlike Wi-Fi, Thread is designed for low-power devices that can run for years on batteries.  
 
-The fact that it gives out IPv6 addresses is cool but frankly not something you will deal with at all.  I didn't even know this until today when researching this blog entry.
+The fact that it gives out IPv6 addresses is cool but frankly not something you will deal with at all. I didn't even know this until today, when I was researching this blog post.
 
 ## Why Thread?
 
-It's the new standard and by adopting it you future proof your setup. It's also very fast and very good at supporting low power devices, like door sensors, motion sensors, etc.
+It's the new standard and by adopting it you future-proof your setup. It's also very fast and very good at supporting low power devices, like door sensors, motion sensors, etc.
 
 ## Drawbacks of Thread
 
-It's new so devices are still a little flaky and more expensive than Wi-Fi or Zigbee versions.  I still get excited when I hear about new Thread devices.  I've also made the mistake of buying Matter/WiFi switches thinking that they were _Thread_ so beware.  Just because it says Matter doesn't mean it's Thread.  
+It's new so devices are still a little flaky and more expensive than Wi-Fi or Zigbee versions.  I still get excited when I hear about new Thread devices.  I've also made the mistake of buying Matter/Wi-Fi switches thinking that they were _Thread_ so beware.  Just because it says Matter doesn't mean it's Thread.  
 
 It's also a lot of work to make sure you've covered your home properly. But Wi-Fi or Zigbee have the same issues.  
 
@@ -30,7 +30,9 @@ Before you can use Thread devices, you need a Thread border router. This is a de
 
 ### Thread Border Router Options
 
-The <a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank">Home Assistant ZBT-2</a> is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using <a href="https://www.apple.com/homepod-mini/" target="_blank">Apple HomePod mini</a> and <a href="https://eero.com/" target="_blank">Eero</a>, but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
+The <a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank">Home Assistant ZBT-2</a> is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a Thread network using <a href="https://www.apple.com/homepod-mini/" target="_blank">Apple HomePod mini</a> and <a href="https://eero.com/" target="_blank">Eero</a>, but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and a 1.5-meter cable so you can place it away from hardware interference.
+
+<a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank"><img src="/assets/zbt-2.webp" alt="Home Assistant Connect ZBT-2 border router on its base with cable" style="max-width: 100%; height: auto; margin: 10px 0;"></a>
 
 
 ## Adding Your First Thread Device
@@ -43,7 +45,7 @@ Popular Thread-enabled devices include:
 
 - **Lighting**: <a href="https://www.philips-hue.com/" target="_blank">Philips Hue</a> (newer models)
 - **Switches & Outlets**: <a href="https://www.evehome.com/" target="_blank">Eve Energy</a>
-- **Sensors**: <a href="https://www.evehome.com/" target="_blank">Eve Home</a>
+- **Sensors**: <a href="https://www.evehome.com/" target="_blank">Eve Motion &amp; Eve Door/Window</a>
 
 
 ## Building a Reliable Thread Network
