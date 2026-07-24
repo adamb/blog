@@ -95,7 +95,7 @@ When I found a weak spot in the network, I could simply move one of the smart pl
 
 They're probably the fastest and easiest way to improve a Thread network without changing wiring.
 
-### [Smartwings Roller Shades](https://www.smartwings.com/)
+### [Smartwings Roller Shades](https://www.smartwingshome.com/)
 
 I've had great success with Smartwings Thread roller shades.
 
