@@ -105,7 +105,7 @@ They're motorized, mains-powered, and integrate seamlessly into Home Assistant. 
 
 Once the backbone of the mesh was in place, I started adding battery-powered Thread devices. These are my favorite devices:
 
-- <a href="https://www.ikea.com/us/en/p/myggbett-door-window-sensor-smart-white-50584449/" target="_blank">MYGGBETT Door/Window Sensor</a>
+- <a href="https://www.ikea.com/us/en/p/myggbett-door-window-sensor-smart-60617641/" target="_blank">MYGGBETT Door/Window Sensor</a>
 - <a href="https://www.ikea.com/es/en/p/myggspray-wireless-motion-sensor-smart-70604186/" target="_blank">MYGGSPRAY Wireless Motion Sensor</a>
 - <a href="https://www.ikea.com/us/en/manuals/bilresa-remote-control-white-smart-dual-button__AA-2664471-1-100.pdf" target="_blank">BILRESA Remote Control with Dual Button</a>
 - <a href="https://www.ikea.com/us/en/manuals/bilresa-remote-control-kit-scroll-wheel-mixed-colors__AA-2668729-3-100.pdf" target="_blank">BILRESA Remote Control with Scroll Wheel</a>
