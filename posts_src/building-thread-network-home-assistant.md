@@ -87,7 +87,7 @@ I also installed several Eve Thread switches.
 
 Like the Inovelli switches, they're mains-powered and strengthen the mesh. They integrated cleanly into Home Assistant and have been very reliable.
 
-### <a href="https://www.onvis.com.cn/" target="_blank">Onvis Thread Smart Plugs</a>
+### <a href="https://www.amazon.com/Onvis-Matter-Thread-Outlet-Google/dp/B0FRFPV5FK" target="_blank">Onvis Thread Smart Plugs</a>
 
 These turned out to be incredibly useful.
 
