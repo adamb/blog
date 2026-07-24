@@ -30,7 +30,7 @@ Before you can use Thread devices, you need a Thread border router. This is a de
 
 ### Thread Border Router Options
 
-The <a href="https://www.home-assistant.io/" target="_blank">Home Assistant ZBT-2</a> is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using <a href="https://www.apple.com/homepod-mini/" target="_blank">Apple HomePod mini</a> and <a href="https://eero.com/" target="_blank">Eero</a>, but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
+The <a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank">Home Assistant ZBT-2</a> is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using <a href="https://www.apple.com/homepod-mini/" target="_blank">Apple HomePod mini</a> and <a href="https://eero.com/" target="_blank">Eero</a>, but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
 
 
 ## Adding Your First Thread Device
@@ -57,7 +57,7 @@ Thread works extremely well once it's configured properly, but it's very differe
 My setup is based on:
 
 - **<a href="https://green.home-assistant.io/" target="_blank">Home Assistant Green</a>**
-- **<a href="https://www.home-assistant.io/" target="_blank">Home Assistant ZBT-2</a>** USB radio configured as a **Thread Border Router**
+- **<a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank">Home Assistant ZBT-2</a>** USB radio configured as a **Thread Border Router**
 
 The ZBT-2 supports both Zigbee and Thread, but I'm using it exclusively for Thread. Be sure it's flashed and configured appropriately for your intended use.
 
