@@ -14,13 +14,13 @@ Thread is an IP-based wireless protocol designed specifically for IoT devices. I
 
 ## Why Thread?
 
-It's the new standard and by adopting it you future proof your setup.  Also it's very fast and very good at supporting low power devices, like door sensors, motion sensors, etc.
+It's the new standard and by adopting it you future proof your setup. It's also very fast and very good at supporting low power devices, like door sensors, motion sensors, etc.
 
-## Why Not Thread
+## Drawbacks of Thread
 
-It's new so devices are still a little flakey and more expensive that wifi or zigbee versions.  I still get excited when I hear about new Thread devices.  I've also made the mistake of buying Matter/WiFi switches thinking that they were _Thread_ so beware.  Just because it says Matter doesn't mean it's Thread.  
+It's new so devices are still a little flaky and more expensive than Wi-Fi or Zigbee versions.  I still get excited when I hear about new Thread devices.  I've also made the mistake of buying Matter/WiFi switches thinking that they were _Thread_ so beware.  Just because it says Matter doesn't mean it's Thread.  
 
-It's also a lot of work to make sure you've covered your home properly.  But WiFi or Zigbee have the same issues.  
+It's also a lot of work to make sure you've covered your home properly. But Wi-Fi or Zigbee have the same issues.  
 
 ## Getting Started with Thread in Home Assistant
 
@@ -28,7 +28,7 @@ Before you can use Thread devices, you need a Thread border router. This is a de
 
 ### Thread Border Router Options
 
-The ZBT-2 is the latest boarder router from the team behind Home Assistant, so that's the one I recommend getting.   If you're building a HA system, this is the way to go.  You can also build a thread network using Apple and Eero, but if you're doing HA you should stick with the ZBT-2.  It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware inteferance.
+The ZBT-2 is the latest border router from the team behind Home Assistant, so that's the one I recommend getting. If you're building a HA system, this is the way to go. You can also build a thread network using Apple and Eero, but if you're doing HA you should stick with the ZBT-2. It comes with a sturdy little base and 1.5 meter long cable so you can place it away from hardware interference.
 
 
 ## Adding Your First Thread Device
@@ -39,12 +39,12 @@ Once your border router is set up, adding Thread devices to Home Assistant is st
 
 Popular Thread-enabled devices include:
 
-- **Lighting**: Eve Outdoor Cam, Nanoleaf Essentials, Philips Hue (newer models)
+- **Lighting**: Nanoleaf Essentials, Philips Hue (newer models)
 - **Switches & Outlets**: Eve Energy, Nanoleaf Thread Enabled devices
 - **Sensors**: Eve Room, Eve Weather
 
 
-# Building a Reliable Thread Network for Home Assistant
+## Building a Reliable Thread Network
 
 One of the more challenging parts of my Home Assistant setup wasn't Wi-Fi, it was building a reliable Thread network.
 
@@ -93,6 +93,12 @@ When I found a weak spot in the network, I could simply move one of the smart pl
 
 They're probably the fastest and easiest way to improve a Thread network without changing wiring.
 
+### Smartwings Roller Shades
+
+I've had great success with Smartwings Thread roller shades.
+
+They're motorized, mains-powered, and integrate seamlessly into Home Assistant. Since they're installed throughout the house, they act as additional Thread Routers and strengthen the mesh network. Plus, they're actually useful—I can control them from automations or manually via HA, which is a nice bonus.
+
 ### IKEA Battery Devices
 
 Once the backbone of the mesh was in place, I started adding battery-powered devices such as:
@@ -133,7 +139,7 @@ If you're starting a Home Assistant Thread network:
 
 ## Final Thoughts
 
-Once everything was in place, the network became extremely stable and super fast.  
+Once everything was in place, the network became extremely stable and super fast.
 
 The biggest mistake people make is treating Thread like Wi-Fi or Zigbee and expecting a few battery devices to magically create a mesh.
 
@@ -142,9 +148,9 @@ Think of mains-powered devices as the infrastructure and battery-powered devices
 
 ## Troubleshooting Tips
 
-You typically don't add a naked Thread device.  Thread is the communication layer, but typcially devices will use Matter to connect to your system at a higher level.
+You typically don't add a naked Thread device. Thread is the communication layer, but typically devices will use Matter to connect to your system at a higher level.
 
-It's really Matter that matters.  It's the applciation layer that you see.  The Thread stuff is mostly hidden from the user.  When you add a Matter/Thread device, you scan a QR code using the HA companion app, this is the iOS or Android app.   The phone then uses it's bluetooth interface to configure the underlying Thread radio in the device.  Mostly this works until it doesn't.  Be very careful when clicking around in the HA Thread Boarder Router section.  Resetting the ZBT-2 can result in having to re-add all your thread devices, which can be quite painful.
+It's really Matter that matters. It's the application layer that you see. The Thread stuff is mostly hidden from the user. When you add a Matter/Thread device, you scan a QR code using the HA companion app, this is the iOS or Android app. The phone then uses its bluetooth interface to configure the underlying Thread radio in the device. Mostly this works until it doesn't. Be very careful when clicking around in the HA Thread Border Router section. Resetting the ZBT-2 can result in having to re-add all your thread devices, which can be quite painful.
 
-I made this mistake fairly early on and had to redo all my devices.  Currently I have about 30 Thread devices.  I would not want to have to reset all of these.  
+I made this mistake fairly early on and had to redo all my devices. Currently I have about 30 Thread devices. I would not want to have to reset all of these.  
 
