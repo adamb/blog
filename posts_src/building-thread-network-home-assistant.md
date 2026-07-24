@@ -108,8 +108,11 @@ Once the backbone of the mesh was in place, I started adding battery-powered Thr
 - <a href="https://www.ikea.com/us/en/p/myggbett-door-window-sensor-smart-60617641/" target="_blank">MYGGBETT Door/Window Sensor</a>
   <a href="https://www.ikea.com/us/en/p/myggbett-door-window-sensor-smart-60617641/" target="_blank"><img src="/assets/myggbett.jpeg" alt="MYGGBETT Door/Window Sensor" style="max-width: 200px; margin: 10px 0;"></a>
 - <a href="https://www.ikea.com/es/en/p/myggspray-wireless-motion-sensor-smart-70604186/" target="_blank">MYGGSPRAY Wireless Motion Sensor</a>
-- <a href="https://www.ikea.com/us/en/manuals/bilresa-remote-control-white-smart-dual-button__AA-2664471-1-100.pdf" target="_blank">BILRESA Remote Control with Dual Button</a>
-- <a href="https://www.ikea.com/us/en/manuals/bilresa-remote-control-kit-scroll-wheel-mixed-colors__AA-2668729-3-100.pdf" target="_blank">BILRESA Remote Control with Scroll Wheel</a>
+  <a href="https://www.ikea.com/es/en/p/myggspray-wireless-motion-sensor-smart-70604186/" target="_blank"><img src="/assets/myggspray.jpeg" alt="MYGGSPRAY Wireless Motion Sensor" style="max-width: 200px; margin: 10px 0;"></a>
+- <a href="https://www.ikea.com/us/en/p/bilresa-remote-control-white-smart-dual-button-80617876/" target="_blank">BILRESA Remote Control with Dual Button</a>
+  <a href="https://www.ikea.com/us/en/p/bilresa-remote-control-white-smart-dual-button-80617876/" target="_blank"><img src="/assets/bilresa-dual-button.jpeg" alt="BILRESA Remote Control with Dual Button" style="max-width: 200px; margin: 10px 0;"></a>
+- <a href="https://www.ikea.com/us/en/p/bilresa-remote-control-white-smart-scroll-wheel-70617457/" target="_blank">BILRESA Remote Control with Scroll Wheel</a>
+  <a href="https://www.ikea.com/us/en/p/bilresa-remote-control-white-smart-scroll-wheel-70617457/" target="_blank"><img src="/assets/bilresa-scroll-wheel.jpeg" alt="BILRESA Remote Control with Scroll Wheel" style="max-width: 200px; margin: 10px 0;"></a>
 
 These have worked well, but only because the underlying mesh was already strong.
 
