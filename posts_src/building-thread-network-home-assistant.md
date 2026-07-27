@@ -185,7 +185,14 @@ Both protocols ultimately speak IP (Thread is natively IPv6 end-to-end), but how
 - **Wi-Fi** is built for high-throughput (megabits to gigabits). Radios consume massive amounts of power maintaining associations, listening for beacons, and handling heavy TCP/IP stack overhead. Putting a battery-powered motion sensor on Wi-Fi is a maintenance nightmare.
 - **Thread** runs on IEEE 802.15.4 radios at roughly 250 kbps in the 2.4 GHz band. It features Sleepy End Devices (SEDs) that sleep 99% of the time, waking asynchronously to push tiny packets through the nearest mesh router. That's how a door sensor runs for years on a coin cell.
 
-### 3. Provisioning and "Joining"
+### 3. Spectrum & Channel Planning
+
+Both protocols occupy the crowded 2.4 GHz ISM band, but how they carve up and utilize that spectrum reveals why putting too many devices on Wi-Fi creates a radio bottleneck while Thread handles it cleanly.
+
+- **Wi-Fi** uses massive 20 MHz wide channels. Because the 2.4 GHz band is only about 83 MHz wide, there are only three non-overlapping channels (1, 6, and 11). If you have multiple access points or neighboring houses, they're forced to share or stomp on those same three wide channels—high contention, airtime congestion, and dropped packets if your channel planning isn't pristine.
+- **Thread** carves the same 2.4 GHz spectrum into sixteen distinct 802.15.4 channels (numbered 11 through 26) that are only 2 MHz wide each. Because Thread channels are one-tenth the width of Wi-Fi channels, you can deliberately pick one that sits neatly in the gaps between your heavy Wi-Fi channels (for example, running Thread on channel 15 or 20 if your Wi-Fi is parked tightly on channels 1, 6, and 11). Thread networks can also scan the spectrum at boot, evaluate noise and interference, and select the cleanest channel—if interference spikes, a Thread mesh can even migrate its entire operation to a new channel without breaking your device associations.
+
+### 4. Provisioning and "Joining"
 
 - **Wi-Fi** is straightforward: you provision a client by pushing an SSID and a pre-shared WPA2/3 key directly to the device so it can authenticate with your router.
 - **Thread** has no broadcast SSIDs. A fresh-out-of-the-box Thread device has no network key and doesn't listen for a beacon. Instead, commissioning relies on an out-of-band Bluetooth Low Energy (BLE) handshake. When you scan a Matter QR code in Home Assistant, your phone connects via BLE, pushes the cryptographically secure Thread Operational Dataset (including the Master Key and Extended PAN ID) directly into the device, and tells it to drop its Bluetooth radio and join the mesh.
@@ -193,19 +200,4 @@ Both protocols ultimately speak IP (Thread is natively IPv6 end-to-end), but how
 ### Summary for Network Engineers
 
 Think of Wi-Fi as your core local infrastructure—high bandwidth, heavy lifting, wired backhauls. Think of Thread as a dedicated, low-power sub-network anchored by a Border Router (like the ZBT-2) that bridges isolated 802.15.4 mesh packets directly onto your standard local IP network without bogging down your Wi-Fi access points with dozens of chatty, low-bandwidth IoT clients.
-
-## Radio Channels: Thread vs. Wi-Fi
-
-Both protocols occupy the crowded 2.4 GHz ISM band, but how they carve up and utilize that spectrum reveals why putting too many devices on Wi-Fi creates a radio bottleneck while Thread handles it cleanly.
-
-### 1. Wi-Fi Channels (Broad Pipes, Heavy Overlap)
-
-- **The Layout**: In the 2.4 GHz band, Wi-Fi uses massive 20 MHz wide channels. Because the entire band is only about 83 MHz wide, there are only three non-overlapping channels (1, 6, and 11).
-- **The Reality**: If you have multiple access points or neighboring houses, they are forced to share or stomp on those same three wide channels. When a Wi-Fi IoT device transmits, it occupies a huge chunk of the spectrum, causing high contention, airtime congestion, and dropped packets if your channel planning isn't pristine.
-
-### 2. Thread Channels (Narrow Slices, Precision Mesh)
-
-- **The Layout**: Thread operates on IEEE 802.15.4 radios, which carve the 2.4 GHz spectrum into sixteen distinct channels (numbered 11 through 26) that are only 2 MHz wide each.
-- **The Spectrum Efficiency**: Because Thread channels are one-tenth the width of Wi-Fi channels, you can deliberately pick an 802.15.4 channel that sits neatly in the gaps between your heavy Wi-Fi channels (for example, running Thread on channel 15 or 20 if your Wi-Fi is parked tightly on channels 1, 6, and 11).
-- **Dynamic Agility**: Thread networks can scan the spectrum at boot, evaluate noise and interference, and select the cleanest channel. If interference spikes, a Thread mesh can even migrate its entire operation to a new channel without breaking your device associations.
 
