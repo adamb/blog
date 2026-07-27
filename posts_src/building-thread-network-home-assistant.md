@@ -6,11 +6,11 @@ slug: "building-thread-network-home-assistant"
 
 # Building a Thread network for Home Assistant
 
-Thread is a low-power mesh networking protocol that's becoming the backbone of modern smart homes.   I've always liked the idea of an automated home.  In fact I started a company called Sensr.net that I thought would be part of this ecosystem but we never got there.  
+Thread is a low-power mesh networking protocol that's becoming the backbone of modern smart homes. I've always liked the idea of an automated home.  In fact I started a company called Sensr.net that I thought would be part of this ecosystem but we never got there.  
 
-Anyway, I liked the Alexa home automation stuff and still use it along side Home Assistant.  But I'm trying to get off the clould as much as possible so I started replacing all my devices with Thread and HA instead of Wifi and Alexa.  
+Anyway, I liked the Alexa home automation stuff and still use it alongside Home Assistant.  But I'm trying to get off the cloud as much as possible so I started replacing all my devices with Thread and HA instead of Wi-Fi and Alexa.  
 
-Why Thread?  It's fast and good for low power.  I wanted to detect doors being opened, because we live on the beach in Puerto Rico I want to keep all the doors to the storage rooms closed.  I ran across the IKEA Thread enabled door sensors so that was the driving use case for me.  Thread is designed for low power and IKEA devices are great, they are cheap and have a big name behind them.  The fact that IKEA is all in on Thread made it very attractive for me.  
+Why Thread?  It's fast and good for low power.  I wanted to detect doors being opened, because we live on the beach in Puerto Rico, I want to keep all the doors to the storage rooms closed.  I ran across the IKEA Thread enabled door sensors so that was the driving use case for me.  Thread is designed for low power and IKEA devices are great: they're cheap and have a big name behind them.  The fact that IKEA is all in on Thread made it very attractive for me.  
 
 Thread is basically like Wi-Fi but on a different radio frequency optimized for low-power devices. Learn more at the <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>.
 
@@ -39,7 +39,7 @@ The <a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank">Home 
 
 ## Adding Your First Thread Device
 
-Once your border router is set up, adding Thread devices to Home Assistant is straightforward. Use the Home Assistant Companion app (<a href="https://apps.apple.com/us/app/home-assistant/id1099568401" target="_blank">iOS</a> or <a href="https://play.google.com/store/apps/details?id=io.homeassistant.companion.android" target="_blank">Android</a>). You scan a QR code on the device and this tells Matter the details. Your phone then talks BLE to the device and sends over the network info. Mostly this works, seamlessly. I did have an issue at one point where my iPhone didn't have the right creds for some reason. I spent a lot of time trying to get my iPhone to re-sync with HA. There have been a lot of updates to the iOS app and HA since then, so hopefully these gotchas are worked out.
+Once your border router is set up, adding Thread devices to Home Assistant is straightforward. Use the Home Assistant Companion app (<a href="https://apps.apple.com/us/app/home-assistant/id1099568401" target="_blank">iOS</a> or <a href="https://play.google.com/store/apps/details?id=io.homeassistant.companion.android" target="_blank">Android</a>). You scan a QR code on the device and this tells Matter the details. Your phone then talks BLE to the device and sends over the network info. Mostly this works seamlessly. I did have an issue at one point where my iPhone didn't have the right creds for some reason. I spent a lot of time trying to get my iPhone to re-sync with HA. There have been a lot of updates to the iOS app and HA since then, so hopefully these gotchas are worked out.
 
 ## Common Thread Devices
 
@@ -85,7 +85,7 @@ Highly recommended if you're wiring a new house or replacing switches anyway.
 
 ### <a href="https://www.evehome.com/" target="_blank">Eve Switches</a>
 
-I also installed several Eve Thread switches.  They are simpler than the Inovelli, but pretty sold as Thread routers.
+I also installed several Eve Thread switches.  They are simpler than the Inovelli, but pretty solid as Thread routers.
 
 Like the Inovelli switches, the Eve switches are mains-powered and strengthen the mesh. They integrated cleanly into Home Assistant and have been very reliable.
 
@@ -97,7 +97,7 @@ They're inexpensive, easy to move around, and can be plugged into different loca
 
 When I found a weak spot in the network, I could simply move one of the smart plugs to reinforce that area.
 
-They're probably the fastest and easiest way to improve a Thread network without changing wiring.  However, I have had one fail in the first few months and another one seems to be flakey.  I might need to try another brand.  I use one to control my yard lights and another one to control a dehumidfier.  
+They're probably the fastest and easiest way to improve a Thread network without changing wiring.  However, I have had one fail in the first few months and another one seems to be flaky.  I might need to try another brand.  I use one to control my yard lights and another one to control a dehumidifier.  
 
 ### <a href="https://www.smartwingshome.com/pages/work-with-matter-over-thread" target="_blank">Smartwings Roller Shades</a>
 
@@ -122,13 +122,13 @@ These have worked well, but only because the underlying mesh was already strong.
 
 ## Fun with BILRESA Automations
 
-I use the BILRESA remote as a bedside companion to control the lights and the ACs.  It's one of the few automations my wife acutally uses.  Press and hold on the buttons will raise or lower the temp on the AC (and softly announces the new temp on a bedroom speaker).  Single tap on the top buttton turns off the bedroom lights.  The bottom button turns off the adjacent bathroom lights.  Finally double tap on either of them will turn the AC on or off.
+I use the BILRESA remote as a bedside companion to control the lights and the ACs.  It's one of the few automations my wife actually uses.  Press and hold on the buttons will raise or lower the temp on the AC (and softly announces the new temp on a bedroom speaker).  Single tap on the top button turns off the bedroom lights.  The bottom button turns off the adjacent bathroom lights.  Finally double tap on either of them will turn the AC on or off.
 
 ## Coverage Was Harder Than Expected
 
 My house has concrete walls and reinforced concrete construction.
 
-Those same materials made Wi-Fi difficult, I ended up deploying six Wi-Fi access points throughout the property.
+Those same materials made Wi-Fi difficult—I ended up deploying six Wi-Fi access points throughout the property.
 
 Thread faced many of the same challenges.
 
