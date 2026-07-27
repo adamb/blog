@@ -12,9 +12,7 @@ Anyway, I liked the Alexa home automation stuff and still use it along side Home
 
 Why Thread?  It's fast and good for low power.  I wanted to detect doors being opened, because we live on the beach in Puerto Rico I want to keep all the doors to the storage rooms closed.  I ran across the IKEA Thread enabled door sensors so that was the driving use case for me.  Thread is designed for low power and IKEA devices are great, they are cheap and have a big name behind them.  The fact that IKEA is all in on Thread made it very attractive for me.  
 
-Thread is basically like Wifi but on a 
-
- <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>.
+Thread is basically like Wi-Fi but on a different radio frequency optimized for low-power devices. Learn more at the <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>.
 
 ## What is Thread?
 
@@ -27,8 +25,6 @@ The fact that it gives out IPv6 addresses is cool but frankly not something you 
 It's new so devices are still a little flaky and more expensive than Wi-Fi or Zigbee versions.  I still get excited when I hear about new Thread devices.  I've also made the mistake of buying Matter/Wi-Fi switches thinking that they were _Thread_ so beware.  Just because it says Matter doesn't mean it's Thread.  
 
 It's also a lot of work to make sure you've covered your home properly. But Wi-Fi or Zigbee have the same issues.  
-
-Being new, the firmware in the devices and in Home 
 
 ## Getting Started with Thread in Home Assistant
 
@@ -43,9 +39,7 @@ The <a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank">Home 
 
 ## Adding Your First Thread Device
 
-Once your border router is set up, adding Thread devices to Home Assistant is straightforward.  Use the Home Assistant companion app.  You scan a QR code on the device and this tells Matter the details.  Your phone then talks BLE to the device and sends over the network info.  Mostly this works, seamlessly.  I did have an issue at one point where my iPhone didn't have the right creds for some reason.  I spent a lot of time trying to get my iPhone to re-sync with HA.  There have been a lot of updates to the iOS app and HA since then, so hopefully these gotchas are worked out.  
-
-TODO:  Add links for ios and andriod
+Once your border router is set up, adding Thread devices to Home Assistant is straightforward. Use the Home Assistant Companion app (<a href="https://apps.apple.com/us/app/home-assistant/id1099568401" target="_blank">iOS</a> or <a href="https://play.google.com/store/apps/details?id=io.homeassistant.companion.android" target="_blank">Android</a>). You scan a QR code on the device and this tells Matter the details. Your phone then talks BLE to the device and sends over the network info. Mostly this works, seamlessly. I did have an issue at one point where my iPhone didn't have the right creds for some reason. I spent a lot of time trying to get my iPhone to re-sync with HA. There have been a lot of updates to the iOS app and HA since then, so hopefully these gotchas are worked out.
 
 ## Common Thread Devices
 
