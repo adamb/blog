@@ -77,7 +77,7 @@ To build a strong mesh, you need **mains-powered Thread devices**, which act as 
 
 ### <a href="https://inovelli.com/" target="_blank">Inovelli White Series Switches</a>
 
-These became the backbone of my Thread network.  The hardware is top notch and has lots of cool options for automations.  You can do gestures like 'double tap' either on up or down padels.  It has an LED bar that you can program for status. I have mine at the front door flash red if the gate is left open for too long...
+These became the backbone of my Thread network.  The hardware is top notch and has lots of cool options for automations.  You can do gestures like 'double tap' either on up or down paddles.  It has an LED bar that you can program for status. I have mine at the front door flash red if the gate is left open for too long...
 
 Because they're permanently powered, they act as Thread Routers and create a solid mesh. Since light switches are naturally distributed throughout the house, they make excellent infrastructure devices.
 
@@ -165,7 +165,7 @@ Think of mains-powered devices as the infrastructure and battery-powered devices
 
 You typically don't add a naked Thread device. Thread is the communication layer, but typically devices will use Matter to connect to your system at a higher level.
 
-It's really Matter that matters. It's the application layer that you see. The Thread stuff is mostly hidden from the user. When you add a Matter/Thread device, you scan a QR code using the HA companion app, this is the iOS or Android app. The phone then uses its bluetooth interface to configure the underlying Thread radio in the device. Mostly this works until it doesn't. *Be very careful when clicking around in the HA Thread Border Router section. Resetting the ZBT-2 can result in having to re-add all your thread devices, which can be quite painful.*
+It's really Matter that matters. It's the application layer that you see. The Thread stuff is mostly hidden from the user. When you add a Matter/Thread device, you scan a QR code using the HA companion app, this is the iOS or Android app. The phone then uses its Bluetooth interface to configure the underlying Thread radio in the device. Mostly this works until it doesn't. *Be very careful when clicking around in the HA Thread Border Router section. Resetting the ZBT-2 can result in having to re-add all your thread devices, which can be quite painful.*
 
 I made this mistake fairly early on and had to redo all my devices. Currently I have about 30 Thread devices. I would not want to have to reset all of these.  
 
