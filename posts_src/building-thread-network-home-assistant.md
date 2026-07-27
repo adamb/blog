@@ -103,9 +103,7 @@ They're probably the fastest and easiest way to improve a Thread network without
 
 I've had great success with Smartwings Matter over Thread roller shades.
 
-They're battery powered and connect easily into Home Assistant. I can control them from automations or manually via HA, which is a nice bonus.  I installed them without the guide wire, and so it's important that they are not down when the wind is up.  I use the ECOWITT weather station to monitor the wind and put the shads up if it's too windy.  
-
-TODO: link ECOWITT to this url https://www.amazon.com/dp/B0BM3BQ425 
+They're battery powered and connect easily into Home Assistant. I can control them from automations or manually via HA, which is a nice bonus.  I installed them without the guide wire, and so it's important that they are not down when the wind is up.  I use the <a href="https://www.amazon.com/dp/B0BM3BQ425" target="_blank">ECOWITT weather station</a> to monitor the wind and put the shades up if it's too windy. 
 
 ### <a href="https://www.ikea.com/" target="_blank">IKEA Thread Devices</a>
 
