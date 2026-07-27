@@ -169,6 +169,31 @@ It's really Matter that matters. It's the application layer that you see. The Th
 
 I made this mistake fairly early on and had to redo all my devices. Currently I have about 30 Thread devices. I would not want to have to reset all of these.  
 
+## Thread vs. Wi-Fi: Under the Hood
+
+If you already know how a standard IP network works—routers, SSIDs, DHCP, NAT, and Wi-Fi access points—understanding Thread is mostly a matter of unlearning star-topology assumptions.
+
+Both protocols ultimately speak IP (Thread is natively IPv6 end-to-end), but how they manage the physical airspace and device states are completely different.
+
+### 1. Topology: Star vs. Mesh
+
+- **Wi-Fi** is a hub-and-spoke star network. Every client device must maintain a direct, high-frequency RF link back to a central Access Point. If a device is too far from an AP or blocked by concrete walls, it drops off. To scale coverage, you add more APs, wire them back to your local switch, and manage roaming.
+- **Thread** is a native, self-healing mesh. Every mains-powered node acts as a router. Packets hop dynamically from device to device. You don't wire up a backhaul for every endpoint; the mesh figures out its own paths around interference and physical obstacles.
+
+### 2. Radio & Power Profiles
+
+- **Wi-Fi** is built for high-throughput (megabits to gigabits). Radios consume massive amounts of power maintaining associations, listening for beacons, and handling heavy TCP/IP stack overhead. Putting a battery-powered motion sensor on Wi-Fi is a maintenance nightmare.
+- **Thread** runs on IEEE 802.15.4 radios at roughly 250 kbps in the 2.4 GHz band. It features Sleepy End Devices (SEDs) that sleep 99% of the time, waking asynchronously to push tiny packets through the nearest mesh router. That's how a door sensor runs for years on a coin cell.
+
+### 3. Provisioning and "Joining"
+
+- **Wi-Fi** is straightforward: you provision a client by pushing an SSID and a pre-shared WPA2/3 key directly to the device so it can authenticate with your router.
+- **Thread** has no broadcast SSIDs. A fresh-out-of-the-box Thread device has no network key and doesn't listen for a beacon. Instead, commissioning relies on an out-of-band Bluetooth Low Energy (BLE) handshake. When you scan a Matter QR code in Home Assistant, your phone connects via BLE, pushes the cryptographically secure Thread Operational Dataset (including the Master Key and Extended PAN ID) directly into the device, and tells it to drop its Bluetooth radio and join the mesh.
+
+### Summary for Network Engineers
+
+Think of Wi-Fi as your core local infrastructure—high bandwidth, heavy lifting, wired backhauls. Think of Thread as a dedicated, low-power sub-network anchored by a Border Router (like the ZBT-2) that bridges isolated 802.15.4 mesh packets directly onto your standard local IP network without bogging down your Wi-Fi access points with dozens of chatty, low-bandwidth IoT clients.
+
 ## Radio Channels: Thread vs. Wi-Fi
 
 Both protocols occupy the crowded 2.4 GHz ISM band, but how they carve up and utilize that spectrum reveals why putting too many devices on Wi-Fi creates a radio bottleneck while Thread handles it cleanly.
