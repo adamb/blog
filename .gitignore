@@ -6,3 +6,4 @@ node_modules
 .aider*
 .env
 dist/
+.DS_Store
