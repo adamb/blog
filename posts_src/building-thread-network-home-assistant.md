@@ -46,8 +46,8 @@ Once your border router is set up, adding Thread devices to Home Assistant is st
 Popular Thread-enabled devices include:
 
 - **Lighting**: <a href="https://www.philips-hue.com/" target="_blank">Philips Hue</a> (newer models)
-- **Switches & Outlets**: <a href="https://inovelli.com/" target="_blank">Inovelli White Series</a>, <a href="https://www.amazon.com/Onvis-Matter-Thread-Outlet-Google/dp/B0FRFPV5FK" target="_blank">Onvis Smart Plugs</a>
-- **Sensors**: <a href="https://www.ikea.com/" target="_blank">IKEA Thread Devices</a>
+- **Switches & Outlets**: <a href="https://inovelli.com/collections/inovelli-white-series" target="_blank">Inovelli White Series</a>, <a href="https://www.amazon.com/Onvis-Matter-Thread-Outlet-Google/dp/B0FRFPV5FK" target="_blank">Onvis Smart Plugs</a>
+- **Sensors**: <a href="https://www.ikea.com/us/en/search/?q=matter" target="_blank">IKEA Thread Devices</a>
 
 
 ## Building a Reliable Thread Network
