@@ -18,7 +18,7 @@ Thread is basically like Wi-Fi but on a different radio frequency optimized for 
 
 Thread is an IP-based wireless protocol designed specifically for IoT devices. It's built on IEEE 802.15.4 and creates a self-healing mesh network where devices can relay messages through each other to extend range and reliability. Unlike Wi-Fi, Thread is designed for low-power devices that can run for years on batteries.  
 
-The fact that it gives out IPv6 addresses is cool but frankly not something you will deal with at all. I didn't even know this until today, when I was researching this blog post.
+The fact that it gives out IPv6 addresses is cool but frankly not something you will deal with at all. I didn't even know this until today, when I was researching this blog post.  See the <a href="#under-the-hood">Thread vs. Wi-Fi: Under the Hood</a> section below.
 
 ## Drawbacks of Thread
 
@@ -169,6 +169,7 @@ It's really Matter that matters. It's the application layer that you see. The Th
 
 I made this mistake fairly early on and had to redo all my devices. Currently I have about 30 Thread devices. I would not want to have to reset all of these.  
 
+<a id="under-the-hood"></a>
 ## Thread vs. Wi-Fi: Under the Hood
 
 If you already know how a standard IP network works—routers, SSIDs, DHCP, NAT, and Wi-Fi access points—understanding Thread is mostly a matter of unlearning star-topology assumptions.
