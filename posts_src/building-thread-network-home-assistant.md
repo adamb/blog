@@ -6,7 +6,15 @@ slug: "building-thread-network-home-assistant"
 
 # Building a Thread network for Home Assistant
 
-Thread is a low-power mesh networking protocol that's becoming the backbone of modern smart homes. If you've been thinking about adding Thread devices to your Home Assistant setup, here's what you need to know. Learn more at the <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>.
+Thread is a low-power mesh networking protocol that's becoming the backbone of modern smart homes.   I've always liked the idea of an automated home.  In fact I started a company called Sensr.net that I thought would be part of this ecosystem but we never got there.  
+
+Anyway, I liked the Alexa home automation stuff and still use it along side Home Assistant.  But I'm trying to get off the clould as much as possible so I started replacing all my devices with Thread and HA instead of Wifi and Alexa.  
+
+Why Thread?  It's fast and good for low power.  I wanted to detect doors being opened, because we live on the beach in Puerto Rico I want to keep all the doors to the storage rooms closed.  I ran across the IKEA Thread enabled door sensors so that was the driving use case for me.  Thread is designed for low power and IKEA devices are great, they are cheap and have a big name behind them.  The fact that IKEA is all in on Thread made it very attractive for me.  
+
+Thread is basically like Wifi but on a 
+
+ <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>.
 
 ## What is Thread?
 
@@ -14,15 +22,13 @@ Thread is an IP-based wireless protocol designed specifically for IoT devices. I
 
 The fact that it gives out IPv6 addresses is cool but frankly not something you will deal with at all. I didn't even know this until today, when I was researching this blog post.
 
-## Why Thread?
-
-It's the new standard and by adopting it you future-proof your setup. It's also very fast and very good at supporting low power devices, like door sensors, motion sensors, etc.
-
 ## Drawbacks of Thread
 
 It's new so devices are still a little flaky and more expensive than Wi-Fi or Zigbee versions.  I still get excited when I hear about new Thread devices.  I've also made the mistake of buying Matter/Wi-Fi switches thinking that they were _Thread_ so beware.  Just because it says Matter doesn't mean it's Thread.  
 
 It's also a lot of work to make sure you've covered your home properly. But Wi-Fi or Zigbee have the same issues.  
+
+Being new, the firmware in the devices and in Home 
 
 ## Getting Started with Thread in Home Assistant
 
@@ -37,7 +43,9 @@ The <a href="https://www.home-assistant.io/connect/zbt-2/" target="_blank">Home 
 
 ## Adding Your First Thread Device
 
-Once your border router is set up, adding Thread devices to Home Assistant is straightforward. Most Thread devices will appear automatically once commissioned to your network.
+Once your border router is set up, adding Thread devices to Home Assistant is straightforward.  Use the Home Assistant companion app.  You scan a QR code on the device and this tells Matter the details.  Your phone then talks BLE to the device and sends over the network info.  Mostly this works, seamlessly.  I did have an issue at one point where my iPhone didn't have the right creds for some reason.  I spent a lot of time trying to get my iPhone to re-sync with HA.  There have been a lot of updates to the iOS app and HA since then, so hopefully these gotchas are worked out.  
+
+TODO:  Add links for ios and andriod
 
 ## Common Thread Devices
 
@@ -75,7 +83,7 @@ To build a strong mesh, you need **mains-powered Thread devices**, which act as 
 
 ### <a href="https://inovelli.com/" target="_blank">Inovelli White Series Switches</a>
 
-These became the backbone of my Thread network.
+These became the backbone of my Thread network.  The hardware is top notch and has lots of cool options for automations.  You can do gestures like 'double tap' either on up or down padels.  It has an LED bar that you can program for status. I have mine at the front door flash red if the gate is left open for too long...
 
 Because they're permanently powered, they act as Thread Routers and create a solid mesh. Since light switches are naturally distributed throughout the house, they make excellent infrastructure devices.
 
@@ -83,9 +91,9 @@ Highly recommended if you're wiring a new house or replacing switches anyway.
 
 ### <a href="https://www.evehome.com/" target="_blank">Eve Switches</a>
 
-I also installed several Eve Thread switches.
+I also installed several Eve Thread switches.  They are simpler than the Inovelli, but pretty sold as Thread routers.
 
-Like the Inovelli switches, they're mains-powered and strengthen the mesh. They integrated cleanly into Home Assistant and have been very reliable.
+Like the Inovelli switches, the Eve switches are mains-powered and strengthen the mesh. They integrated cleanly into Home Assistant and have been very reliable.
 
 ### <a href="https://www.amazon.com/Onvis-Matter-Thread-Outlet-Google/dp/B0FRFPV5FK" target="_blank">Onvis Thread Smart Plugs</a>
 
@@ -95,13 +103,15 @@ They're inexpensive, easy to move around, and can be plugged into different loca
 
 When I found a weak spot in the network, I could simply move one of the smart plugs to reinforce that area.
 
-They're probably the fastest and easiest way to improve a Thread network without changing wiring.
+They're probably the fastest and easiest way to improve a Thread network without changing wiring.  However, I have had one fail in the first few months and another one seems to be flakey.  I might need to try another brand.  I use one to control my yard lights and another one to control a dehumidfier.  
 
-### <a href="https://www.smartwings.com/" target="_blank">Smartwings Roller Shades</a>
+### <a href="https://www.smartwingshome.com/pages/work-with-matter-over-thread" target="_blank">Smartwings Roller Shades</a>
 
-I've had great success with Smartwings Thread roller shades.
+I've had great success with Smartwings Matter over Thread roller shades.
 
-They're motorized, mains-powered, and integrate seamlessly into Home Assistant. Since they're installed throughout the house, they act as additional Thread Routers and strengthen the mesh network. Plus, they're actually useful—I can control them from automations or manually via HA, which is a nice bonus.
+They're battery powered and connect easily into Home Assistant. I can control them from automations or manually via HA, which is a nice bonus.  I installed them without the guide wire, and so it's important that they are not down when the wind is up.  I use the ECOWITT weather station to monitor the wind and put the shads up if it's too windy.  
+
+TODO: link ECOWITT to this url https://www.amazon.com/dp/B0BM3BQ425 
 
 ### <a href="https://www.ikea.com/" target="_blank">IKEA Thread Devices</a>
 
@@ -118,11 +128,15 @@ Once the backbone of the mesh was in place, I started adding battery-powered Thr
 
 These have worked well, but only because the underlying mesh was already strong.
 
+## Fun with BILRESA Automations
+
+I use the BILRESA remote as a bedside companion to control the lights and the ACs.  It's one of the few automations my wife acutally uses.  Press and hold on the buttons will raise or lower the temp on the AC (and softly announces the new temp on a bedroom speaker).  Single tap on the top buttton turns off the bedroom lights.  The bottom button turns off the adjacent bathroom lights.  Finally double tap on either of them will turn the AC on or off.
+
 ## Coverage Was Harder Than Expected
 
 My house has concrete walls and reinforced concrete construction.
 
-Those same materials made Wi-Fi difficult—I ended up deploying six or seven Wi-Fi access points throughout the property.
+Those same materials made Wi-Fi difficult, I ended up deploying six Wi-Fi access points throughout the property.
 
 Thread faced many of the same challenges.
 
@@ -159,7 +173,7 @@ Think of mains-powered devices as the infrastructure and battery-powered devices
 
 You typically don't add a naked Thread device. Thread is the communication layer, but typically devices will use Matter to connect to your system at a higher level.
 
-It's really Matter that matters. It's the application layer that you see. The Thread stuff is mostly hidden from the user. When you add a Matter/Thread device, you scan a QR code using the HA companion app, this is the iOS or Android app. The phone then uses its bluetooth interface to configure the underlying Thread radio in the device. Mostly this works until it doesn't. Be very careful when clicking around in the HA Thread Border Router section. Resetting the ZBT-2 can result in having to re-add all your thread devices, which can be quite painful.
+It's really Matter that matters. It's the application layer that you see. The Thread stuff is mostly hidden from the user. When you add a Matter/Thread device, you scan a QR code using the HA companion app, this is the iOS or Android app. The phone then uses its bluetooth interface to configure the underlying Thread radio in the device. Mostly this works until it doesn't. *Be very careful when clicking around in the HA Thread Border Router section. Resetting the ZBT-2 can result in having to re-add all your thread devices, which can be quite painful.*
 
 I made this mistake fairly early on and had to redo all my devices. Currently I have about 30 Thread devices. I would not want to have to reset all of these.  
 
