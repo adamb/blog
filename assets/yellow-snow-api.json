@@ -1,0 +1,101 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ltx-2.5-video-vae-conv-bf16.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ltx-2.5-audio-vae-bf16.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "VISUAL_PROMPT",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "NEGATIVE",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 768,
+      "height": 512,
+      "length": 121
+    }
+  },
+  "10": {
+    "class_type": "LTXVEmptyLatentAudio",
+    "inputs": {}
+  },
+  "11": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {
+      "video_latent": [
+        "8",
+        0
+      ],
+      "audio_latent": [
+        "10",
+        0
+      ]
+    }
+  },
+  "16": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {}
+  },
+  "18": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {}
+  },
+  "20": {
+    "class_type": "CreateVideo",
+    "inputs": {}
+  },
+  "21": {
+    "class_type": "SaveVideo",
+    "inputs": {}
+  },
+  "_note": "Simplified public copy of ~/code/snow/workflows/yellow-snow-api.json. I2V replaces node 8 with LoadImage + LTXVImgToVideo. Flux stills are a separate Schnell graph (UNET flux1-schnell-fp8, DualCLIP clip_l+t5xxl_fp8, VAE ae, 4-step euler cfg 1)."
+}

@@ -56,6 +56,70 @@ YouTube's Content ID caught the audio, which is fair. It didn't block an unliste
 
 That's the model, not the prompt writer being clever. Fine for a first test. Not fine if you need a locked character.
 
-Weights are gated on Hugging Face. Once they're on disk, generation is free and local. Electricity and a 4090 you already bought.
+## The rest of the suite, still text-to-video
 
-Next up is the rest of the suite. Nanook Rubs It is sitting right there.
+Same graph, same 4090, four more Apostrophe' tracks. Whisper cut each MP3 into shots, LTX filled an empty latent from a visual prompt, ffmpeg muxed the owned recording.
+
+[Father O'Blivion](https://youtu.be/m7Rislu2egI) and the first [St. Alfonzo's Pancake Breakfast](https://youtu.be/aWjpHDkIJAQ) went up unlisted that way. [Nanook Rubs It](https://youtu.be/Tt1GZMIAjuE) did too, and it is the one that shows the drift problem hardest: faces won't stay put, the trapper turns into someone else, the igloo forgets it is an igloo. Cosmik Debris got muxed on disk and never uploaded. Text-to-video is fast. It is not a music video if you care who is in the frame.
+
+## Workflow: text-to-video
+
+This is the Comfy graph behind Yellow Snow and that first suite. Stock LTX-2.5 distilled nodes, not a Civitai pack. The only real tweaks were INT8 weights so the 22B transformer fits in 24 GB, Gemma 4 12B as the local text encoder, prompt enhance off, and a broken `kornia` import patched so the graph would load.
+
+![T2V pipeline: Whisper, Gemma, empty LTX latent, 8-step sample, ffmpeg mux.](/assets/workflow-t2v.svg)
+
+```mermaid
+flowchart LR
+  A[Whisper on owned MP3] --> B[CLIPTextEncode / Gemma 4 12B]
+  B --> C[LTXVConditioning]
+  C --> D[EmptyLTXVLatentVideo]
+  D --> E[SamplerCustomAdvanced<br/>8-step distilled]
+  E --> F[VAEDecode + CreateVideo]
+  F --> G[ffmpeg concat + mux original MP3]
+```
+
+Node chain in the API graph: `UNETLoader` → `CLIPLoader` (Gemma) → video and audio `VAELoader` → `CLIPTextEncode` ×2 → `LTXVConditioning` → `EmptyLTXVLatentVideo` → dummy `LTXVEmptyLatentAudio` → `LTXVConcatAVLatent` → `SamplerCustomAdvanced` with `ManualSigmas` → `LTXVSeparateAVLatent` → `VAEDecodeTiled` → `CreateVideo` → `SaveVideo`. 768×512, 24 fps, frame count `1 + 8k`.
+
+[Download the T2V API graph (JSON)](/assets/yellow-snow-api.json)
+
+## Then we switched to image-to-video
+
+The fix for drift is boring: generate a still you like, then ask LTX to move it. Same graph. Swap `EmptyLTXVLatentVideo` for `LoadImage` plus `LTXVImgToVideo`. That is img2vid, not first-last-frame. No FLF2V node anywhere.
+
+Stills for the cuts that actually worked were made locally with Flux.1 Schnell fp8 on the same 4090 (4-step euler, cfg 1, CLIP-L + T5-XXL fp8 + `ae.safetensors`). Cloud image APIs bounce the funnier Zappa prompts. Local Flux does not.
+
+![I2V pipeline: Flux stills, LoadImage, LTXVImgToVideo, 8-step sample, ffmpeg mux.](/assets/workflow-i2v.svg)
+
+```mermaid
+flowchart LR
+  A[Flux.1 Schnell still] --> B[LoadImage]
+  B --> C[LTXVImgToVideo]
+  C --> D[Same LTX-2.5 INT8 sampler]
+  D --> E[ffmpeg concat + mux original MP3]
+```
+
+### St. Alfonzo v3
+
+Twenty-two stills, about 1:50, lyric-matched and deliberately un-tame: church kitsch, 1970s bikinis, pancakes that are doing two jobs at once. Each still is a 121-frame LTX I2V clip. Then concat and the original MP3.
+
+![Yellow church bus at a brick parish hall.](/assets/alfonzo-v3-bus.png)
+
+[St. Alfonzo's Pancake Breakfast v3](https://youtu.be/1_-p89cxifw)
+
+### Nanook v2
+
+Forty-two stills, about 4:37. Same I2V runner. Peek-a-boo igloo, yellow snow, a blinded trapper, the long walk to St. Alfonzo's parish. Plus a bikini Eskimo woman because a friend of the song asked for her, and because Nanook without some Zappa sleaze is just a nature documentary.
+
+![Peek-a-boo from an igloo, fur bikini, analog film.](/assets/nanook-v2-igloo.jpg)
+
+![Parish hall, yellow bus, end of the trudging-across-the-tundra gag.](/assets/nanook-v2-parish.jpg)
+
+[Nanook Rubs It v2](https://youtu.be/yiH9OrRHk24)
+
+### Both, in one file
+
+Nanook first, then Alfonzo. 6:28. Chapters at 0:00 and 4:37. YouTube Content ID found both Zappa tracks. Still not a strike. Unlisted still plays.
+
+[Nanook Rubs It / St. Alfonzo's Pancake Breakfast](https://youtu.be/coP-1y343lw)
+
+Weights are gated on Hugging Face. Once they're on disk, generation is free and local. Electricity and a 4090 you already bought.
