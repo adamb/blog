@@ -6,6 +6,8 @@ slug: "can-a-yard-camera-tell-if-my-beach-gate-is-open"
 
 # Can a Yard Camera Tell If My Beach Gate Is Open?
 
+![Closed beach gate in daytime, wooden double gate shut.](/assets/beach-gate-daytime-closed.jpg)
+
 I have a decorative wooden double gate that opens onto the beach at Finca Del Mar. Filigree cutouts that look like tree branches. Ocean through the pattern is normal. The gate itself ajar is not.
 
 I wanted the house to notice the second case and ping my phone. Not a play-by-play of every false start. Just: can a Reolink still plus a vision model do this?
