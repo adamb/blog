@@ -6,7 +6,7 @@ slug: "can-a-yard-camera-tell-if-my-beach-gate-is-open"
 
 # Can a Yard Camera Tell If My Beach Gate Is Open?
 
-![Closed beach gate in daytime, wooden double gate shut.](/assets/beach-gate-daytime-closed.jpg)
+![Daytime decorative wooden beach gate with ocean visible through filigree.](/assets/puerto-rico-beach-view.jpg)
 
 I have a decorative wooden double gate that opens onto the beach at Finca Del Mar. Filigree cutouts that look like tree branches. Ocean through the pattern is normal. The gate itself ajar is not.
 
