@@ -13,7 +13,7 @@ After building this HTMX blog platform and integrating AI transformations, I've 
 
 - **Writing**: Markdown files in `posts_src/`
 - **Build**: Node.js script that converts to HTML
-- **AI Enhancement**: Cloudflare Workers AI for tone transformations
+- **AI Enhancement**: Cloudflare Workers AI () for tone transformations
 - **Deployment**: Cloudflare Pages with automatic builds
 - **Editing**: Claude Code for most file operations
 

@@ -36,18 +36,18 @@ Then I got the ChatGPT code and told Claude to use that approach instead. Classi
 
 So back to Claude I went: "Hey, can you re-do the caching the way you originally suggested?" 
 
-The result? A beautiful SHA-256 based caching system that stores transformed content in KV with a 24-hour TTL. Cache keys look like `ai_transform_[hash]` where the hash comes from `tone + '::' + content`. Clean, efficient, and it actually works.
+The result? A beautiful SHA-256 based caching system that stores transformed content in KV with a one-week TTL. Cache keys look like `ai_transform_[hash]` where the hash comes from `tone + '::' + content`. Clean, efficient, and it actually works.
 
 ## The Technical Details
 
 The implementation is pretty straightforward:
 
 1. User clicks a tone button (Snarky, Tech Bro, etc.)
-2. JavaScript calls `/functions/transform` endpoint
+2. JavaScript calls `/transform` endpoint
 3. Function generates a cache key from the tone and content
 4. Checks KV storage first - if cached, return instantly
-5. If not cached, calls Cloudflare Workers AI with the [@cf/meta/llama-3.1-8b-instruct](https://developers.cloudflare.com/workers-ai/models/llama-3.1-8b-instruct/) model
-6. Stores the result in KV with 24-hour expiration
+5. If not cached, calls Cloudflare Workers AI with the [@cf/meta/llama-3.1-8b-instruct-fast](https://developers.cloudflare.com/workers-ai/models/llama-3.1-8b-instruct-fast/) model
+6. Stores the result in KV with one-week expiration
 7. Returns the transformed content
 
 The cache hit rate should be pretty good since the same content + tone combination will always generate the same key.
@@ -63,6 +63,10 @@ You can check out the live version at [blog.beguelin.com](https://blog.beguelin.
 The whole thing reinforced my growing suspicion that Claude Code might be the best coding assistant I've ever used. It doesn't just write code - it thinks through problems, suggests better approaches, and even catches when other AIs lead you astray.
 
 Now I just need to figure out what other HTMX shenanigans I can get up to...
+
+## Update (September 2026)
+
+The tone buttons went dark for a while. Cloudflare deprecated `@cf/meta/llama-3.1-8b-instruct` (the live error blamed an `infire-` alias) on 2026-05-30, so every transform call started returning 500s. I pointed the Pages Function at `@cf/meta/llama-3.1-8b-instruct-fast`, which is still in the Workers AI catalog and sits on the cheap Neurons free tier. Same KV cache, same three buttons, no paid AI Gateway required.
 
 ## Caveat
 

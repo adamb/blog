@@ -10,6 +10,83 @@ const pagesDir = "pages";
 const outputDir = "dist";
 const templatePath = "index_template.html";
 const indexOut = "index.html";
+const SITE_URL = "https://blog.beguelin.com";
+const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/blogico.png`;
+const SITE_NAME = "Adam's Blog";
+const DEFAULT_DESCRIPTION =
+  "Adam Beguelin's personal blog — tech, travel, Home Assistant, AI experiments, and life between Puerto Rico and elsewhere.";
+
+function escapeHtmlAttr(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function absoluteUrl(pathOrUrl) {
+  if (!pathOrUrl) return SITE_URL + "/";
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  if (pathOrUrl.startsWith("/")) return SITE_URL + pathOrUrl;
+  return `${SITE_URL}/${pathOrUrl}`;
+}
+
+function makeDescription(markdown, maxLength = 160) {
+  let text = markdown
+    .replace(/^#.*$/gm, "")
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (text.length <= maxLength) return text || DEFAULT_DESCRIPTION;
+  const sliced = text.slice(0, maxLength - 1);
+  const lastSpace = sliced.lastIndexOf(" ");
+  return (lastSpace > 80 ? sliced.slice(0, lastSpace) : sliced).trim() + "…";
+}
+
+function extractFirstImage(content) {
+  const imageMatch = content.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+  return imageMatch ? imageMatch[2] : null;
+}
+
+function buildSeoHead({ title, description, canonicalPath, imagePath, type = "article" }) {
+  const canonical = absoluteUrl(canonicalPath);
+  const image = absoluteUrl(imagePath || DEFAULT_OG_IMAGE);
+  const t = escapeHtmlAttr(title);
+  const d = escapeHtmlAttr(description || DEFAULT_DESCRIPTION);
+  return `
+  <meta name="description" content="${d}" />
+  <link rel="canonical" href="${canonical}" />
+  <meta property="og:type" content="${escapeHtmlAttr(type)}" />
+  <meta property="og:site_name" content="${escapeHtmlAttr(SITE_NAME)}" />
+  <meta property="og:title" content="${t}" />
+  <meta property="og:description" content="${d}" />
+  <meta property="og:url" content="${canonical}" />
+  <meta property="og:image" content="${image}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${t}" />
+  <meta name="twitter:description" content="${d}" />
+  <meta name="twitter:image" content="${image}" />
+`.trim();
+}
+
+function applyPageShell(template, { title, description, canonicalPath, imagePath, type, mainContent, navLinks = "" }) {
+  let html = template;
+  html = html.replace("<!-- PAGE_TITLE -->", escapeHtmlAttr(title));
+  html = html.replace("<!-- SEO_HEAD -->", buildSeoHead({ title, description, canonicalPath, imagePath, type }));
+  html = html.replace("<!-- NAV_LINKS -->", navLinks);
+  html = html.replace("<!-- MAIN_CONTENT -->", mainContent);
+  html = html.replace("<!-- YEAR -->", String(new Date().getFullYear()));
+  html = html.replace("<!-- GIT_INFO -->", `${gitInfo.branch}@${gitInfo.hash}`);
+  return html;
+}
+
 
 // Check for build drafts flag
 const buildDrafts = process.argv.includes('--buildDrafts') || process.argv.includes('-D');
@@ -267,15 +344,18 @@ postDataList.forEach((post) => {
     <div class="back-link"><a href="/">← Back to Home</a></div>
   </article>`;
 
-  let postPageHtml = baseTemplateContent;
-  postPageHtml = postPageHtml.replace("<!-- NAV_LINKS -->", navLinks);
-  // Replace the title in the template with the post's specific title
-  postPageHtml = postPageHtml.replace(
-    "<title>My HTMX Blog</title>",
-    `<title>${post.title} - Adam's Blog</title>`
-  );
-  postPageHtml = postPageHtml.replace("<!-- MAIN_CONTENT -->", articleContent);
-  postPageHtml = postPageHtml.replace("<!-- YEAR -->", String(new Date().getFullYear())).replace("<!-- GIT_INFO -->", `${gitInfo.branch}@${gitInfo.hash}`);
+  const postTitle = `${post.title} - ${SITE_NAME}`;
+  const postDescription = makeDescription(post.mdContent);
+  const postImage = extractFirstImage(post.mdContent);
+  const postPageHtml = applyPageShell(baseTemplateContent, {
+    title: postTitle,
+    description: postDescription,
+    canonicalPath: post.urlPath,
+    imagePath: postImage,
+    type: "article",
+    mainContent: articleContent,
+    navLinks,
+  });
 
   // Ensure the directory exists
   fs.mkdirSync(post.dirPath, { recursive: true });
@@ -307,14 +387,18 @@ if (fs.existsSync(pagesDir)) {
       <div class="back-link"><a href="/">← Back to Home</a></div>
     </article>`;
 
-    let pageHtml = baseTemplateContent;
-    pageHtml = pageHtml.replace("<!-- NAV_LINKS -->", "");
-    pageHtml = pageHtml.replace(
-      "<title>My HTMX Blog</title>",
-      `<title>${title} - Adam's Blog</title>`
-    );
-    pageHtml = pageHtml.replace("<!-- MAIN_CONTENT -->", articleContent);
-    pageHtml = pageHtml.replace("<!-- YEAR -->", String(new Date().getFullYear())).replace("<!-- GIT_INFO -->", `${gitInfo.branch}@${gitInfo.hash}`);
+    const pageTitle = `${title} - ${SITE_NAME}`;
+    const pageDescription = makeDescription(content);
+    const pageImage = extractFirstImage(content);
+    const pageHtml = applyPageShell(baseTemplateContent, {
+      title: pageTitle,
+      description: pageDescription,
+      canonicalPath: `/${slug}`,
+      imagePath: pageImage,
+      type: "website",
+      mainContent: articleContent,
+      navLinks: "",
+    });
 
     const pageOutputPath = path.join(outputDir, `${slug}.html`);
     fs.writeFileSync(pageOutputPath, pageHtml);
@@ -348,11 +432,6 @@ if (fs.existsSync(sourceAssetsDir)) {
 }
 
 // 6. Generate index page with post snippets
-function extractFirstImage(content) {
-  const imageMatch = content.match(/!\[([^\]]*)\]\(([^)]+)\)/);
-  return imageMatch ? imageMatch[2] : null;
-}
-
 function generateSnippet(content, maxLength = 300) {
   // Remove markdown formatting for snippet
   let snippet = content
@@ -401,10 +480,51 @@ const postSnippets = postDataList.map(post => {
   `;
 }).join('\n');
 
-let indexHtml = baseTemplateContent; // Use the already read base template
-indexHtml = indexHtml.replace("<!-- NAV_LINKS -->", navLinks);
-indexHtml = indexHtml.replace("<!-- MAIN_CONTENT -->", `<div id="post-list">${postSnippets}</div>`);
-indexHtml = indexHtml.replace("<!-- YEAR -->", String(new Date().getFullYear())).replace("<!-- GIT_INFO -->", `${gitInfo.branch}@${gitInfo.hash}`);
+const indexHtml = applyPageShell(baseTemplateContent, {
+  title: SITE_NAME,
+  description: DEFAULT_DESCRIPTION,
+  canonicalPath: "/",
+  imagePath: DEFAULT_OG_IMAGE,
+  type: "website",
+  mainContent: `<div id="post-list">${postSnippets}</div>`,
+  navLinks,
+});
 fs.writeFileSync(path.join(outputDir, 'index.html'), indexHtml);
 
 console.log("Rebuilt index.html with updated nav and default content.");
+
+// 7. robots.txt + sitemap.xml
+const robotsTxt = `User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /stats
+Disallow: /track
+Disallow: /transform
+Disallow: /ga.js
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+fs.writeFileSync(path.join(outputDir, 'robots.txt'), robotsTxt);
+
+const sitemapUrls = [
+  { loc: `${SITE_URL}/`, lastmod: new Date().toISOString().slice(0, 10) },
+  { loc: `${SITE_URL}/about`, lastmod: new Date().toISOString().slice(0, 10) },
+  ...postDataList.map((post) => ({
+    loc: absoluteUrl(post.urlPath),
+    lastmod: post.date,
+  })),
+];
+
+const sitemapEntries = sitemapUrls.map((u) => {
+  return ["  <url>", "    <loc>" + u.loc + "</loc>", "    <lastmod>" + u.lastmod + "</lastmod>", "  </url>"].join("\n");
+}).join("\n");
+const sitemapXml = [
+  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+  "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">",
+  sitemapEntries,
+  "</urlset>",
+  ""
+].join("\n");
+fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemapXml);
+console.log(`Wrote robots.txt and sitemap.xml (${sitemapUrls.length} URLs).`);

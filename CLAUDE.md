@@ -47,7 +47,7 @@ Posts include transformation buttons that allow readers to rewrite content in di
 - **Tech Bro**: Silicon Valley buzzwords and excessive enthusiasm  
 - **Uber Snarky**: Maximum attitude with condescending contempt
 
-Transformations use Cloudflare Workers AI (@cf/meta/llama-3.1-8b-instruct) with KV caching:
+Transformations use Cloudflare Workers AI (@cf/meta/llama-3.1-8b-instruct-fast) with KV caching:
 - Cache key: `ai_transform_[SHA-256 hash of tone::content]`
 - TTL: 1 week to reduce AI API calls
 - Functions provide mock responses when AI binding unavailable (local dev)
@@ -91,3 +91,8 @@ The blog includes an HTMX-powered email subscription system with email verificat
 - Uses Vitest with mocked email services
 - Local development uses mock email sending
 - KV operations tested with in-memory mocks
+
+### Analytics
+
+- Public templates load `/ga.js`; `functions/ga.js` emits gtag only when secret `GA_MEASUREMENT_ID` matches `/^G-[A-Z0-9]+$/`.
+- Never commit a GA measurement ID. Admin HTML must stay noindex and must not load `/ga.js`.
