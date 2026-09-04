@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My HTMX Blog</title>
+  <title><!-- PAGE_TITLE --></title>
+  <!-- SEO_HEAD -->
   <link rel="icon" type="image/png" href="/assets/blogico.png" />
   <link rel="shortcut icon" href="/assets/blogico.png" />
   <link rel="apple-touch-icon" href="/assets/blogico.png" />
   <script src="/assets/htmx.min.js"></script>
   <link rel="stylesheet" href="/assets/style.css" />
+  <!-- Public pages only: GA4 stub. Admin HTML must not include this. -->
+  <script src="/ga.js" defer></script>
   <script>
-    // Track page visits
+    // Track page visits (Cloudflare KV VISIT_LOG)
     function trackVisit() {
       fetch('/track', {
         method: 'POST',

@@ -167,6 +167,7 @@ export async function onRequestGet({ env }) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <title>Visit Statistics - Adam's Blog</title>
   <style>
