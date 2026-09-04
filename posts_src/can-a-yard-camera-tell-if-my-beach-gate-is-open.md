@@ -53,10 +53,6 @@ What’s still not fully local: the vision call. Locals on the 4090 missed night
 
 ## What actually worked
 
-Small local vision models — including the qwen3-vl flavors I tried on the house GPU — were fine on daytime closed. They missed night ajar even with a tight crop.
-
-Cloud 397b was the only one that reliably saw night ajar in A/B. That decided the stack.
-
 Cropping helped. An over-eager “any dark gap = open” prompt did not. On closed night stills the spotlight turns the center seam and the filigree shadows into fake gaps. The prompt had to learn: thin seam is closed. A real parting between the frames is open.
 
 OSD (timestamp + “Beach”) was burned into the Hub stream. Turned it off. Cleaner input for the model.
@@ -74,6 +70,40 @@ Closed vs ajar at night, same crop, same spotlight:
 ![Ajar beach gate at night, spotlight on, visible parting between frames.](/assets/beach-gate-ajar-night.jpg)
 
 *Ajar*
+
+## Models we tried
+
+Logged a local A/B on two stills — daytime closed and night ajar — same crop, same prompt shape:
+
+| Model | Daytime closed | Night ajar |
+|---|---|---|
+| `qwen3.5:9b` | closed ✓ | closed ✗ (missed ajar) |
+| `mistral-small3.1:latest` | closed ✓ | closed ✗ |
+| `qwen3.8:27b-mtp-q4_K_M` | closed ✓ | closed ✗ |
+| `qwen3-vl:4b` | closed ✓ | closed ✗ |
+| `moondream:1.8b` | unknown ✗ | unknown ✗ |
+
+Also pulled `qwen3-vl:8b` in the same sweep. Same failure mode on night ajar.
+
+Production / winner: `qwen3.5:397b-cloud` (Ollama Cloud) — only one that saw night ajar in A/B. Cron uses this with majority-of-3.
+
+## The prompt
+
+Live prompt from `check.py`:
+
+```
+Look at the wooden gate. Is it open, ajar, or closed?
+
+Focus only on whether the two gate panels are parted in the CENTER.
+Answer open (includes ajar) only if the panels are clearly swung apart — a real opening where you can see through BETWEEN the panels, or the center edges are obviously not meeting.
+A thin dark seam, shadow, or vertical line where closed panels touch still counts as closed.
+Ocean/sky visible THROUGH the decorative filigree cutouts is normal and does NOT mean open.
+Ignore house, yard, ocean, plants, people, and camera glare.
+
+Reply with a single JSON object and nothing else (no markdown):
+{"status":"closed"|"open"|"unknown","reason":"<one short sentence>"}
+Map ajar to status "open".
+```
 
 ## Still cooking
 
