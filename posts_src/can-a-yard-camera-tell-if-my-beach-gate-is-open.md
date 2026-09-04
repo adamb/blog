@@ -83,7 +83,7 @@ Logged a local A/B on two stills — daytime closed and night ajar — same crop
 | `qwen3-vl:4b` | closed ✓ | closed ✗ |
 | `moondream:1.8b` | unknown ✗ | unknown ✗ |
 
-Also pulled `qwen3-vl:8b` in the same sweep. Same failure mode on night ajar.
+Also pulled `qwen3-vl:8b` and `gemma4:26b` in the same sweep. Same failure mode on night ajar.
 
 Production / winner: `qwen3.5:397b-cloud` (Ollama Cloud) — only one that saw night ajar in A/B. Cron uses this with majority-of-3.
 
