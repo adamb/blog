@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 // Pages Function module
 import { onRequestGet } from '../functions/ga.js';
 
-describe('ga.js Pages Function', () => {
+describe('/ga Pages Function', () => {
   it('returns no-op when GA_MEASUREMENT_ID is missing', async () => {
     const res = await onRequestGet({ env: {} });
     const body = await res.text();

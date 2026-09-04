@@ -94,5 +94,5 @@ The blog includes an HTMX-powered email subscription system with email verificat
 
 ### Analytics
 
-- Public templates load `/ga.js`; `functions/ga.js` emits gtag only when secret `GA_MEASUREMENT_ID` matches `/^G-[A-Z0-9]+$/`.
-- Never commit a GA measurement ID. Admin HTML must stay noindex and must not load `/ga.js`.
+- Public templates load `/ga`; `functions/ga.js` emits gtag only when secret `GA_MEASUREMENT_ID` matches `/^G-[A-Z0-9]+$/`.
+- Never commit a GA measurement ID. Admin HTML must stay noindex and must not load `/ga`.

@@ -7,7 +7,7 @@ A static blog built with HTMX that generates HTML from markdown files and includ
 - **Static Site Generation**: Converts markdown files to HTML with dynamic navigation
 - **HTMX Integration**: SPA-like navigation without page reloads
 - **AI Content Transformation**: Transform blog posts into different tones using Cloudflare Workers AI (`@cf/meta/llama-3.1-8b-instruct-fast`)
-- **Visit Tracking**: Cloudflare KV (`VISIT_LOG`) plus optional GA4 via `/ga.js`
+- **Visit Tracking**: Cloudflare KV (`VISIT_LOG`) plus optional GA4 via `/ga`
 - **SEO**: Per-page title/description/canonical/Open Graph/Twitter tags, plus `robots.txt` and `sitemap.xml` from `build.js`
 - **Caching**: KV-based caching for AI transformations (1-week TTL)
 - **Static Pages**: Support for non-blog pages like About
@@ -99,10 +99,10 @@ The transform feature allows readers to rewrite blog posts in different tones:
 
 ## Analytics (GA4)
 
-Public pages load `/ga.js` (see `functions/ga.js`). That Pages Function emits the GA4 gtag loader **only** when the Cloudflare Pages secret `GA_MEASUREMENT_ID` is set and matches `/^G-[A-Z0-9]+$/`. Otherwise it returns a no-op script.
+Public pages load `/ga` (see `functions/ga.js`). That Pages Function emits the GA4 gtag loader **only** when the Cloudflare Pages secret `GA_MEASUREMENT_ID` is set and matches `/^G-[A-Z0-9]+$/`. Otherwise it returns a no-op script.
 
 - Do **not** commit a measurement ID.
 - Create a dedicated GA4 property/data stream for `blog.beguelin.com` (do not reuse other sites).
 - Set the secret in the Cloudflare Pages project: `GA_MEASUREMENT_ID=G-XXXXXXXX`.
-- Admin/stats HTML responses are `noindex` and do not load `/ga.js`.
+- Admin/stats HTML responses are `noindex` and do not load `/ga`.
 - Existing `VISIT_LOG` KV tracking (`/track`, `/visits`) is unchanged.

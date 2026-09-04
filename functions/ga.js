@@ -1,4 +1,4 @@
-// Serves /ga.js — emits GA4 gtag loader only when GA_MEASUREMENT_ID is set
+// Serves /ga — emits GA4 gtag loader only when GA_MEASUREMENT_ID is set
 // as a Cloudflare Pages secret and matches /^G-[A-Z0-9]+$/. Otherwise no-op.
 // Never commit a measurement ID. Admin/noindex pages must not load this script.
 

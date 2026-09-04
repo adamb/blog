@@ -501,7 +501,7 @@ Disallow: /admin/
 Disallow: /stats
 Disallow: /track
 Disallow: /transform
-Disallow: /ga.js
+Disallow: /ga
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;
