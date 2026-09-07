@@ -38,8 +38,6 @@ I created a model-lab profile with three fixed scored prompts — one for routin
 
 The scoring was mechanical. Each model got the same prompts. I scored the outputs. glm-5.3-flash:cloud won 9 out of 15 tests. The others went 7 of 15 each. But speed mattered more — glm-5.3-flash was 3-4x faster. Average latency: 7.6 seconds versus 28.9 seconds for qwen3.5.
 
-Vision needed a retest. glm-5.3-flash got it right via the API with base64-encoded images — "Closed @70%" on a beach-gate camera crop. The text-only glm-5.3:cloud returned HTTP 400 on the same request. That ended the debate.
-
 The blogger profile now uses qwen3.5:397b-cloud for this post — a deliberate choice to test it on long-form writing. The default for other profiles remains glm-5.3-flash:cloud.
 
 ## What Didn't Work
