@@ -2,6 +2,7 @@
 title: "Fourteen Agents, One Post: Mirroring Grokbot as Hermes Profiles"
 date: "2026-09-06"
 slug: "grokbot-to-hermes-profiles"
+unlisted: true
 ---
 
 # Fourteen Agents, One Post: Mirroring Grokbot as Hermes Profiles

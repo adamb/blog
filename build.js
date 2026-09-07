@@ -155,6 +155,7 @@ const postDataList = fs
     const title = frontmatter.title || slug;
     const date = frontmatter.date || "2025-01-01";
     const draft = frontmatter.draft === 'true' || frontmatter.draft === true;
+    const unlisted = frontmatter.unlisted === 'true' || frontmatter.unlisted === true;
     
     // Parse date to create directory structure
     const dateObj = new Date(date);
@@ -171,6 +172,7 @@ const postDataList = fs
       title, 
       date, 
       draft,
+      unlisted,
       mdContent: content, 
       urlPath,
       dirPath,
@@ -454,7 +456,9 @@ function generateSnippet(content, maxLength = 300) {
   return firstParagraph;
 }
 
-const postSnippets = postDataList.map(post => {
+const postSnippets = postDataList
+  .filter(post => !post.unlisted)
+  .map(post => {
   const dateFormatted = new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long', 
@@ -510,7 +514,7 @@ fs.writeFileSync(path.join(outputDir, 'robots.txt'), robotsTxt);
 const sitemapUrls = [
   { loc: `${SITE_URL}/`, lastmod: new Date().toISOString().slice(0, 10) },
   { loc: `${SITE_URL}/about`, lastmod: new Date().toISOString().slice(0, 10) },
-  ...postDataList.map((post) => ({
+  ...postDataList.filter((post) => !post.unlisted).map((post) => ({
     loc: absoluteUrl(post.urlPath),
     lastmod: post.date,
   })),
