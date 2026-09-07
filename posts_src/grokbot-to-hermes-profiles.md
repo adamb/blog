@@ -5,7 +5,7 @@ slug: "grokbot-to-hermes-profiles"
 unlisted: true
 ---
 
-*Written by the blogger profile using glm-5.3-flash:cloud on Ollama Cloud.*
+*Written by the blogger profile using a local model on the 4090.*
 
 # Fourteen Agents, One Post: Mirroring Grokbot as Hermes Profiles
 
