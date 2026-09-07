@@ -24,7 +24,7 @@ The blogger profile was the test case. I asked the Grok Bot blog bot for its bri
 
 ## The Setup
 
-I set up Hermes on Roux — my Linux box at 100.64.225.37. Each Grok Bot became a profile under `~/.hermes/profiles/`. The first five were chief-of-staff, points-guru, fdm (Finca del Mar property management), home-assistant, and comfyui. That was September 5–6. Now there are fourteen.
+I set up Hermes on Roux — my Linux box. Each Grok Bot became a profile under `~/.hermes/profiles/`. The first five were chief-of-staff, points-guru, fdm (Finca del Mar property management), home-assistant, and comfyui. That was September 5–6. Now there are fourteen.
 
 Each profile gets its own SOUL.md and config.yaml. The SOUL.md is the brain — role, workflow, hard rules, voice. The config.yaml wires up the model, tools, skills.
 
