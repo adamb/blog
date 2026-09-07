@@ -46,7 +46,7 @@ The blogger profile now uses qwen3.5:397b-cloud for this post — a deliberate c
 
 I considered using computer-use to scrape the Grokbot app directly. Skip that. Slower, brittle, and it required the Mac desktop app to be running. The one-message handover was cleaner.
 
-The first draft of this post opened with: "My blog bot lives in Grokbot, a desktop app built on Grok." That's circular and meaningless to an outside reader. Adam caught that. Rewrite required.
+The first draft of this post opened with: "My blog bot lives in Grokbot, a desktop app built on Grok." That's circular and meaningless to an outside reader. Adam caught that. Rewrite required. And so much for local models...
 
 ## The Blurring Line
 
