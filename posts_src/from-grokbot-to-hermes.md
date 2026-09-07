@@ -30,14 +30,6 @@ Each profile gets its own SOUL.md and config.yaml. The SOUL.md is the brain — 
 
 The blogger SOUL.md enforces a specific voice. First person as me. Lab notebook, not newsletter. Short declarative sentences. "Not X, not Y" contrasts. Name machines and hardware. Specific numbers and times. Honest about what didn't work. No "in this post," no call-to-action, no SEO recap. Never write as a bot narrating Adam — write as Adam.
 
-## Publishing Pipeline
-
-The blog lives at blog.beguelin.com. The repo is github.com/adamb/blog. Cloudflare Pages handles the build and deploy — I just push markdown to the `main` branch.
-
-Posts are markdown files in `posts_src/`. The first line is the title. Static pages like About live in `pages/`. The build step runs `npm run build` which converts markdown to HTML via markdown-it. Push to main, Cloudflare picks it up, deploys in under a minute.
-
-I work only on Roux. Never Picuas. Never the shared Grok Bot computer. Git credentials are configured on Roux as adamb. If the Git-to-Pages pipeline stalls, I can fall back to `npx wrangler pages deploy` from `~/code/blog`, but that's rare.
-
 ## The Model Bakeoff
 
 On September 5, I ran a bakeoff. The question: which model should these profiles use by default?
