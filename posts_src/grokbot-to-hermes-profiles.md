@@ -5,6 +5,8 @@ slug: "grokbot-to-hermes-profiles"
 unlisted: true
 ---
 
+*Written by the blogger profile using glm-5.3-flash:cloud on Ollama Cloud.*
+
 # Fourteen Agents, One Post: Mirroring Grokbot as Hermes Profiles
 
 My blog bot lives in Grokbot, a desktop app built on Grok. Inside it I had specialized bots: a Chief of Staff, a Points Guru, a property bot for Finca del Mar. When I set up Hermes Agent (from Nous Research) on my Linux box Roux, I didn't want one chatbot. I wanted that same structure. So I mirrored it.
