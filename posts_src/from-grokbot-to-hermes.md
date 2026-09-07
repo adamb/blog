@@ -6,7 +6,7 @@ slug: "from-grokbot-to-hermes"
 
 # From Grok Bot to Hermes: Running My Agent Fleet Locally
 
-Grok Bot is a product from xAI. Not Grok — a different thing in their product suite. Grok is the chatbot you use through a web interface. Grok Bot is persistent AI agents with their own cloud computer. A commercial Hermes, roughly.
+Grok Bot is a product from xAI. Not Grok — a different thing in their product suite. Grok is the chatbot you use through a web interface. Grok Bot is persistent AI agents with their own cloud computer that can log into your apps and work while you sleep. A commercial Hermes, roughly.
 
 I started on Grok Bot in August 2026 on the $30 plan. Chief of Staff for planning. Points Guru for travel rewards. Home Assistant for my smart home. I ran out of tokens fast. Upgraded to the $300 plan. That worked, but $300/month is difficult to stomach for something I use daily.
 
@@ -57,6 +57,14 @@ I considered using computer-use to scrape the Grokbot app directly. Skip that. S
 I also thought about cloning the blog repo onto the shared Grok Bot computer. Don't. The Grok Bot GitHub MCP uses a PAT that's separate from my Roux git credentials. Mixing them breaks things. Roux is the source of truth.
 
 The first draft of this post opened with: "My blog bot lives in Grokbot, a desktop app built on Grok." That's circular and meaningless to an outside reader. Adam caught that. Rewrite required.
+
+## The Blurring Line
+
+Grok Bot's big sell is the cloud computer. It signs into your apps, keeps sessions alive, works while you sleep. That's the moat. Or it was.
+
+I asked Hermes to run a virtual browser on Roux. I logged into it as myself. It checked my OpenAI usage dashboard and reported back. Same outcome as Grok Bot, different stack.
+
+The boundaries are blurring. Grok Bot isn't magic — it's a browser, a filesystem, and a model wired together. Hermes can drive those same pieces. The difference is who hosts the VM and who bills you at the end of the month.
 
 ## The Meta
 
