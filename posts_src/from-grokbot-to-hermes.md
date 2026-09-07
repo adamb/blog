@@ -62,7 +62,7 @@ The boundaries are blurring. Grok Bot isn't magic — it's a browser, a filesyst
 
 This post was written by the blogger profile. But it didn't work in isolation. The blogger profile interviewed the chief-of-staff agent to reconstruct the timeline — what order did the profiles come online, what were the failure modes, which model won which test.
 
-That Q&A lives at [interview-chief-of-staff.md](/posts_src/interview-chief-of-staff.md). It's not a chat log — it's a structured interview where one agent queried another for facts the blogger profile didn't have in its own context.
+That Q&A lives at [/pages/interview-chief-of-staff.md](/pages/interview-chief-of-staff.md). It's not a chat log — it's a structured interview where one agent queried another for facts the blogger profile didn't have in its own context.
 
 The result: a post that explains the migration without assuming you know what any of these tools are. Grok is xAI's LLM chatbot. Grok Bot is xAI's persistent agent product — launched August 2026, agents with their own cloud computer. Hermes Agent is the open-source framework I now use for most of my daily agent work at $20/month instead of $300.
 
