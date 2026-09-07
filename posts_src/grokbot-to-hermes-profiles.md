@@ -18,7 +18,7 @@ Hermes profiles are separate instances under `~/.hermes/profiles/`, each with it
 - `home-assistant` — HA, network, WRTflasher, ESPHome.
 - `comfyui` — local GPU video on the 4090.
 
-That was the first four. The bench is now fourteen: `blogger`, `coder`, `model-lab`, `usage-tracker`, `website-builder`, `wrtflasher`, `fdm-plumbing`, `travel-expert`, `ha-specialist`, and more. Not a monolith with modes. Not plugins in one app. Separate agents that hand work to each other.
+Those were the first five. The bench is now fourteen: `blogger`, `coder`, `model-lab`, `usage-tracker`, `website-builder`, `wrtflasher`, `fdm-plumbing`, `travel-expert`, `ha-specialist`, and more. Not a monolith with modes. Not plugins in one app. Separate agents that hand work to each other.
 
 ## The handover problem
 
