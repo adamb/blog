@@ -6,11 +6,11 @@ slug: "from-grokbot-to-hermes"
 
 # From Grok Bot to Hermes: Running My Agent Fleet Locally
 
-[Grok Bot](https://x.ai/news/introducing-grok-bot) is a product from xAI. Not Grok — a different thing in their product suite. Grok is the chatbot you use through a web interface. Grok Bot is persistent AI agents with their own cloud computer that can log into your apps and work while you sleep. A commercial [Hermes Agent](https://github.com/nousresearch/hermes-agent), roughly.
+[Grok Bot](https://x.ai/news/introducing-grok-bot) is a product from xAI. Not Grok — a different thing in their product suite. Grok is the chatbot you use through a web interface. Grok Bot is persistent AI agents with their own cloud computer that can log into your apps and work while you sleep. A commercial [Hermes Agent](https://hermes-agent.nousresearch.com/docs), roughly.
 
 I started on Grok Bot in August 2026 on the $30 plan. Chief of Staff for planning. Points Guru for travel rewards. Home Assistant for my smart home. I ran out of tokens fast. Upgraded to the $300 plan. That worked, but $300/month is difficult to stomach for something I use daily.
 
-The pivot came when I used Grok Bot to configure ComfyUI on Roux — my Linux box with the 4090. It worked. If Grok Bot could configure ComfyUI, it could configure Hermes Agent. So I asked it to. A week of using Grok Bot gave me a clear picture of what it could do and what bots I actually needed. I told Grok Bot to replicate those bots as Hermes profiles.
+The pivot came when I used Grok Bot to configure ComfyUI on Roux — my Linux box with the 4090. It worked. If Grok Bot could configure ComfyUI, it could configure Hermes Agent. So I asked it to. A week of using Grok Bot gave me a clear picture of what it could do and what bots I actually needed. I told Grok Bot to replicate those bots as Hermes profiles. (The ComfyUI setup lives in [this post from August](/2026/08/local-gpu-video-with-grokbot/).)
 
 Now I run Hermes on Roux, using [Ollama Cloud](https://ollama.com/cloud) for the models at $20/month. Fourteen profiles so far. I'm also trying to find a local model that works on the 4090 without success yet. Grok Bot is still in the mix for tasks that need its specific capabilities. This isn't a full migration. It's a cost-driven split.
 
