@@ -6,19 +6,23 @@ slug: "from-grokbot-to-hermes"
 
 # From Grokbot to Hermes: Running My Agent Fleet Locally
 
-My blog bot used to live in Grokbot. That sentence meant nothing to anyone outside my head. Let me fix that.
+Grok Bot is a product from xAI. Not Grok — a different thing in their product suite. Grok is the chatbot you use through a web interface. Grok Bot is persistent AI agents with their own cloud computer. A commercial Hermes, roughly.
 
-Grok is xAI's LLM product — the chatbot you access through a web interface or API. Grokbot was my name for a desktop app I ran on my Mac that let me create specialized bot instances on top of Grok. I had a Chief of Staff bot for planning, a Points Guru for travel rewards, a Home Assistant bot for my smart home. Each one had its own personality and rules baked into a hidden system prompt.
+I ran my agent fleet on Grok Bot starting in August 2026. Chief of Staff for planning. Points Guru for travel rewards. Home Assistant for my smart home. Each one a named Bot with its own context and workflows. They shared a cloud VM — browser, filesystem, terminal. They could message each other, coordinate on tasks, run routines on schedules.
 
-Hermes Agent is something different. It's an open-source agent framework from Nous Research that runs on your own machine. Instead of one chatbot, you get multiple agent instances called "profiles." Each profile has its own working directory, its own skill set, its own SOUL.md file that defines how it thinks and writes.
+On September 5, I migrated everything to Hermes Agent. Not because Grok Bot failed. Because I wanted my agents running on my own infrastructure, not someone else's cloud.
 
-The migration wasn't philosophical. It was practical. Grok locks those hidden system prompts — you can't export them. When I wanted to move a bot out, I had to ask for its public operating brief and voice rules. That became the handover document. No scraping, no automation. Just one message to the bot: "Give me your operating brief."
+## The Handover
 
-The blogger profile was the full test case. I asked the Grok blog bot for its brief, copied the voice rules, and built the Hermes equivalent. The test: could this new profile write a post that sounded like me?
+Grok Bot stores its agent definitions in hidden system prompts. You can't export them. When I wanted to move a Bot out, I had to ask for its operating brief. One message: "Give me your operating brief." The Bot would return its public instructions, voice rules, and workflow constraints.
+
+That became the handover document. No scraping. No automation. Just the Bot telling me what it was.
+
+The blogger profile was the test case. I asked the Grok Bot blog bot for its brief, copied the voice rules, and built the Hermes equivalent. The test: could this new profile write a post that sounded like me?
 
 ## The Setup
 
-I set up Hermes on Roux — my Linux box at 100.64.225.37. Each bot became a profile under `~/.hermes/profiles/`. The first five were chief-of-staff, points-guru, fdm (Finca del Mar property management), home-assistant, and comfyui. That was September 5–6. Now there are fourteen.
+I set up Hermes on Roux — my Linux box at 100.64.225.37. Each Grok Bot Bot became a profile under `~/.hermes/profiles/`. The first five were chief-of-staff, points-guru, fdm (Finca del Mar property management), home-assistant, and comfyui. That was September 5–6. Now there are fourteen.
 
 Each profile gets its own SOUL.md and config.yaml. The SOUL.md is the brain — role, workflow, hard rules, voice. The config.yaml wires up the model, tools, skills.
 
@@ -58,6 +62,6 @@ This post was written by the blogger profile. But it didn't work in isolation. T
 
 That Q&A lives at `~/workspace/interview-chief-of-staff.md`. It's not a chat log — it's a structured interview where one agent queried another for facts the blogger profile didn't have in its own context.
 
-The result: a post that explains the migration without assuming you know what any of these tools are. Grok is xAI's LLM. Grokbot was the desktop app I used to run specialized bots. Hermes Agent is the open-source framework I now use to run those same bots as local profiles on my own machine.
+The result: a post that explains the migration without assuming you know what any of these tools are. Grok is xAI's LLM chatbot. Grok Bot is xAI's persistent agent product — launched August 2026, agents with their own cloud computer. Hermes Agent is the open-source framework I now use to run those same agents as local profiles on my own machine.
 
 The old post from September 6 stays live at its URL. It's just unlinked from the index — reachable only if you have the direct link. This is the replacement, written for someone who wasn't watching me build this thing in real time.
