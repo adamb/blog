@@ -10,7 +10,7 @@ slug: "from-grokbot-to-hermes"
 
 [Grok Bot](https://x.ai/news/introducing-grok-bot) is a product from xAI. Not Grok — a different thing in their product suite. Grok is the chatbot you use through a web interface. Grok Bot is persistent AI agents with their own cloud computer that can log into your apps and work while you sleep. A commercial [Hermes Agent](https://hermes-agent.nousresearch.com/docs), roughly.
 
-I started on Grok Bot in August 2026 on the $30 plan. Chief of Staff for planning. Points Guru for travel rewards. Home Assistant for my smart home. I ran out of tokens fast. Upgraded to the $300 plan. That worked, but $300/month is difficult to stomach for something I use daily.
+I started on Grok Bot in August 2026 on the $30 plan. Chief of Staff for planning. Points Guru for travel rewards. Home Assistant for my smart home. I ran out of tokens fast. Upgraded to the $300 plan. That worked, but $300/month is hard to justify for AI, even if I use it daily.
 
 The pivot came when I used Grok Bot to configure ComfyUI on Roux — my Linux box with the 4090. It worked. If Grok Bot could configure ComfyUI, it could configure Hermes Agent. So I asked it to. A week of using Grok Bot gave me a clear picture of what it could do and what bots I actually needed. I told Grok Bot to replicate those bots as Hermes profiles. (The ComfyUI setup lives in [this post from August](/2026/08/local-gpu-video-with-grokbot/).)
 
