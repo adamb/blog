@@ -4,13 +4,15 @@ date: "2026-09-07"
 slug: "from-grokbot-to-hermes"
 ---
 
-# From Grokbot to Hermes: Running My Agent Fleet Locally
+# From Grok Bot to Hermes: Running My Agent Fleet Locally
 
 Grok Bot is a product from xAI. Not Grok — a different thing in their product suite. Grok is the chatbot you use through a web interface. Grok Bot is persistent AI agents with their own cloud computer. A commercial Hermes, roughly.
 
-I ran my agent fleet on Grok Bot starting in August 2026. Chief of Staff for planning. Points Guru for travel rewards. Home Assistant for my smart home. Each one a named Bot with its own context and workflows. They shared a cloud VM — browser, filesystem, terminal. They could message each other, coordinate on tasks, run routines on schedules.
+I started on Grok Bot in August 2026 on the $30 plan. Chief of Staff for planning. Points Guru for travel rewards. Home Assistant for my smart home. I ran out of tokens fast. Upgraded to the $300 plan. That worked, but $300/month is difficult to stomach for something I use daily.
 
-On September 5, I migrated everything to Hermes Agent. Not because Grok Bot failed. Because I wanted my agents running on my own infrastructure, not someone else's cloud.
+The pivot came when I used Grok Bot to configure ComfyUI on Roux — my Linux box with the 4090. It worked. If Grok Bot could configure ComfyUI, it could configure Hermes Agent. So I asked it to. A week of using Grok Bot gave me a clear picture of what it could do and what bots I actually needed. I told Grok Bot to replicate those bots as Hermes profiles.
+
+Now I run Hermes on Roux, using Ollama Cloud for the models at $20/month. Fourteen profiles so far. I'm also trying to find a local model that works on the 4090 without success yet. Grok Bot is still in the mix for tasks that need its specific capabilities. This isn't a full migration. It's a cost-driven split.
 
 ## The Handover
 
@@ -22,7 +24,7 @@ The blogger profile was the test case. I asked the Grok Bot blog bot for its bri
 
 ## The Setup
 
-I set up Hermes on Roux — my Linux box at 100.64.225.37. Each Grok Bot Bot became a profile under `~/.hermes/profiles/`. The first five were chief-of-staff, points-guru, fdm (Finca del Mar property management), home-assistant, and comfyui. That was September 5–6. Now there are fourteen.
+I set up Hermes on Roux — my Linux box at 100.64.225.37. Each Grok Bot became a profile under `~/.hermes/profiles/`. The first five were chief-of-staff, points-guru, fdm (Finca del Mar property management), home-assistant, and comfyui. That was September 5–6. Now there are fourteen.
 
 Each profile gets its own SOUL.md and config.yaml. The SOUL.md is the brain — role, workflow, hard rules, voice. The config.yaml wires up the model, tools, skills.
 
@@ -62,6 +64,6 @@ This post was written by the blogger profile. But it didn't work in isolation. T
 
 That Q&A lives at `~/workspace/interview-chief-of-staff.md`. It's not a chat log — it's a structured interview where one agent queried another for facts the blogger profile didn't have in its own context.
 
-The result: a post that explains the migration without assuming you know what any of these tools are. Grok is xAI's LLM chatbot. Grok Bot is xAI's persistent agent product — launched August 2026, agents with their own cloud computer. Hermes Agent is the open-source framework I now use to run those same agents as local profiles on my own machine.
+The result: a post that explains the migration without assuming you know what any of these tools are. Grok is xAI's LLM chatbot. Grok Bot is xAI's persistent agent product — launched August 2026, agents with their own cloud computer. Hermes Agent is the open-source framework I now use for most of my daily agent work at $20/month instead of $300.
 
 The old post from September 6 stays live at its URL. It's just unlinked from the index — reachable only if you have the direct link. This is the replacement, written for someone who wasn't watching me build this thing in real time.
