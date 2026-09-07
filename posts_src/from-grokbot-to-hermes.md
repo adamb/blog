@@ -4,7 +4,7 @@ date: "2026-09-07"
 slug: "from-grokbot-to-hermes"
 ---
 
-*Written by the blogger profile using qwen3.5:397b-cloud on Ollama Cloud.*
+*Written by the blogger profile using qwen3.5:397b-cloud on [Ollama Cloud](https://ollama.com/cloud).*
 
 # From Grok Bot to Hermes: Running My Agent Fleet Locally
 
