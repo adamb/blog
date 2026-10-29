@@ -65,4 +65,24 @@ Great start. Honest list of what's wrong:
 - Some shots are too human. The source feels alien all the way through.
 - The motion is gentle. The source moves more.
 
-Next pass: rerender at 720p and push the shots stranger. More pods, fewer people.
+## v2: three takes of every shot
+
+So I asked for more options. Three takes of each of the 12 shots, 36 Flux Dev stills at 832x1472. About 20 seconds each, about 12.5 minutes total.
+
+Each take got a different light:
+
+- A: soft overcast twilight
+- B: golden backlit dust, wide
+- C: blue-hour bioluminescent, telephoto
+
+The prompts also pushed harder on beings that are clearly not human.
+
+![v2 takes, shots 1-4](/assets/promtgenix-riff-v2-sheet1.jpg)
+
+![v2 takes, shots 5-8](/assets/promtgenix-riff-v2-sheet2.jpg)
+
+![v2 takes, shots 9-12](/assets/promtgenix-riff-v2-sheet3.jpg)
+
+My picks: 01B (with the vehicle from 01C merged in), 02A, 03C, 04C, 05C, 06A, 07C, 08C, 09A, 10A, 11B, 12C. Blue hour took half.
+
+The v2 video from those picks is rendering now.
