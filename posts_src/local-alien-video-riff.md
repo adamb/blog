@@ -85,4 +85,6 @@ The prompts also pushed harder on beings that are clearly not human.
 
 My picks: 01B (with the vehicle from 01C merged in), 02A, 03C, 04C, 05C, 06A, 07C, 08C, 09A, 10A, 11B, 12C. Blue hour took half.
 
-The v2 video from those picks is rendering now.
+Here is v2. The 01 pick is 1B with the 1C vehicle merged in via Flux Kontext. Each pick was animated with Wan 2.2 I2V 14B at 720x1280, 81 frames at 16fps. About 4 minutes per clip on the 4090. The cuts are aligned to the track's downbeats with librosa. Same original promptgenix soundtrack, credited above.
+
+<video controls playsinline preload="metadata" poster="/assets/promtgenix-riff-v2-poster.jpg" width="360" style="max-width:100%;height:auto"><source src="/assets/promtgenix-riff-v2.mp4" type="video/mp4"></video>
