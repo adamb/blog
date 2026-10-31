@@ -6,7 +6,7 @@ slug: "local-alien-video-riff"
 
 # Riffing on an Alien Burning Man Video With Only My Home GPU
 
-![Antlered alien elder, a still from the local riff.](/assets/promtgenix-riff-poster.jpg)
+[![Antlered alien elder, a still from the local riff. Click to play the v2 video.](/assets/promtgenix-riff-poster.jpg)](/assets/promtgenix-riff-v2.mp4)
 
 I saw [a video I loved](https://www.instagram.com/reel/Dd2ggMHRIkO/). Forty-eight seconds, vertical, alien priests on a hazy playa, with a dark, hypnotic soundtrack at about 85 BPM. Burning Man if the camp were from another planet.
 
