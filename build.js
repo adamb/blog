@@ -202,6 +202,20 @@ const postDataList = fs
 // 2. Build the nav HTML from the postDataList (now empty since we show snippets on index)
 const navLinks = "";
 
+// More-posts block: prev/next by date plus up to 3 same-year posts
+const listedPosts = postDataList.filter((p) => !p.unlisted && !p.draft);
+function buildMorePosts(post) {
+  const i = listedPosts.indexOf(post);
+  const items = [];
+  const seen = new Set([post]);
+  const add = (p, label) => { if (p && !seen.has(p)) { seen.add(p); items.push(`<li>${label}<a href="${p.urlPath}">${escapeHtmlAttr(p.title)}</a></li>`); } };
+  if (i >= 0) { add(listedPosts[i + 1], "← Previous: "); add(listedPosts[i - 1], "Next: "); }
+  const y = post.dateObj.getFullYear();
+  listedPosts.filter((p) => p.dateObj.getFullYear() === y && !seen.has(p)).slice(0, 3).forEach((p) => add(p, ""));
+  if (!items.length) return "";
+  return `<nav class="more-posts"><h3>More posts</h3><ul>${items.join("")}</ul></nav>`;
+}
+
 // 3. Generate individual full HTML pages for each post
 const baseTemplateContent = fs.readFileSync(templatePath, "utf8");
 
@@ -343,6 +357,7 @@ postDataList.forEach((post) => {
     <div id="post-content">${htmlBody}</div>
     ${toneButtons}
     ${subscriptionForm}
+    ${buildMorePosts(post)}
     <div class="back-link"><a href="/">← Back to Home</a></div>
   </article>`;
 
@@ -511,9 +526,10 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `;
 fs.writeFileSync(path.join(outputDir, 'robots.txt'), robotsTxt);
 
+const newestLastmod = listedPosts.length ? String(listedPosts[0].date) : new Date().toISOString().slice(0, 10);
 const sitemapUrls = [
-  { loc: `${SITE_URL}/`, lastmod: new Date().toISOString().slice(0, 10) },
-  { loc: `${SITE_URL}/about`, lastmod: new Date().toISOString().slice(0, 10) },
+  { loc: `${SITE_URL}/`, lastmod: newestLastmod },
+  { loc: `${SITE_URL}/about`, lastmod: newestLastmod },
   ...postDataList.filter((post) => !post.unlisted).map((post) => ({
     loc: absoluteUrl(post.urlPath),
     lastmod: post.date,
@@ -532,3 +548,38 @@ const sitemapXml = [
 ].join("\n");
 fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemapXml);
 console.log(`Wrote robots.txt and sitemap.xml (${sitemapUrls.length} URLs).`);
+
+// 8. 404 page (noindex, no canonical), _redirects, _headers
+let notFoundHtml = applyPageShell(baseTemplateContent, {
+  title: `Not found - ${SITE_NAME}`,
+  description: "Page not found.",
+  canonicalPath: "/",
+  imagePath: DEFAULT_OG_IMAGE,
+  type: "website",
+  mainContent: `<article><h1>Not found</h1><p>Sorry, that page does not exist.</p><div class="back-link"><a href="/">← Back to Home</a></div></article>`,
+  navLinks,
+});
+notFoundHtml = notFoundHtml
+  .replace(/\s*<link rel="canonical"[^>]*>/, "")
+  .replace(/\s*<meta property="og:url"[^>]*>/, "")
+  .replace("</head>", `  <meta name="robots" content="noindex">\n</head>`);
+fs.writeFileSync(path.join(outputDir, "404.html"), notFoundHtml);
+
+const redirectLines = [
+  "/feed.xml / 301",
+  "/rss.xml / 301",
+  ...postDataList.filter((p) => !p.draft).map((p) => `${p.urlPath.replace(/\/$/, "")}.html ${p.urlPath} 301`),
+];
+fs.writeFileSync(path.join(outputDir, "_redirects"), redirectLines.join("\n") + "\n");
+
+const headersTxt = `https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+/stats
+  X-Robots-Tag: noindex
+`;
+fs.writeFileSync(path.join(outputDir, "_headers"), headersTxt);
+console.log(`Wrote 404.html, _redirects (${redirectLines.length} rules), _headers.`);
