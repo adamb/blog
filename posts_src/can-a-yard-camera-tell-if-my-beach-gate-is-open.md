@@ -107,6 +107,6 @@ Map ajar to status "open".
 
 ## Still cooking
 
-This has been running a few days. Jury’s out on false positives over a longer window. I may also stick an IKEA MYGGBETT door/window sensor (Matter over Thread, not Zigbee) on the ocean side of the gate and see how long salt air lets it live.
+This has been running a few days. Jury’s out on false positives over a longer window. I may also stick an IKEA MYGGBETT door/window sensor (Matter over Thread, not Zigbee, the kind of device I cover on [HA News, the Home Assistant news site I run](https://hanews.org/)) on the ocean side of the gate and see how long salt air lets it live.
 
 Camera + VLM is the interesting part. The contact sensor would be the boring backup that either confirms it or makes the whole vision stack look silly.

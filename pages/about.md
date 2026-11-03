@@ -9,6 +9,8 @@ This blog is where I document what I’m building, breaking, and learning — fr
 
 I split my time between Puerto Rico and wherever curiosity takes me — sometimes it’s a new API or AI model, sometimes a jungle trek or a SpaceX launch. I’m into longevity, quantified living, and understanding how systems (both human and digital) tick. I run a coding school in San Juan that trains underrepresented engineers and helps them find high-leverage work.  I also run a small finca by the sea in Rio Grande where I live with my amazing wife, our dogs, and our chickens.  
 
+I also run [HA News](https://hanews.org/) (hanews.org), a Home Assistant news site.
+
 You’ll find posts here on:
 
 - Cloudflare, Svelte, HTMX, and AI-powered web apps  

@@ -8,11 +8,11 @@ slug: "building-thread-network-home-assistant"
 
 Thread is a low-power mesh networking protocol that's becoming the backbone of modern smart homes. I've always liked the idea of an automated home.  In fact I started a company called Sensr.net that I thought would be part of this ecosystem but we never got there.  
 
-Anyway, I liked the Alexa home automation stuff and still use it alongside Home Assistant.  But I'm trying to get off the cloud as much as possible so I started replacing all my devices with Thread and HA instead of Wi-Fi and Alexa.  
+Anyway, I liked the Alexa home automation stuff and still use it alongside Home Assistant.  But I'm trying to get off the cloud as much as possible so I started replacing all my devices with Thread and HA instead of Wi-Fi and Alexa.  I manage that HA setup with Claude Code, which I wrote about in [How I Use Claude Code to Manage My Home Assistant Setup](/2026/04/claude-code-home-assistant/).
 
 Why Thread?  It's fast and good for low power.  I wanted to detect doors being opened, because we live on the beach in Puerto Rico, I want to keep all the doors to the storage rooms closed.  I ran across the IKEA Thread enabled door sensors so that was the driving use case for me.  Thread is designed for low power and IKEA devices are great: they're cheap and have a big name behind them.  The fact that IKEA is all in on Thread made it very attractive for me.  
 
-Thread is basically like Wi-Fi but on a different radio frequency optimized for low-power devices. Learn more at the <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>.
+Thread is basically like Wi-Fi but on a different radio frequency optimized for low-power devices. Learn more at the <a href="https://www.threadgroup.org/" target="_blank">Thread Group official website</a>. I also track Matter and Thread news at [HA News, the Home Assistant news site I run](https://hanews.org/).
 
 ## What is Thread?
 
