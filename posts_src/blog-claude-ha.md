@@ -117,4 +117,4 @@ Steps 2–6 happen without me touching a file or running a command. I stay in th
 
 For someone managing a non-trivial HA setup, this changes the economics of automation. The overhead of writing a new automation drops low enough that you actually build the ones you've been putting off.
 
-Later I used the same setup to build out the house radios; that story is in [Building a Thread network for Home Assistant](/2026/07/building-thread-network-home-assistant/).
+I later wrote about building a Thread network for the house in [Building a Thread network for Home Assistant](/2026/07/building-thread-network-home-assistant/).
