@@ -14,6 +14,23 @@ So I asked ComfyUI Local, my Grok Bot that drives ComfyUI, to riff on it. One ru
 
 Last time I did this it was [a Zappa video](/2026/08/local-gpu-video-with-grokbot/). This time the bar was a video I already liked.
 
+## The cast
+
+A few names come up a lot, so here's who's who.
+
+**Roux** is my Linux box. It lives in a closet and normally does boring jobs: DNS, cameras, backups. It has an RTX 4090 in it, a $1,600 graphics card originally built for video games. That card is also, it turns out, a decent little AI movie studio.
+
+**[ComfyUI](https://www.comfy.org/)** is free software that runs on that card. Think of it as a workbench where you snap together image and video generation models like Lego. **ComfyUI Local** is a bot — an AI agent I talk to in plain English — that drives that workbench for me. I say "riff on this video," it does the clicking.
+
+The models it runs, all sitting on Roux's disk, no cloud involved:
+
+- **[Flux Dev](https://blackforestlabs.ai/models/)** paints pictures from a written description. Give it "a manta ray made of lanterns" and twenty seconds later you have the still.
+- **[Wan 2.2](https://github.com/Wan-Video/Wan2.2)** makes those stills move. Feed it one image, it guesses the next few seconds of motion. Video is much harder than stills, which is why each clip takes minutes, not seconds.
+- **[Stable Audio Open](https://stability.ai)** generates music from a text prompt.
+- **[ffmpeg](https://ffmpeg.org/)** is old-school video software (predates the AI craze by decades) that stitches the clips together, cuts on the beat, and scales everything up.
+
+There's also **the bot's brain**: the agent itself runs on cloud-hosted language models. So the *thinking* happens in a datacenter, but every *pixel and note* was made at home on the 4090. That's the whole point of the exercise.
+
 ## Step 1: watch the source
 
 The bot pulled frames and the audio and wrote down what makes it work. Teal-grey playa haze. Alien priests in tall headdresses. Crimson processions. Giant moons. Pod creatures walking on insect legs. Shots of 3 to 6 seconds, cut to the beat.
