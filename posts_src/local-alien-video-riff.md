@@ -18,7 +18,7 @@ Last time I did this it was [a Zappa video](/2026/08/local-gpu-video-with-grokbo
 
 A few names come up a lot, so here's who's who.
 
-**Roux** is my Linux box. It lives in a closet and normally does boring jobs: DNS, cameras, backups. It has an RTX 4090 in it, a $1,600 graphics card originally built for video games. That card is also, it turns out, a decent little AI movie studio.
+**Roux** is my Linux box. It lives in a closet and normally does boring jobs: DNS, cameras, backups. It has a **[GeForce RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/)** in it, Nvidia's top-of-the-line consumer graphics card from 2022, about $1,600. Most people buy one to run video games at insanely high frame rates. A graphics card's specialty is doing thousands of tiny math problems at the same time, which also happens to be exactly what AI image and video generation needs. So the same card that shreds Call of Duty can, it turns out, double as a little AI movie studio.
 
 **[ComfyUI](https://www.comfy.org/)** is free software that runs on that card. Think of it as a workbench where you snap together image and video generation models like Lego. **ComfyUI Local** is a bot — an AI agent I talk to in plain English — that drives that workbench for me. I say "riff on this video," it does the clicking.
 
