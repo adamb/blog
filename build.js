@@ -453,7 +453,9 @@ function generateSnippet(content, maxLength = 300) {
   // Remove markdown formatting for snippet
   let snippet = content
     .replace(/^#.*$/gm, '') // Remove headers
+    .replace(/\[!\[[^\]]*\]\([^)]+\)\]\([^)]+\)/g, '') // Remove linked images
     .replace(/!\[([^\]]*)\]\([^)]+\)/g, '') // Remove images
+    .replace(/\[\]\([^)]+\)/g, '') // Remove leftover empty markdown links
     .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold
     .replace(/\*(.*?)\*/g, '$1') // Remove italic
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove links, keep text
